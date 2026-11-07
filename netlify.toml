@@ -1,0 +1,32 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/admin"
+  to = "/dashboard_admin.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/dashboard_admin.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/auth"
+  to = "/users_auth.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/auth/*"
+  to = "/users_auth.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/campagne"
+  to = "/index.html"
+  status = 200
+  force = true

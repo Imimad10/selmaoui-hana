@@ -1,0 +1,5 @@
+/admin       /dashboard_admin.html       200!
+/admin/*     /dashboard_admin.html       200!
+/auth        /users_auth.html            200!
+/auth/*      /users_auth.html            200!
+/campagne    /index.html                 200!

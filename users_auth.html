@@ -1,0 +1,1008 @@
+﻿<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Utilisateurs — Campagne Selmaoui Hana #38</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rnd: { dark: '#063322', green: '#0b4f36', light: '#146c43', accent: '#e8f5e9', red: '#d9232e', redDark: '#b01720', gold: '#d4af37', cream: '#f9fbf9' }
+                    },
+                    fontFamily: { body: ['Plus Jakarta Sans', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f1f5f9; }
+        .toast { animation: slideIn 0.3s ease-out; }
+        @keyframes slideIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-rnd-dark text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-white text-rnd-green flex flex-col items-center justify-center font-black text-xs">
+                    <span class="text-rnd-red text-[9px]">★☾</span>
+                    <span>RND</span>
+                </div>
+                <div>
+                    <h1 class="text-lg font-extrabold">Gestion des Utilisateurs</h1>
+                    <p class="text-xs text-emerald-300">Campagne Selmaoui Hana #38 — Sécurité & Authentification</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="dashboard_admin.html" class="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-sm font-bold transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-gauge-high"></i> Tableau de bord
+                </a>
+                <a href="dashboard_admin.html#audit" class="px-4 py-2 rounded-xl bg-amber-400/20 hover:bg-amber-400/30 text-amber-300 text-sm font-bold transition-all flex items-center gap-2 border border-amber-400/30">
+                    <i class="fa-solid fa-shield-halved"></i> Journal d'Audit
+                </a>
+                <span id="currentUserBadge" class="px-3 py-1.5 rounded-lg bg-emerald-500/20 text-emerald-300 text-xs font-bold">
+                    <i class="fa-solid fa-user-shield"></i> Admin
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- Security Info Banner -->
+        <div class="bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 rounded-2xl p-5 mb-8 flex items-start gap-4">
+            <div class="w-12 h-12 rounded-xl bg-rnd-green text-white flex items-center justify-center text-xl shrink-0">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <div>
+                <h3 class="font-extrabold text-rnd-dark text-base">Sécurité par Hachage SHA-256</h3>
+                <p class="text-sm text-slate-600 mt-1">
+                    Tous les mots de passe sont hashés avec l'algorithme <strong>SHA-256</strong> via l'API <code class="bg-white px-1.5 py-0.5 rounded text-xs border">Web Crypto (SubtleCrypto)</code>.
+                    Les mots de passe en clair ne sont <strong>jamais stockés</strong>. Seul le hash est conservé en mémoire.
+                    Un <strong>salt aléatoire</strong> unique est généré pour chaque utilisateur afin de renforcer la sécurité.
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+            <!-- Left: Add User Form -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="bg-rnd-green text-white p-5">
+                        <h2 class="text-lg font-extrabold flex items-center gap-2">
+                            <i class="fa-solid fa-user-plus"></i> Ajouter un Utilisateur
+                        </h2>
+                    </div>
+                    <form id="addUserForm" class="p-6 space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">Nom complet *</label>
+                            <input type="text" id="fullName" required placeholder="Ex: Ahmed Bouzid"
+                                class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-rnd-green focus:ring-2 focus:ring-rnd-green/20 outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">Nom d'utilisateur *</label>
+                            <input type="text" id="username" required placeholder="Ex: ahmed.b"
+                                class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-rnd-green focus:ring-2 focus:ring-rnd-green/20 outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">Email</label>
+                            <input type="email" id="email" placeholder="email@exemple.com"
+                                class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-rnd-green focus:ring-2 focus:ring-rnd-green/20 outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">Mot de passe *</label>
+                            <div class="relative">
+                                <input type="password" id="password" required placeholder="Min. 8 caractères"
+                                    class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-rnd-green focus:ring-2 focus:ring-rnd-green/20 outline-none text-sm pr-12">
+                                <button type="button" onclick="togglePasswordVisibility('password', this)" class="absolute top-1/2 right-3 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                            <div id="passwordStrength" class="mt-2 hidden">
+                                <div class="flex gap-1">
+                                    <div id="str1" class="h-1.5 flex-1 rounded-full bg-slate-200"></div>
+                                    <div id="str2" class="h-1.5 flex-1 rounded-full bg-slate-200"></div>
+                                    <div id="str3" class="h-1.5 flex-1 rounded-full bg-slate-200"></div>
+                                    <div id="str4" class="h-1.5 flex-1 rounded-full bg-slate-200"></div>
+                                </div>
+                                <p id="strLabel" class="text-xs mt-1 font-bold text-slate-400"></p>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">Confirmer le mot de passe *</label>
+                            <input type="password" id="confirmPassword" required placeholder="Retaper le mot de passe"
+                                class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-rnd-green focus:ring-2 focus:ring-rnd-green/20 outline-none text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">Rôle *</label>
+                            <select id="role" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-rnd-green focus:ring-2 focus:ring-rnd-green/20 outline-none text-sm">
+                                <option value="viewer">Observateur (lecture seule)</option>
+                                <option value="editor">Éditeur (lecture + modification)</option>
+                                <option value="moderator">Modérateur (gestion contenu)</option>
+                                <option value="admin">Administrateur (accès total)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 uppercase tracking-wider mb-1.5">Commune d'affectation</label>
+                            <select id="commune" class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-rnd-green focus:ring-2 focus:ring-rnd-green/20 outline-none text-sm">
+                                <option value="all">Toute la Wilaya</option>
+                                <option value="Souk Ahras">Souk Ahras (سوق أهراس)</option>
+                                <option value="Sedrata">Sedrata (سدراتة)</option>
+                                <option value="Mdaourouch">Mdaourouch (مداوروش)</option>
+                                <option value="Taoura">Taoura (تاورة)</option>
+                                <option value="Mechroha">Mechroha (مشروحة)</option>
+                                <option value="Haddada">Haddada (الحدادة)</option>
+                                <option value="Ouled Driss">Ouled Driss (أولاد إدريس)</option>
+                                <option value="Merahna">Merahna (المراهنة)</option>
+                                <option value="Bir Bouhouche">Bir Bouhouche (بئر بوحوش)</option>
+                                <option value="Khemissa">Khemissa (خميسة)</option>
+                                <option value="Oum El Adhaim">Oum El Adhaim (أم العظائم)</option>
+                                <option value="Drea">Drea (الدريعة)</option>
+                                <option value="Zouabi">Zouabi (الزوابي)</option>
+                                <option value="Tiffech">Tiffech (تيفاش)</option>
+                                <option value="Hanancha">Hanancha (الحنانشة)</option>
+                                <option value="Zaarouria">Zaarouria (الزعرورية)</option>
+                                <option value="Safel El Ouiden">Safel El Ouiden (سافل الويدان)</option>
+                                <option value="Oued Keberit">Oued Keberit (وادي الكبريت)</option>
+                                <option value="Terraguelt">Terraguelt (تارقلت)</option>
+                                <option value="Ragouba">Ragouba (الراقوبة)</option>
+                                <option value="Khedara">Khedara (الخضارة)</option>
+                                <option value="Ouillen">Ouillen (ويلان)</option>
+                                <option value="Ain Zana">Ain Zana (عين الزانة)</option>
+                                <option value="Ain Soltane">Ain Soltane (عين سلطان)</option>
+                                <option value="Ouled Moumen">Ouled Moumen (أولاد مومن)</option>
+                                <option value="Sidi Fredj">Sidi Fredj (سيدي فرج)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full py-3.5 rounded-xl bg-rnd-green hover:bg-rnd-dark text-white font-extrabold text-sm flex items-center justify-center gap-2 transition-all shadow-md">
+                            <i class="fa-solid fa-user-check"></i> Créer l'utilisateur (hash sécurisé)
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right: Users Table -->
+            <div class="lg:col-span-2">
+                <!-- Search & Filters Bar -->
+                <div class="flex flex-wrap items-center gap-3 mb-5">
+                    <div class="flex-1 min-w-[200px] relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="text" id="searchUsers" placeholder="Rechercher un utilisateur..."
+                            oninput="renderUsersTable()"
+                            class="w-full pl-11 pr-4 py-3 rounded-xl border border-slate-300 focus:border-rnd-green focus:ring-2 focus:ring-rnd-green/20 outline-none text-sm bg-white">
+                    </div>
+                    <select id="filterRole" onchange="renderUsersTable()" class="px-4 py-3 rounded-xl border border-slate-300 text-sm bg-white focus:border-rnd-green outline-none">
+                        <option value="all">Tous les rôles</option>
+                        <option value="admin">Admin</option>
+                        <option value="moderator">Modérateur</option>
+                        <option value="editor">Éditeur</option>
+                        <option value="viewer">Observateur</option>
+                    </select>
+                    <button onclick="exportUsersJSON()" class="px-4 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-sm flex items-center gap-2 transition-all border border-slate-200" title="Sauvegarder les utilisateurs dans un fichier JSON">
+                        <i class="fa-solid fa-file-export"></i> Exporter JSON
+                    </button>
+                    <label class="px-4 py-3 rounded-xl bg-rnd-green hover:bg-rnd-dark text-white font-bold text-sm flex items-center gap-2 transition-all cursor-pointer shadow-sm" title="Restaurer ou transférer des utilisateurs depuis un fichier JSON">
+                        <i class="fa-solid fa-file-import"></i> Importer JSON
+                        <input type="file" accept=".json" onchange="importUsersJSON(event)" class="hidden">
+                    </label>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                    <div class="bg-white rounded-xl p-4 border border-slate-200 text-center">
+                        <p class="text-2xl font-black text-rnd-dark" id="statTotal">0</p>
+                        <p class="text-xs text-slate-500 font-bold mt-0.5">Total utilisateurs</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 border border-slate-200 text-center">
+                        <p class="text-2xl font-black text-rnd-red" id="statAdmins">0</p>
+                        <p class="text-xs text-slate-500 font-bold mt-0.5">Administrateurs</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 border border-slate-200 text-center">
+                        <p class="text-2xl font-black text-rnd-green" id="statActive">0</p>
+                        <p class="text-xs text-slate-500 font-bold mt-0.5">Actifs</p>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 border border-slate-200 text-center">
+                        <p class="text-2xl font-black text-amber-500" id="statLocked">0</p>
+                        <p class="text-xs text-slate-500 font-bold mt-0.5">Verrouillés</p>
+                    </div>
+                </div>
+
+                <!-- Users Table -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-slate-50 border-b border-slate-200">
+                                <tr class="text-left text-xs font-bold text-slate-500 uppercase tracking-wider">
+                                    <th class="px-5 py-3.5">Utilisateur</th>
+                                    <th class="px-5 py-3.5">Rôle</th>
+                                    <th class="px-5 py-3.5">Commune</th>
+                                    <th class="px-5 py-3.5">Hash SHA-256</th>
+                                    <th class="px-5 py-3.5">Statut</th>
+                                    <th class="px-5 py-3.5 text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody" class="divide-y divide-slate-100">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="emptyState" class="hidden p-12 text-center">
+                        <i class="fa-solid fa-users-slash text-4xl text-slate-300 mb-3"></i>
+                        <p class="text-sm font-bold text-slate-400">Aucun utilisateur enregistré</p>
+                    </div>
+                </div>
+
+                <!-- Hash Verification Tool -->
+                <div class="mt-8 bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+                    <h3 class="text-lg font-extrabold text-rnd-dark mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-fingerprint text-rnd-green"></i> Outil de Vérification de Mot de Passe
+                    </h3>
+                    <p class="text-xs text-slate-500 mb-4">Vérifiez si un mot de passe correspond au hash stocké d'un utilisateur (authentification).</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5">Utilisateur</label>
+                            <select id="verifyUser" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm outline-none focus:border-rnd-green">
+                                <option value="">-- Sélectionner --</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5">Mot de passe à tester</label>
+                            <input type="password" id="verifyPassword" placeholder="Entrer le mot de passe"
+                                class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm outline-none focus:border-rnd-green">
+                        </div>
+                        <div class="flex items-end">
+                            <button onclick="verifyUserPassword()" class="w-full py-3 rounded-xl bg-rnd-dark hover:bg-rnd-green text-white font-bold text-sm flex items-center justify-center gap-2 transition-all">
+                                <i class="fa-solid fa-key"></i> Vérifier
+                            </button>
+                        </div>
+                    </div>
+                    <div id="verifyResult" class="hidden mt-4 p-4 rounded-xl text-sm font-bold"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notifications -->
+    <div id="toastContainer" class="fixed top-5 right-5 z-50 space-y-2"></div>
+
+    <!-- User Detail / Edit Modal -->
+    <div id="userModal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl overflow-hidden">
+            <div class="bg-rnd-dark text-white p-5 flex justify-between items-center">
+                <h3 class="text-lg font-extrabold" id="modalTitle">Détails Utilisateur</h3>
+                <button onclick="closeUserModal()" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div id="modalBody" class="p-6 space-y-4">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // =====================================================
+        //  HASHING ENGINE — SHA-256 + SALT (Fail-Safe Pure JS + SubtleCrypto)
+        // =====================================================
+
+        /**
+         * Standalone Pure JS SHA-256 Engine (UTF-8 Compliant)
+         * Guarantees 100% hashing availability even in non-secure or restricted browser contexts.
+         */
+        function sha256_pure(str) {
+            function rightRotate(value, amount) {
+                return (value >>> amount) | (value << (32 - amount));
+            }
+            var mathPow = Math.pow;
+            var maxWord = mathPow(2, 32);
+            var lengthProperty = 'length';
+            var i, j;
+            var result = '';
+            var words = [];
+            
+            var ascii = '';
+            try {
+                ascii = unescape(encodeURIComponent(str));
+            } catch(e) {
+                ascii = str;
+            }
+
+            var asciiBitLength = ascii[lengthProperty] * 8;
+            var hash = [];
+            var k = [];
+            var primeCounter = 0;
+
+            var isComposite = {};
+            for (var candidate = 2; primeCounter < 64; candidate++) {
+                if (!isComposite[candidate]) {
+                    for (i = 0; i < 313; i += candidate) {
+                        isComposite[i] = candidate;
+                    }
+                    hash[primeCounter] = (mathPow(candidate, .5) * maxWord) | 0;
+                    k[primeCounter++] = (mathPow(candidate, 1/3) * maxWord) | 0;
+                }
+            }
+            
+            ascii += '\x80';
+            while (ascii[lengthProperty] % 64 - 56) ascii += '\x00';
+            for (i = 0; i < ascii[lengthProperty]; i++) {
+                j = ascii.charCodeAt(i);
+                words[i >> 2] |= j << ((3 - i) % 4) * 8;
+            }
+            words[words[lengthProperty]] = ((asciiBitLength / maxWord) | 0);
+            words[words[lengthProperty]] = (asciiBitLength) | 0;
+            
+            for (j = 0; j < words[lengthProperty];) {
+                var w = words.slice(j, j += 16);
+                var oldHash = hash;
+                hash = hash.slice(0, 8);
+                
+                for (i = 0; i < 64; i++) {
+                    var w15 = w[i - 15], w2 = w[i - 2];
+                    var a = hash[0], e = hash[4];
+                    var temp1 = hash[7]
+                        + (rightRotate(e, 6) ^ rightRotate(e, 11) ^ rightRotate(e, 25))
+                        + ((e & hash[5]) ^ ((~e) & hash[6]))
+                        + k[i]
+                        + (w[i] = (i < 16) ? w[i] : (
+                                w[i - 16]
+                                + (rightRotate(w15, 7) ^ rightRotate(w15, 18) ^ (w15 >>> 3))
+                                + w[i - 7]
+                                + (rightRotate(w2, 17) ^ rightRotate(w2, 19) ^ (w2 >>> 10))
+                            ) | 0
+                        );
+                    var temp2 = (rightRotate(a, 2) ^ rightRotate(a, 13) ^ rightRotate(a, 22))
+                        + ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]));
+                    
+                    hash = [(temp1 + temp2) | 0].concat(hash);
+                    hash[4] = (hash[4] + temp1) | 0;
+                }
+                
+                for (i = 0; i < 8; i++) {
+                    hash[i] = (hash[i] + oldHash[i]) | 0;
+                }
+            }
+            
+            for (i = 0; i < 8; i++) {
+                for (j = 3; j + 1; j--) {
+                    var b = (hash[i] >> (j * 8)) & 255;
+                    result += ((b < 16) ? 0 : '') + b.toString(16);
+                }
+            }
+            return result;
+        }
+
+        /**
+         * Generate a random salt (16 bytes, hex-encoded)
+         */
+        function generateSalt() {
+            if (window.crypto && window.crypto.getRandomValues) {
+                try {
+                    const array = new Uint8Array(16);
+                    window.crypto.getRandomValues(array);
+                    return Array.from(array, b => b.toString(16).padStart(2, '0')).join('');
+                } catch(e) {}
+            }
+            let s = '';
+            for (let i = 0; i < 32; i++) {
+                s += Math.floor(Math.random() * 16).toString(16);
+            }
+            return s;
+        }
+
+        /**
+         * Hash a password with SHA-256 using a salt
+         * @param {string} password - The plain-text password
+         * @param {string} salt - The hex-encoded salt
+         * @returns {Promise<string>} The hex-encoded SHA-256 hash
+         */
+        async function hashPassword(password, salt) {
+            const input = (salt || '') + (password || '');
+            if (window.crypto && window.crypto.subtle && window.crypto.subtle.digest) {
+                try {
+                    const data = new TextEncoder().encode(input);
+                    const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
+                    return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+                } catch(e) {
+                    console.warn('SubtleCrypto error, falling back to pure JS SHA-256', e);
+                }
+            }
+            return sha256_pure(input);
+        }
+
+        /**
+         * Verify a password against a stored hash+salt
+         */
+        async function verifyHash(password, salt, storedHash) {
+            const computedHash = await hashPassword(password, salt);
+            return computedHash === storedHash;
+        }
+
+        // =====================================================
+        //  USER DATA STORE (LocalStorage backed)
+        // =====================================================
+
+        const STORAGE_KEY = 'selma_campaign_users';
+        const AUDIT_KEY = 'selma_campaign_audit';
+
+        function getAuditLogs() {
+            const d = localStorage.getItem(AUDIT_KEY);
+            return d ? JSON.parse(d) : [];
+        }
+
+        function saveAuditLogs(logs) {
+            localStorage.setItem(AUDIT_KEY, JSON.stringify(logs.slice(0, 500)));
+        }
+
+        function logAuditEvent(event) {
+            const logs = getAuditLogs();
+            let device = 'Navigateur';
+            const ua = navigator.userAgent;
+            if (ua.includes('Windows')) device = 'Windows';
+            else if (ua.includes('Mac')) device = 'macOS';
+            else if (ua.includes('Linux')) device = 'Linux';
+            else if (ua.includes('Android')) device = 'Android';
+            else if (ua.includes('iPhone') || ua.includes('iPad')) device = 'iOS';
+            if (ua.includes('Chrome')) device += ' • Chrome';
+            else if (ua.includes('Firefox')) device += ' • Firefox';
+            else if (ua.includes('Edge')) device += ' • Edge';
+
+            const newLog = {
+                id: 'aud_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 6),
+                timestamp: new Date().toISOString(),
+                actor: { username: 'admin', fullName: 'Selmaoui Hana (Admin)', role: 'admin' },
+                action: event.action || 'USER_MANAGEMENT',
+                actionTitle: event.actionTitle || 'Gestion Utilisateurs',
+                category: event.category || 'MEMBERS',
+                severity: event.severity || 'info',
+                target: event.target || '—',
+                details: event.details || '',
+                ip: '192.168.1.10 (Poste Admin)',
+                device: device
+            };
+
+            logs.unshift(newLog);
+            saveAuditLogs(logs);
+            return newLog;
+        }
+
+        function getUsers() {
+            const data = localStorage.getItem(STORAGE_KEY);
+            return data ? JSON.parse(data) : [];
+        }
+
+        function saveUsers(users) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+        }
+
+        // Initialize default admin if no users exist
+        async function initDefaultAdmin() {
+            let users = getUsers();
+            if (users.length === 0) {
+                const salt = generateSalt();
+                const hash = await hashPassword('Admin@2024', salt);
+                users.push({
+                    id: generateId(),
+                    fullName: 'Selmaoui Hana (Admin)',
+                    username: 'admin',
+                    email: 'admin@campagne38.dz',
+                    role: 'admin',
+                    commune: 'all',
+                    salt: salt,
+                    passwordHash: hash,
+                    status: 'active',
+                    createdAt: new Date().toISOString(),
+                    lastLogin: null
+                });
+                saveUsers(users);
+            }
+            renderUsersTable();
+            updateStats();
+            updateVerifyDropdown();
+        }
+
+        function generateId() {
+            return 'usr_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 8);
+        }
+
+        // =====================================================
+        //  PASSWORD STRENGTH CHECKER
+        // =====================================================
+
+        document.getElementById('password').addEventListener('input', function() {
+            const val = this.value;
+            const strengthDiv = document.getElementById('passwordStrength');
+            const bars = [document.getElementById('str1'), document.getElementById('str2'), document.getElementById('str3'), document.getElementById('str4')];
+            const label = document.getElementById('strLabel');
+
+            if (val.length === 0) { strengthDiv.classList.add('hidden'); return; }
+            strengthDiv.classList.remove('hidden');
+
+            let score = 0;
+            if (val.length >= 8) score++;
+            if (/[A-Z]/.test(val) && /[a-z]/.test(val)) score++;
+            if (/\d/.test(val)) score++;
+            if (/[^A-Za-z0-9]/.test(val)) score++;
+
+            const colors = ['bg-red-500', 'bg-orange-400', 'bg-yellow-400', 'bg-emerald-500'];
+            const labels = ['Très faible', 'Faible', 'Moyen', 'Fort'];
+            const labelColors = ['text-red-500', 'text-orange-400', 'text-yellow-500', 'text-emerald-500'];
+
+            bars.forEach((bar, i) => {
+                bar.className = 'h-1.5 flex-1 rounded-full ' + (i < score ? colors[Math.max(0, score - 1)] : 'bg-slate-200');
+            });
+            label.textContent = labels[Math.max(0, score - 1)] || 'Très faible';
+            label.className = 'text-xs mt-1 font-bold ' + (labelColors[Math.max(0, score - 1)] || 'text-slate-400');
+        });
+
+        // =====================================================
+        //  ADD USER FORM HANDLER
+        // =====================================================
+
+        document.getElementById('addUserForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            try {
+                const fullName = document.getElementById('fullName').value.trim();
+                const username = document.getElementById('username').value.trim().toLowerCase();
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const role = document.getElementById('role').value;
+                const commune = document.getElementById('commune').value;
+
+                // Validations
+                if (!fullName) {
+                    showToast('Veuillez renseigner le nom complet.', 'error');
+                    return;
+                }
+                if (!username) {
+                    showToast('Veuillez renseigner le nom d\'utilisateur.', 'error');
+                    return;
+                }
+                if (password.length < 8) {
+                    showToast('Le mot de passe doit contenir au moins 8 caractères.', 'error');
+                    return;
+                }
+                if (password !== confirmPassword) {
+                    showToast('Les mots de passe ne correspondent pas.', 'error');
+                    return;
+                }
+
+                const users = getUsers();
+                if (users.find(u => u.username.toLowerCase() === username)) {
+                    showToast('Ce nom d\'utilisateur existe déjà.', 'error');
+                    return;
+                }
+
+                // Generate salt and hash
+                const salt = generateSalt();
+                const hash = await hashPassword(password, salt);
+
+                const newUser = {
+                    id: generateId(),
+                    fullName,
+                    username,
+                    email,
+                    role,
+                    commune,
+                    salt,
+                    passwordHash: hash,
+                    status: 'active',
+                    createdAt: new Date().toISOString(),
+                    lastLogin: null
+                };
+
+                users.push(newUser);
+                saveUsers(users);
+
+                logAuditEvent({
+                    action: 'USER_CREATE',
+                    actionTitle: 'Création d\'un Membre',
+                    category: 'MEMBERS',
+                    severity: 'success',
+                    target: `@${username} (${role})`,
+                    details: `Ajout du compte membre "${fullName}" (@${username}), rôle: ${role}, commune: ${commune}. Empreinte SHA-256 générée.`
+                });
+
+                this.reset();
+                document.getElementById('passwordStrength').classList.add('hidden');
+                renderUsersTable();
+                updateStats();
+                updateVerifyDropdown();
+                showToast(`Utilisateur "${username}" créé et sauvegardé avec succès !`, 'success');
+            } catch (err) {
+                console.error('Erreur sauvegarde utilisateur:', err);
+                showToast('Erreur: ' + (err.message || 'Impossible de sauvegarder l\'utilisateur'), 'error');
+            }
+        });
+
+        // =====================================================
+        //  RENDER USERS TABLE
+        // =====================================================
+
+        function renderUsersTable() {
+            const users = getUsers();
+            const search = document.getElementById('searchUsers').value.toLowerCase();
+            const filterRole = document.getElementById('filterRole').value;
+            const tbody = document.getElementById('usersTableBody');
+            const emptyState = document.getElementById('emptyState');
+
+            let filtered = users.filter(u => {
+                const matchSearch = u.fullName.toLowerCase().includes(search) || u.username.toLowerCase().includes(search) || u.email.toLowerCase().includes(search);
+                const matchRole = filterRole === 'all' || u.role === filterRole;
+                return matchSearch && matchRole;
+            });
+
+            if (filtered.length === 0) {
+                tbody.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            const roleLabels = { admin: 'Admin', moderator: 'Modérateur', editor: 'Éditeur', viewer: 'Observateur' };
+            const roleColors = { admin: 'bg-red-100 text-rnd-red', moderator: 'bg-purple-100 text-purple-700', editor: 'bg-blue-100 text-blue-700', viewer: 'bg-slate-100 text-slate-600' };
+            const statusColors = { active: 'bg-emerald-100 text-emerald-700', locked: 'bg-amber-100 text-amber-700', disabled: 'bg-red-100 text-red-600' };
+            const statusLabels = { active: 'Actif', locked: 'Verrouillé', disabled: 'Désactivé' };
+
+            tbody.innerHTML = filtered.map(u => `
+                <tr class="hover:bg-slate-50 transition-colors">
+                    <td class="px-5 py-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-lg ${u.role === 'admin' ? 'bg-rnd-red' : 'bg-rnd-green'} text-white flex items-center justify-center font-bold text-xs">
+                                ${u.fullName.charAt(0).toUpperCase()}
+                            </div>
+                            <div>
+                                <p class="font-bold text-slate-800">${escapeHtml(u.fullName)}</p>
+                                <p class="text-xs text-slate-400">@${escapeHtml(u.username)}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-5 py-4">
+                        <span class="px-2.5 py-1 rounded-lg text-xs font-bold ${roleColors[u.role]}">${roleLabels[u.role]}</span>
+                    </td>
+                    <td class="px-5 py-4 text-xs text-slate-600 font-medium">${u.commune === 'all' ? 'Toute la Wilaya' : escapeHtml(u.commune)}</td>
+                    <td class="px-5 py-4">
+                        <code class="text-[10px] bg-slate-100 px-2 py-1 rounded font-mono text-slate-500 break-all">${u.passwordHash.substring(0, 16)}…</code>
+                    </td>
+                    <td class="px-5 py-4">
+                        <span class="px-2.5 py-1 rounded-lg text-xs font-bold ${statusColors[u.status]}">${statusLabels[u.status]}</span>
+                    </td>
+                    <td class="px-5 py-4 text-center">
+                        <div class="flex items-center justify-center gap-1.5">
+                            <button onclick="viewUser('${u.id}')" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-blue-100 text-slate-500 hover:text-blue-600 flex items-center justify-center transition-all" title="Détails">
+                                <i class="fa-solid fa-eye text-xs"></i>
+                            </button>
+                            <button onclick="toggleUserStatus('${u.id}')" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-amber-100 text-slate-500 hover:text-amber-600 flex items-center justify-center transition-all" title="Verrouiller/Déverrouiller">
+                                <i class="fa-solid fa-lock text-xs"></i>
+                            </button>
+                            <button onclick="resetUserPassword('${u.id}')" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-emerald-100 text-slate-500 hover:text-emerald-600 flex items-center justify-center transition-all" title="Réinitialiser MDP">
+                                <i class="fa-solid fa-key text-xs"></i>
+                            </button>
+                            <button onclick="deleteUser('${u.id}')" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-red-100 text-slate-500 hover:text-red-600 flex items-center justify-center transition-all" title="Supprimer">
+                                <i class="fa-solid fa-trash text-xs"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // =====================================================
+        //  USER ACTIONS
+        // =====================================================
+
+        function viewUser(id) {
+            const users = getUsers();
+            const u = users.find(x => x.id === id);
+            if (!u) return;
+
+            document.getElementById('modalTitle').textContent = `Détails: ${u.fullName}`;
+            document.getElementById('modalBody').innerHTML = `
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div class="p-3 bg-slate-50 rounded-xl">
+                        <p class="text-xs text-slate-400 font-bold">Nom complet</p>
+                        <p class="font-bold text-slate-800 mt-1">${escapeHtml(u.fullName)}</p>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-xl">
+                        <p class="text-xs text-slate-400 font-bold">Username</p>
+                        <p class="font-bold text-slate-800 mt-1">@${escapeHtml(u.username)}</p>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-xl">
+                        <p class="text-xs text-slate-400 font-bold">Email</p>
+                        <p class="font-bold text-slate-800 mt-1">${escapeHtml(u.email || '—')}</p>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-xl">
+                        <p class="text-xs text-slate-400 font-bold">Rôle</p>
+                        <p class="font-bold text-slate-800 mt-1">${u.role}</p>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-xl">
+                        <p class="text-xs text-slate-400 font-bold">Commune</p>
+                        <p class="font-bold text-slate-800 mt-1">${u.commune === 'all' ? 'Toute la Wilaya' : escapeHtml(u.commune)}</p>
+                    </div>
+                    <div class="p-3 bg-slate-50 rounded-xl">
+                        <p class="text-xs text-slate-400 font-bold">Créé le</p>
+                        <p class="font-bold text-slate-800 mt-1">${new Date(u.createdAt).toLocaleDateString('fr-FR')}</p>
+                    </div>
+                </div>
+                <div class="mt-4 p-4 bg-emerald-50 rounded-xl border border-emerald-200">
+                    <p class="text-xs text-emerald-700 font-bold mb-1"><i class="fa-solid fa-shield-halved mr-1"></i> Données de sécurité</p>
+                    <div class="space-y-2 mt-2">
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold uppercase">Salt (hex)</p>
+                            <code class="text-xs bg-white px-2 py-1 rounded border text-slate-600 font-mono block mt-0.5 break-all">${u.salt}</code>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-slate-500 font-bold uppercase">Hash SHA-256</p>
+                            <code class="text-xs bg-white px-2 py-1 rounded border text-slate-600 font-mono block mt-0.5 break-all">${u.passwordHash}</code>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('userModal').classList.remove('hidden');
+        }
+
+        function closeUserModal() {
+            document.getElementById('userModal').classList.add('hidden');
+        }
+
+        function toggleUserStatus(id) {
+            const users = getUsers();
+            const u = users.find(x => x.id === id);
+            if (!u) return;
+            const oldStatus = u.status;
+            u.status = u.status === 'active' ? 'locked' : 'active';
+            saveUsers(users);
+            renderUsersTable();
+            updateStats();
+
+            logAuditEvent({
+                action: 'USER_STATUS_CHANGE',
+                actionTitle: `Statut Membre Modifié (${u.status === 'active' ? 'Déverrouillé' : 'Verrouillé'})`,
+                category: 'MEMBERS',
+                severity: u.status === 'active' ? 'info' : 'warning',
+                target: `@${u.username}`,
+                details: `Le compte de ${u.fullName} (@${u.username}) est passé de "${oldStatus}" à "${u.status}".`
+            });
+
+            showToast(`Utilisateur "${u.username}" ${u.status === 'active' ? 'déverrouillé' : 'verrouillé'}.`, 'info');
+        }
+
+        async function resetUserPassword(id) {
+            const newPwd = prompt('Nouveau mot de passe (min 8 caractères) :');
+            if (!newPwd || newPwd.length < 8) {
+                if (newPwd !== null) showToast('Le mot de passe doit contenir au moins 8 caractères.', 'error');
+                return;
+            }
+            const users = getUsers();
+            const u = users.find(x => x.id === id);
+            if (!u) return;
+            u.salt = generateSalt();
+            u.passwordHash = await hashPassword(newPwd, u.salt);
+            saveUsers(users);
+            renderUsersTable();
+
+            logAuditEvent({
+                action: 'PASSWORD_RESET',
+                actionTitle: 'Réinitialisation de Mot de Passe',
+                category: 'SECURITY',
+                severity: 'warning',
+                target: `@${u.username}`,
+                details: `Le mot de passe de ${u.fullName} (@${u.username}) a été réinitialisé. Nouveau sel et empreinte SHA-256 générés.`
+            });
+
+            showToast(`Mot de passe de "${u.username}" réinitialisé. Nouveau hash SHA-256 généré.`, 'success');
+        }
+
+        function deleteUser(id) {
+            const users = getUsers();
+            const u = users.find(x => x.id === id);
+            if (!u) return;
+            if (u.username === 'admin') {
+                showToast('Impossible de supprimer le compte administrateur principal.', 'error');
+                return;
+            }
+            if (!confirm(`Supprimer l'utilisateur "${u.fullName}" (@${u.username}) ? Cette action est irréversible.`)) return;
+            const filtered = users.filter(x => x.id !== id);
+            saveUsers(filtered);
+            renderUsersTable();
+            updateStats();
+            updateVerifyDropdown();
+
+            logAuditEvent({
+                action: 'USER_DELETE',
+                actionTitle: 'Suppression Définitive de Membre',
+                category: 'MEMBERS',
+                severity: 'danger',
+                target: `@${u.username}`,
+                details: `Suppression irréversible du compte ${u.fullName} (@${u.username}, rôle: ${u.role}).`
+            });
+
+            showToast(`Utilisateur "${u.username}" supprimé.`, 'info');
+        }
+
+        // =====================================================
+        //  PASSWORD VERIFICATION TOOL
+        // =====================================================
+
+        function updateVerifyDropdown() {
+            const select = document.getElementById('verifyUser');
+            const users = getUsers();
+            select.innerHTML = '<option value="">-- Sélectionner --</option>' +
+                users.map(u => `<option value="${u.id}">${escapeHtml(u.fullName)} (@${u.username})</option>`).join('');
+        }
+
+        async function verifyUserPassword() {
+            const userId = document.getElementById('verifyUser').value;
+            const password = document.getElementById('verifyPassword').value;
+            const resultDiv = document.getElementById('verifyResult');
+
+            if (!userId || !password) {
+                showToast('Veuillez sélectionner un utilisateur et entrer un mot de passe.', 'error');
+                return;
+            }
+
+            const users = getUsers();
+            const u = users.find(x => x.id === userId);
+            if (!u) return;
+
+            const isMatch = await verifyHash(password, u.salt, u.passwordHash);
+
+            logAuditEvent({
+                action: 'PASSWORD_VERIFY_TEST',
+                actionTitle: 'Test Empreinte Hash SHA-256',
+                category: 'SECURITY',
+                severity: isMatch ? 'info' : 'warning',
+                target: `@${u.username}`,
+                details: `Test de vérification de mot de passe pour @${u.username} : résultat = ${isMatch ? 'CORRESPONDANCE PARFAITE' : 'ÉCHEC (MDP invalide)'}.`
+            });
+            if (!u) return;
+
+            const isMatch = await verifyHash(password, u.salt, u.passwordHash);
+
+            resultDiv.classList.remove('hidden');
+            if (isMatch) {
+                resultDiv.className = 'mt-4 p-4 rounded-xl text-sm font-bold bg-emerald-50 border-2 border-emerald-400 text-emerald-700';
+                resultDiv.innerHTML = '<i class="fa-solid fa-circle-check mr-2"></i> ✅ Authentification réussie ! Le mot de passe correspond au hash stocké.';
+            } else {
+                resultDiv.className = 'mt-4 p-4 rounded-xl text-sm font-bold bg-red-50 border-2 border-red-300 text-red-600';
+                resultDiv.innerHTML = '<i class="fa-solid fa-circle-xmark mr-2"></i> ❌ Échec d\'authentification. Le mot de passe ne correspond pas au hash.';
+            }
+
+            document.getElementById('verifyPassword').value = '';
+        }
+
+        // =====================================================
+        //  STATS, EXPORT & UTILITIES
+        // =====================================================
+
+        function updateStats() {
+            const users = getUsers();
+            document.getElementById('statTotal').textContent = users.length;
+            document.getElementById('statAdmins').textContent = users.filter(u => u.role === 'admin').length;
+            document.getElementById('statActive').textContent = users.filter(u => u.status === 'active').length;
+            document.getElementById('statLocked').textContent = users.filter(u => u.status === 'locked').length;
+        }
+
+        function exportUsersJSON() {
+            const users = getUsers().map(u => ({
+                id: u.id,
+                fullName: u.fullName,
+                username: u.username,
+                email: u.email,
+                role: u.role,
+                commune: u.commune,
+                salt: u.salt,
+                passwordHash: u.passwordHash,
+                status: u.status,
+                createdAt: u.createdAt
+            }));
+            const blob = new Blob([JSON.stringify(users, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'campagne38_users_' + new Date().toISOString().split('T')[0] + '.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('Fichier JSON exporté avec les hashes (mots de passe exclus).', 'success');
+        }
+
+        function importUsersJSON(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = JSON.parse(e.target.result);
+                    const userList = Array.isArray(data) ? data : (data.users || []);
+                    if (!userList.length) {
+                        showToast('Aucun utilisateur trouvé dans ce fichier.', 'error');
+                        return;
+                    }
+                    const current = getUsers();
+                    let addedCount = 0;
+                    userList.forEach(nu => {
+                        if (!nu.username) return;
+                        const idx = current.findIndex(u => u.username.toLowerCase() === nu.username.toLowerCase());
+                        if (idx >= 0) {
+                            current[idx] = Object.assign(current[idx], nu);
+                        } else {
+                            current.push(nu);
+                            addedCount++;
+                        }
+                    });
+                    saveUsers(current);
+                    renderUsersTable();
+                    updateStats();
+                    updateVerifyDropdown();
+                    showToast(`${userList.length} utilisateur(s) synchronisés avec succès (${addedCount} nouveaux) !`, 'success');
+                } catch(err) {
+                    showToast('Fichier JSON invalide : ' + (err.message || 'erreur'), 'error');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function togglePasswordVisibility(inputId, btn) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                btn.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+            } else {
+                input.type = 'password';
+                btn.innerHTML = '<i class="fa-solid fa-eye"></i>';
+            }
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+
+        function showToast(msg, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const colors = {
+                success: 'bg-emerald-600', error: 'bg-red-600', info: 'bg-blue-600'
+            };
+            const icons = {
+                success: 'fa-circle-check', error: 'fa-circle-xmark', info: 'fa-circle-info'
+            };
+            const toast = document.createElement('div');
+            toast.className = `toast ${colors[type]} text-white px-5 py-3.5 rounded-xl shadow-lg flex items-center gap-3 max-w-sm text-sm font-bold`;
+            toast.innerHTML = `<i class="fa-solid ${icons[type]}"></i> ${escapeHtml(msg)}`;
+            container.appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; toast.style.transition = 'opacity 0.3s'; setTimeout(() => toast.remove(), 300); }, 4000);
+        }
+
+        // =====================================================
+        //  CROSS-TAB STORAGE SYNCHRONIZATION
+        // =====================================================
+        window.addEventListener('storage', function(e) {
+            if (e.key === STORAGE_KEY) {
+                renderUsersTable();
+                updateStats();
+                updateVerifyDropdown();
+            }
+        });
+
+        // =====================================================
+        //  INITIALIZATION
+        // =====================================================
+        initDefaultAdmin();
+    </script>
+</body>
+</html>
