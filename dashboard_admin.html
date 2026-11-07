@@ -1,4 +1,4 @@
-﻿
+
         <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 <head>
@@ -146,14 +146,14 @@
             <!-- Header Banner -->
             <div class="bg-[#063322] p-7 text-center text-white relative overflow-hidden">
                 <div class="w-16 h-16 rounded-2xl bg-white text-[#0b4f36] flex flex-col items-center justify-center font-black text-sm mx-auto mb-3 shadow-lg border border-white/20">
-                    <span class="text-[#d9232e] text-[11px] leading-tight">â˜…â˜¾</span>
+                    <span class="text-[#d9232e] text-[11px] leading-tight"><i class="fa-solid fa-star-and-crescent"></i></span>
                     <span class="leading-none">RND</span>
                 </div>
                 <h1 class="text-2xl font-black">Tableau de Bord Admin</h1>
-                <p class="text-emerald-300 text-xs font-bold mt-1">Campagne Dr. Selmaoui Hana #38 â€” Souk Ahras</p>
+                <p class="text-emerald-300 text-xs font-bold mt-1">Campagne Dr. Selmaoui Hana #38 — Souk Ahras</p>
                 <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-[10px] font-bold text-emerald-200 mt-2.5 border border-white/10">
                     <i class="fa-solid fa-shield-halved text-amber-300"></i>
-                    <span>Authentification SÃ©curisÃ©e SHA-256</span>
+                    <span>Authentification Sécurisée SHA-256</span>
                 </div>
             </div>
 
@@ -178,7 +178,7 @@
                     </div>
                     <div class="relative">
                         <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
-                        <input type="password" id="loginPassword" value="Admin@2024" required placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" autocomplete="current-password"
+                        <input type="password" id="loginPassword" value="Admin@2024" required placeholder="••••••••" autocomplete="current-password"
                             class="w-full pl-11 pr-4 py-3 rounded-xl border-2 border-slate-200 focus:border-[#0b4f36] outline-none text-sm font-semibold text-slate-800 transition">
                     </div>
                 </div>
@@ -196,18 +196,18 @@
 
                 <!-- 1-Click Direct Admin Access Button -->
                 <button type="button" onclick="directAccessDashboard()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-50 to-teal-50 hover:from-emerald-100 hover:to-teal-100 text-[#0b4f36] border-2 border-emerald-300 font-extrabold text-xs flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer">
-                    <i class="fa-solid fa-bolt text-amber-500"></i> AccÃ¨s Direct (Mode Administrateur)
+                    <i class="fa-solid fa-bolt text-amber-500"></i> Accès Direct (Mode Administrateur)
                 </button>
 
                 <!-- Credentials reminder & links -->
                 <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-[11px] text-slate-600 flex items-center justify-between">
                     <div>
-                        <span class="text-slate-400 block text-[9px] uppercase font-bold">Identifiants par dÃ©faut</span>
+                        <span class="text-slate-400 block text-[9px] uppercase font-bold">Identifiants par défaut</span>
                         <span class="font-mono font-bold text-slate-800">admin / Admin@2024</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <button type="button" onclick="forceResetAdminAccount()" class="px-2 py-1 rounded-lg bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 font-bold text-[10px] transition" title="RÃ©initialiser le compte admin">
-                            <i class="fa-solid fa-rotate-left mr-0.5 text-[#0b4f36]"></i> RÃ©initialiser
+                        <button type="button" onclick="forceResetAdminAccount()" class="px-2 py-1 rounded-lg bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 font-bold text-[10px] transition" title="Réinitialiser le compte admin">
+                            <i class="fa-solid fa-rotate-left mr-0.5 text-[#0b4f36]"></i> Réinitialiser
                         </button>
                     </div>
                 </div>
@@ -725,13 +725,13 @@
             <div>
                 <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-emerald-200 text-xs font-bold mb-3 border border-white/10">
                     <i class="fa-solid fa-map-location-dot"></i>
-                    <span>Ø¨Ø±Ù†Ø§Ù…Ø¬ Ø¨Ù„Ø¯ÙŠØ§Øª ÙˆÙ„Ø§ÙŠØ© Ø³ÙˆÙ‚ Ø£Ù‡Ø±Ø§Ø³ Ø§Ù„Ù€ 26</span>
+                    <span>برنامج بلديات ولاية سوق أهراس الـ 26</span>
                 </div>
                 <h3 class="text-2xl font-black text-white flex items-center gap-3">
                     Gestion du Programme des 26 Communes
                 </h3>
                 <p class="text-sm text-emerald-100 max-w-2xl mt-1">
-                    Activez ou masquez globalement ou individuellement chaque commune et ses engagements sur le site public en temps rÃ©el.
+                    Activez ou masquez globalement ou individuellement chaque commune et ses engagements sur le site public en temps réel.
                 </p>
             </div>
 
@@ -739,7 +739,7 @@
             <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-4 flex items-center justify-between gap-5 shrink-0 shadow-inner">
                 <div>
                     <p class="text-xs uppercase tracking-wider font-extrabold text-emerald-200">Affichage sur le site</p>
-                    <p id="communesMasterStatusLabel" class="text-sm font-bold text-white">Section ActivÃ©e</p>
+                    <p id="communesMasterStatusLabel" class="text-sm font-bold text-white">Section Activée</p>
                 </div>
                 <label class="relative inline-flex items-center cursor-pointer">
                     <input type="checkbox" id="communesMasterToggle" onchange="toggleCommunesMasterSwitch()" class="sr-only peer" checked>
@@ -759,14 +759,14 @@
                 <span class="text-lg font-black text-emerald-300" id="statCommunesActive">26</span>
             </div>
             <div class="bg-white/5 rounded-xl p-3">
-                <span class="text-slate-300 block">Communes MasquÃ©es</span>
+                <span class="text-slate-300 block">Communes Masquées</span>
                 <span class="text-lg font-black text-rose-300" id="statCommunesHidden">0</span>
             </div>
             <div class="bg-white/5 rounded-xl p-3 flex items-center justify-between">
                 <div>
                     <span class="text-slate-300 block">Actions Rapides</span>
                     <button onclick="resetCommunesDefaults()" class="text-[11px] font-bold text-amber-200 hover:text-white underline mt-0.5">
-                        <i class="fa-solid fa-rotate-left mr-1"></i> RÃ©initialiser tout
+                        <i class="fa-solid fa-rotate-left mr-1"></i> Réinitialiser tout
                     </button>
                 </div>
             </div>
@@ -780,16 +780,16 @@
                 Toutes (26)
             </button>
             <button onclick="filterAdminCommunes('lait')" id="btnAdminCommuneLait" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
-                <i class="fa-solid fa-cow text-amber-600 mr-1"></i> Ø­ÙˆØ¶ Ø§Ù„Ø­Ù„ÙŠØ¨
+                <i class="fa-solid fa-cow text-amber-600 mr-1"></i> حوض الحليب
             </button>
             <button onclick="filterAdminCommunes('foret')" id="btnAdminCommuneForet" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
-                <i class="fa-solid fa-tree text-emerald-600 mr-1"></i> Ø§Ù„ØºØ§Ø¨Ø§Øª ÙˆØ§Ù„Ù†Ø­Ù„
+                <i class="fa-solid fa-tree text-emerald-600 mr-1"></i> الغابات والنحل
             </button>
             <button onclick="filterAdminCommunes('frontiere')" id="btnAdminCommuneFrontiere" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
-                <i class="fa-solid fa-mountain-sun text-blue-600 mr-1"></i> Ø´Ø±ÙŠØ· Ø­Ø¯ÙˆØ¯ÙŠ
+                <i class="fa-solid fa-mountain-sun text-blue-600 mr-1"></i> شريط حدودي
             </button>
             <button onclick="filterAdminCommunes('urbain')" id="btnAdminCommuneUrbain" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
-                <i class="fa-solid fa-city text-purple-600 mr-1"></i> Ù…Ø±Ø§ÙƒØ² Ø­Ø¶Ø±ÙŠØ©
+                <i class="fa-solid fa-city text-purple-600 mr-1"></i> مراكز حضرية
             </button>
         </div>
 
@@ -809,7 +809,7 @@
         <div class="flex items-center justify-between border-b border-slate-100 pb-3">
             <div>
                 <h4 class="text-base font-extrabold text-rnd-dark"><i class="fa-solid fa-chart-pie text-rnd-green mr-2"></i> Statistiques des contributions citoyennes par commune</h4>
-                <p class="text-xs text-slate-500">Nombre de propositions et dolÃ©ances enregistrÃ©es par commune.</p>
+                <p class="text-xs text-slate-500">Nombre de propositions et doléances enregistrées par commune.</p>
             </div>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3" id="communeSubmissionStatsGrid">
@@ -2962,19 +2962,19 @@
         // =====================================================
 
         function formatDateRelative(isoStr) {
-            if (!isoStr) return 'Ã€ l\'instant';
+            if (!isoStr) return 'À l\'instant';
             try {
                 const d = new Date(isoStr);
                 const diffMs = Date.now() - d.getTime();
                 const diffSec = Math.floor(diffMs / 1000);
-                if (diffSec < 60) return 'Ã€ l\'instant';
+                if (diffSec < 60) return 'À l\'instant';
                 const diffMin = Math.floor(diffSec / 60);
                 if (diffMin < 60) return 'Il y a ' + diffMin + ' min';
                 const diffHour = Math.floor(diffMin / 60);
                 if (diffHour < 24) return 'Il y a ' + diffHour + ' h';
                 return d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
             } catch(e) {
-                return 'RÃ©cemment';
+                return 'Récemment';
             }
         }
 
@@ -3414,7 +3414,7 @@
             }
 
             if (user.status === 'locked' || user.status === 'disabled') {
-                if (errorText) errorText.textContent = 'Ce compte est temporairement verrouillÃ©.';
+                if (errorText) errorText.textContent = 'Ce compte est temporairement verrouillé.';
                 if (errorEl) errorEl.classList.remove('hidden');
                 return false;
             }
@@ -3504,7 +3504,7 @@
                 if (p) p.value = 'Admin@2024';
                 const err = document.getElementById('loginError');
                 if (err) err.classList.add('hidden');
-                alert('Compte administrateur rÃ©initialisÃ© avec succÃ¨s !\n\nUtilisateur : admin\nMot de passe : Admin@2024');
+                alert('Compte administrateur réinitialisé avec succès !\n\nUtilisateur : admin\nMot de passe : Admin@2024');
             } catch (e) {
                 alert('Erreur: ' + e.message);
             }
@@ -3895,7 +3895,7 @@ const sectionTitles = {
                 masterToggle.checked = cfg.sectionVisible !== false;
             }
             if (masterStatusLabel) {
-                masterStatusLabel.textContent = cfg.sectionVisible !== false ? 'Section ActivÃ©e sur le site' : 'Section MasquÃ©e du site';
+                masterStatusLabel.textContent = cfg.sectionVisible !== false ? 'Section Activée sur le site' : 'Section Masquée du site';
                 masterStatusLabel.className = 'text-sm font-bold ' + (cfg.sectionVisible !== false ? 'text-emerald-300' : 'text-rose-300');
             }
 
@@ -3935,7 +3935,7 @@ const sectionTitles = {
                 return '<div class="bg-white rounded-2xl border transition-all p-5 space-y-3 relative ' + (isActive ? 'border-slate-200 shadow-sm hover:shadow-md' : 'border-rose-200 bg-rose-50/30 opacity-75') + '">' +
                     '<div class="flex items-start justify-between gap-3">' +
                         '<div>' +
-                            '<span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold border ' + catColor + '">' + (c.badge || 'Ø¨Ø±Ù†Ø§Ù…Ø¬ ØªÙ†Ù…ÙˆÙŠ') + '</span>' +
+                            '<span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold border ' + catColor + '">' + (c.badge || 'برنامج تنموي') + '</span>' +
                             '<h4 class="text-base font-black text-rnd-dark mt-1.5">' + c.title + '</h4>' +
                             '<p class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-location-dot text-rnd-green mr-1"></i> ' + c.daira + '</p>' +
                         '</div>' +
@@ -3944,7 +3944,7 @@ const sectionTitles = {
                                 '<input type="checkbox" onchange="toggleCommuneActive(\'' + c.id + '\')" class="sr-only peer" ' + (isActive ? 'checked' : '') + '>' +
                                 '<div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[\'\'] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>' +
                             '</label>' +
-                            '<span class="text-[10px] font-extrabold mt-1 ' + (isActive ? 'text-emerald-600' : 'text-rose-600') + '">' + (isActive ? 'Actif' : 'MasquÃ©') + '</span>' +
+                            '<span class="text-[10px] font-extrabold mt-1 ' + (isActive ? 'text-emerald-600' : 'text-rose-600') + '">' + (isActive ? 'Actif' : 'Masqué') + '</span>' +
                         '</div>' +
                     '</div>' +
                     '<p class="text-xs text-slate-600 leading-relaxed bg-slate-50 rounded-xl p-3 border border-slate-100">' + (c.desc || 'Ù„Ø§ ÙŠÙˆØ¬Ø¯ ÙˆØµÙ Ù…Ø¶Ø§Ù.') + '</p>' +
@@ -3964,7 +3964,7 @@ const sectionTitles = {
             cfg.sectionVisible = toggle ? toggle.checked : true;
             saveCommunesConfig(cfg);
             renderCommunes();
-            showToast(cfg.sectionVisible ? 'Section Communes activÃ©e sur le site public' : 'Section Communes masquÃ©e du site public', cfg.sectionVisible ? 'success' : 'info');
+            showToast(cfg.sectionVisible ? 'Section Communes activée sur le site public' : 'Section Communes masquée du site public', cfg.sectionVisible ? 'success' : 'info');
         }
 
         function toggleCommuneActive(communeId) {
@@ -3974,19 +3974,19 @@ const sectionTitles = {
                 target.active = target.active === false ? true : false;
                 saveCommunesConfig(cfg);
                 renderCommunes();
-                showToast(target.active ? ('Commune Â« ' + target.title + ' Â» activÃ©e') : ('Commune Â« ' + target.title + ' Â» masquÃ©e'), target.active ? 'success' : 'info');
+                showToast(target.active ? ('Commune « ' + target.title + ' » activée') : ('Commune « ' + target.title + ' » masquée'), target.active ? 'success' : 'info');
             }
         }
 
         function resetCommunesDefaults() {
-            if (confirm('Voulez-vous rÃ©initialiser toutes les communes aux valeurs par dÃ©faut (toutes activÃ©es) ?')) {
+            if (confirm('Voulez-vous réinitialiser toutes les communes aux valeurs par défaut (toutes activées) ?')) {
                 const cfg = {
                     sectionVisible: true,
                     communes: JSON.parse(JSON.stringify(DEFAULT_COMMUNES_DATA))
                 };
                 saveCommunesConfig(cfg);
                 renderCommunes();
-                showToast('Toutes les communes ont Ã©tÃ© rÃ©initialisÃ©es avec succÃ¨s', 'success');
+                showToast('Toutes les communes ont été réinitialisées avec succès', 'success');
             }
         }
 
