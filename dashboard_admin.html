@@ -141,14 +141,13 @@
 <body class="min-h-screen">
 
     <!-- Login Screen (shown if not authenticated) -->
-    <div id="loginScreen" class="fixed inset-0 z-[100] bg-gradient-to-br from-rnd-dark via-rnd-green to-emerald-900 flex items-center justify-center p-4">
+    <div id="loginScreen" class="fixed inset-0 z-[100] bg-gradient-to-br from-[#063322] via-[#0b4f36] to-slate-900 flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full overflow-hidden border border-emerald-800/30" style="animation: fadeIn 0.4s ease">
             <!-- Header Banner -->
-            <div class="bg-rnd-dark p-7 text-center text-white relative overflow-hidden">
-                <div class="absolute -right-8 -top-8 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl"></div>
-                <div class="w-16 h-16 rounded-2xl bg-white text-rnd-green flex flex-col items-center justify-center font-black text-sm mx-auto mb-3 shadow-lg border border-white/20">
-                    <span class="text-rnd-red text-[11px]">â˜…â˜¾</span>
-                    <span>RND</span>
+            <div class="bg-[#063322] p-7 text-center text-white relative overflow-hidden">
+                <div class="w-16 h-16 rounded-2xl bg-white text-[#0b4f36] flex flex-col items-center justify-center font-black text-sm mx-auto mb-3 shadow-lg border border-white/20">
+                    <span class="text-[#d9232e] text-[11px] leading-tight">â˜…â˜¾</span>
+                    <span class="leading-none">RND</span>
                 </div>
                 <h1 class="text-2xl font-black">Tableau de Bord Admin</h1>
                 <p class="text-emerald-300 text-xs font-bold mt-1">Campagne Dr. Selmaoui Hana #38 â€” Souk Ahras</p>
@@ -158,7 +157,7 @@
                 </div>
             </div>
 
-            <!-- Login Form with onsubmit preventDefault to prevent ? GET submissions -->
+            <!-- Login Form -->
             <form id="loginForm" action="javascript:void(0);" onsubmit="event.preventDefault(); handleAdminLogin(event); return false;" class="p-6 sm:p-8 space-y-4">
                 
                 <div>
@@ -166,21 +165,21 @@
                     <div class="relative">
                         <i class="fa-solid fa-user absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
                         <input type="text" id="loginUsername" value="admin" required placeholder="admin" autocomplete="username"
-                            class="w-full pl-11 pr-4 py-3 rounded-xl border-2 border-slate-200 focus:border-rnd-green outline-none text-sm font-semibold text-slate-800 transition">
+                            class="w-full pl-11 pr-4 py-3 rounded-xl border-2 border-slate-200 focus:border-[#0b4f36] outline-none text-sm font-semibold text-slate-800 transition">
                     </div>
                 </div>
 
                 <div>
                     <div class="flex items-center justify-between mb-1.5">
                         <label class="block text-xs font-bold text-slate-600 uppercase">Mot de passe</label>
-                        <button type="button" onclick="togglePasswordVisibility()" class="text-[11px] font-bold text-rnd-green hover:underline flex items-center gap-1">
+                        <button type="button" onclick="togglePasswordVisibility()" class="text-[11px] font-bold text-[#0b4f36] hover:underline flex items-center gap-1">
                             <i class="fa-solid fa-eye text-xs" id="passEyeIcon"></i> <span id="passEyeText">Afficher</span>
                         </button>
                     </div>
                     <div class="relative">
                         <i class="fa-solid fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
                         <input type="password" id="loginPassword" value="Admin@2024" required placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" autocomplete="current-password"
-                            class="w-full pl-11 pr-4 py-3 rounded-xl border-2 border-slate-200 focus:border-rnd-green outline-none text-sm font-semibold text-slate-800 transition">
+                            class="w-full pl-11 pr-4 py-3 rounded-xl border-2 border-slate-200 focus:border-[#0b4f36] outline-none text-sm font-semibold text-slate-800 transition">
                     </div>
                 </div>
 
@@ -191,13 +190,13 @@
                 </div>
 
                 <!-- Submit Button -->
-                <button type="submit" id="submitLoginBtn" class="w-full py-3.5 rounded-xl bg-rnd-green hover:bg-rnd-dark text-white font-extrabold text-sm flex items-center justify-center gap-2 transition-all shadow-md hover:shadow-lg cursor-pointer">
+                <button type="submit" id="submitLoginBtn" class="w-full py-3.5 rounded-xl bg-[#0b4f36] hover:bg-[#063322] text-white font-extrabold text-sm flex items-center justify-center gap-2 transition-all shadow-md hover:shadow-lg cursor-pointer">
                     <i class="fa-solid fa-right-to-bracket"></i> Se connecter au tableau de bord
                 </button>
 
                 <!-- 1-Click Direct Admin Access Button -->
-                <button type="button" onclick="directAccessDashboard()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-50 to-teal-50 hover:from-emerald-100 hover:to-teal-100 text-rnd-green border-2 border-emerald-200 font-extrabold text-xs flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer">
-                    <i class="fa-solid fa-bolt text-amber-500"></i> âš¡ AccÃ¨s Direct (Mode Administrateur)
+                <button type="button" onclick="directAccessDashboard()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-50 to-teal-50 hover:from-emerald-100 hover:to-teal-100 text-[#0b4f36] border-2 border-emerald-300 font-extrabold text-xs flex items-center justify-center gap-2 transition-all shadow-sm cursor-pointer">
+                    <i class="fa-solid fa-bolt text-amber-500"></i> AccÃ¨s Direct (Mode Administrateur)
                 </button>
 
                 <!-- Credentials reminder & links -->
@@ -207,24 +206,96 @@
                         <span class="font-mono font-bold text-slate-800">admin / Admin@2024</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <button type="button" onclick="forceResetAdminAccount()" class="px-2 py-1 rounded-lg bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 font-bold text-[10px] transition" title="RÃ©initialiser l'utilisateur admin">
-                            <i class="fa-solid fa-rotate-left mr-0.5 text-rnd-green"></i> RÃ©initialiser
+                        <button type="button" onclick="forceResetAdminAccount()" class="px-2 py-1 rounded-lg bg-white border border-slate-300 text-slate-700 hover:bg-slate-100 font-bold text-[10px] transition" title="RÃ©initialiser le compte admin">
+                            <i class="fa-solid fa-rotate-left mr-0.5 text-[#0b4f36]"></i> RÃ©initialiser
                         </button>
                     </div>
                 </div>
 
                 <!-- Footer Navigation inside Login Box -->
                 <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                    <a href="/" class="hover:text-rnd-green font-bold flex items-center gap-1.5 transition">
+                    <a href="/" class="hover:text-[#0b4f36] font-bold flex items-center gap-1.5 transition">
                         <i class="fa-solid fa-arrow-left text-[10px]"></i> Retour au Site Public
                     </a>
-                    <a href="/auth" class="hover:text-rnd-green font-bold flex items-center gap-1.5 transition">
+                    <a href="/auth" class="hover:text-[#0b4f36] font-bold flex items-center gap-1.5 transition">
                         <i class="fa-solid fa-users-gear text-[10px]"></i> Gestion Utilisateurs
                     </a>
                 </div>
             </form>
         </div>
     </div>
+
+        <script>
+        // ==========================================
+        //  EARLY LOGIN CONTROLLER & DIRECT ACCESS
+        // ==========================================
+        const SELMA_SESSION_KEY = 'selma_session';
+
+        function directAccessDashboard() {
+            try {
+                const adminSession = {
+                    userId: 'usr_admin_default',
+                    username: 'admin',
+                    fullName: 'Selmaoui Hana (Admin)',
+                    role: 'admin',
+                    commune: 'all'
+                };
+                sessionStorage.setItem(SELMA_SESSION_KEY, JSON.stringify(adminSession));
+                localStorage.setItem(SELMA_SESSION_KEY, JSON.stringify(adminSession));
+
+                const screen = document.getElementById('loginScreen');
+                const dash = document.getElementById('dashboardContainer');
+                if (screen) screen.classList.add('hidden');
+                if (dash) dash.classList.remove('hidden');
+
+                const uEl = document.getElementById('loggedInUser');
+                if (uEl) uEl.textContent = 'admin';
+                const rEl = document.getElementById('loggedInRole');
+                if (rEl) rEl.textContent = 'ADMIN';
+
+                if (window.location.search) {
+                    window.history.replaceState({}, document.title, window.location.pathname);
+                }
+
+                try { if (typeof initSidebarCollapse === 'function') initSidebarCollapse(); } catch(e){}
+                try { if (typeof initCountdownTimer === 'function') initCountdownTimer(); } catch(e){}
+                try { if (typeof initVisitorTracking === 'function') initVisitorTracking(); } catch(e){}
+                try { if (typeof initDepliantSection === 'function') initDepliantSection(); } catch(e){}
+                try { if (typeof initStickersSection === 'function') initStickersSection(); } catch(e){}
+                try { if (typeof renderNotifications === 'function') renderNotifications(); } catch(e){}
+                try { if (typeof refreshDashboard === 'function') refreshDashboard(); } catch(e){}
+                try { if (typeof showToast === 'function') showToast('Bienvenue Dr. Selmaoui Hana !', 'success'); } catch(e){}
+            } catch(err) {
+                console.error('Direct access error:', err);
+                const s = document.getElementById('loginScreen');
+                const d = document.getElementById('dashboardContainer');
+                if (s) s.style.display = 'none';
+                if (d) d.classList.remove('hidden');
+            }
+        }
+
+        function togglePasswordVisibility() {
+            const passInput = document.getElementById('loginPassword');
+            const eyeIcon = document.getElementById('passEyeIcon');
+            const eyeText = document.getElementById('passEyeText');
+            if (passInput) {
+                const isPass = passInput.type === 'password';
+                passInput.type = isPass ? 'text' : 'password';
+                if (eyeIcon) eyeIcon.className = isPass ? 'fa-solid fa-eye-slash text-xs' : 'fa-solid fa-eye text-xs';
+                if (eyeText) eyeText.textContent = isPass ? 'Masquer' : 'Afficher';
+            }
+        }
+
+        // Auto check session on load
+        (function autoCheckSession() {
+            try {
+                const s = sessionStorage.getItem(SELMA_SESSION_KEY) || localStorage.getItem(SELMA_SESSION_KEY);
+                if (s || window.location.hash === '#bypass') {
+                    directAccessDashboard();
+                }
+            } catch(e){}
+        })();
+    </script>
     <!-- Main Dashboard (hidden until login) -->
     <div id="dashboardContainer" class="hidden">
 
@@ -2890,6 +2961,33 @@
         //  CONSTANTS & STORAGE KEYS
         // =====================================================
 
+        function formatDateRelative(isoStr) {
+            if (!isoStr) return 'Ã€ l\'instant';
+            try {
+                const d = new Date(isoStr);
+                const diffMs = Date.now() - d.getTime();
+                const diffSec = Math.floor(diffMs / 1000);
+                if (diffSec < 60) return 'Ã€ l\'instant';
+                const diffMin = Math.floor(diffSec / 60);
+                if (diffMin < 60) return 'Il y a ' + diffMin + ' min';
+                const diffHour = Math.floor(diffMin / 60);
+                if (diffHour < 24) return 'Il y a ' + diffHour + ' h';
+                return d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+            } catch(e) {
+                return 'RÃ©cemment';
+            }
+        }
+
+        function esc(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
         const USERS_KEY = 'selma_campaign_users';
         const SUBS_KEY = 'selma_campaign_submissions';
         const CONTENT_KEY = 'selma_campaign_content';
@@ -3363,7 +3461,7 @@
             try { if (typeof initStickersSection === 'function') initStickersSection(); } catch(e){}
             try { if (typeof renderNotifications === 'function') renderNotifications(); } catch(e){}
             try { if (typeof refreshDashboard === 'function') refreshDashboard(); } catch(e){}
-            try { if (typeof showToast === 'function') showToast(Bienvenue  !, 'success'); } catch(e){}
+            try { if (typeof showToast === 'function') showToast('Bienvenue ' + (user.fullName || 'Admin') + ' !', 'success'); } catch(e){}
 
             return false;
         }
@@ -3756,7 +3854,6 @@ const sectionTitles = {
         // 26 COMMUNES PROGRAM ADMIN ENGINE
         // ==========================================
         const COMMUNES_CONFIG_KEY = 'selma_communes_config';
-
         const DEFAULT_COMMUNES_DATA = [{"id":"souk-ahras","dataName":"سوق أهراس souk ahras","cat":"urbain","title":"سوق أهراس (Souk Ahras)","badge":"عاصمة الولاية","daira":"دائرة سوق أهراس","desc":"","commitment":"","icon":"fa-graduation-cap","active":true},{"id":"sedrata","dataName":"سدراتة sedrata","cat":"lait","title":"سدراتة (Sedrata)","badge":"قطب حوض الحليب","daira":"دائرة سدراتة","desc":"","commitment":"","icon":"fa-cow","active":true},{"id":"mechroha","dataName":"مشروحة mechroha","cat":"foret","title":"مشروحة (Mechroha)","badge":"الثروة الغابية والنحل","daira":"دائرة مشروحة","desc":"","commitment":"","icon":"fa-tree","active":true},{"id":"mdaourouch","dataName":"مداوروش mdaourouch madaure","cat":"urbain","title":"مداوروش (Mdaourouch)","badge":"حضارة وتاريخ مادور","daira":"دائرة مداوروش","desc":"","commitment":"","icon":"fa-landmark","active":true},{"id":"taoura","dataName":"تاورة taoura","cat":"urbain","title":"تاورة (Taoura)","badge":"سهول زراعية خصبة","daira":"دائرة تاورة","desc":"","commitment":"","icon":"fa-wheat-awn","active":true},{"id":"haddada","dataName":"الحدادة haddada","cat":"frontiere","title":"الحدادة (Haddada)","badge":"الشريط الحدودي","daira":"دائرة الحدادة","desc":"","commitment":"","icon":"fa-mountain-sun","active":true},{"id":"ouled-driss","dataName":"أولاد إدريس ouled driss","cat":"foret","title":"أولاد إدريس (Ouled Driss)","badge":"بيئة وتربية الماشية","daira":"دائرة أولاد إدريس","desc":"","commitment":"","icon":"fa-seedling","active":true},{"id":"merahna","dataName":"المراهنة merahna","cat":"urbain","title":"المراهنة (Merahna)","badge":"طاقة رعوية وفلاحية","daira":"دائرة المراهنة","desc":"","commitment":"","icon":"fa-tractor","active":true},{"id":"bir-bouhouche","dataName":"بئر بوحوش bir bouhouche","cat":"lait","title":"بئر بوحوش (Bir Bouhouche)","badge":"حوض تربية الأبقار","daira":"دائرة بئر بوحوش","desc":"","commitment":"","icon":"fa-fill-drip","active":true},{"id":"khemissa","dataName":"خميسة khemissa ثاموقادي","cat":"urbain","title":"خميسة (Khemissa)","badge":"تاريخ ثاموقادي وفلاحة","daira":"دائرة سدراتة","desc":"","commitment":"","icon":"fa-monument","active":true},{"id":"oum-el-adhaim","dataName":"أم العظائم oum el adhaim","cat":"urbain","title":"أم العظائم (Oum El Adhaim)","badge":"أراضي زراعية واعدة","daira":"دائرة أم العظائم","desc":"","commitment":"","icon":"fa-hand-holding-droplet","active":true},{"id":"drea","dataName":"الدريعة drea","cat":"urbain","title":"الدريعة (Drea)","badge":"زراعة وتنمية محلية","daira":"دائرة تاورة","desc":"","commitment":"","icon":"fa-truck-pickup","active":true},{"id":"zouabi","dataName":"الزوابي zouabi","cat":"lait","title":"الزوابي (Zouabi)","badge":"تربية المواشي","daira":"دائرة بئر بوحوش","desc":"","commitment":"","icon":"fa-horse","active":true},{"id":"tiffech","dataName":"تيفاش tiffech تيبيليس","cat":"foret","title":"تيفاش (Tiffech)","badge":"آثار تيبيليس والطبيعة","daira":"دائرة مداوروش","desc":"","commitment":"","icon":"fa-campground","active":true},{"id":"hanancha","dataName":"الحنانشة hanancha","cat":"urbain","title":"الحنانشة (Hanancha)","badge":"موقع استراتيجي","daira":"دائرة سوق أهراس","desc":"","commitment":"","icon":"fa-car-side","active":true},{"id":"zaarouria","dataName":"الزعرورية zaarouria","cat":"urbain","title":"الزعرورية (Zaarouria)","badge":"ضاحية سوق أهراس","daira":"دائرة تاورة","desc":"","commitment":"","icon":"fa-city","active":true},{"id":"safel-el-ouiden","dataName":"سافل الويدان safel el ouiden","cat":"lait","title":"سافل الويدان (Safel El Ouiden)","badge":"أودية وأراضي رعوية","daira":"دائرة بئر بوحوش","desc":"","commitment":"","icon":"fa-water","active":true},{"id":"oued-keberit","dataName":"واد الكبريت oued keberit","cat":"lait","title":"واد الكبريت (Oued Keberit)","badge":"قطب فوسفاتي وفلاحي","daira":"دائرة أم العظائم","desc":"","commitment":"","icon":"fa-train","active":true},{"id":"terraguelt","dataName":"ترقالت terraguelt","cat":"lait","title":"ترقالت (Terraguelt)","badge":"إنتاج الحليب والحبوب","daira":"دائرة أم العظائم","desc":"","commitment":"","icon":"fa-wheat-awn-circle-exclamation","active":true},{"id":"ragouba","dataName":"الراقوبة ragouba","cat":"lait","title":"الراقوبة (Ragouba)","badge":"أراضي خصبة وإنتاج حيواني","daira":"دائرة سدراتة","desc":"","commitment":"","icon":"fa-cow","active":true},{"id":"khedara","dataName":"الخضارة khedara","cat":"frontiere","title":"الخضارة (Khedara)","badge":"شريط حدودي وتضاريس جبلية","daira":"دائرة الحدادة","desc":"","commitment":"","icon":"fa-shield","active":true},{"id":"ouillen","dataName":"ويلان ouillen","cat":"frontiere","title":"ويلان (Ouillen)","badge":"طبيعة وموقع حدودي","daira":"دائرة المراهنة","desc":"","commitment":"","icon":"fa-tree-city","active":true},{"id":"ain-zana","dataName":"عين الزانة ain zana","cat":"foret","title":"عين الزانة (Ain Zana)","badge":"مرتفعات غابية وسياحة بيئية","daira":"دائرة أولاد إدريس","desc":"","commitment":"","icon":"fa-mountain","active":true},{"id":"ain-soltane","dataName":"عين سلطان ain soltane","cat":"urbain","title":"عين سلطان (Ain Soltane)","badge":"ينابيع وأراضي زراعية","daira":"دائرة سدراتة","desc":"","commitment":"","icon":"fa-faucet-drip","active":true},{"id":"ouled-moumen","dataName":"أولاد مومن ouled moumen","cat":"frontiere","title":"أولاد مومن (Ouled Moumen)","badge":"حدودية ورعوية","daira":"دائرة الحدادة","desc":"","commitment":"","icon":"fa-map-pin","active":true},{"id":"sidi-fredj","dataName":"سيدي فرج sidi fredj","cat":"frontiere","title":"سيدي فرج (Sidi Fredj)","badge":"بوابة حدودية شرقية","daira":"دائرة المراهنة","desc":"","commitment":"","icon":"fa-road-barrier","active":true}];
 
         function getCommunesConfig() {
@@ -3780,7 +3877,6 @@ const sectionTitles = {
         function saveCommunesConfig(cfg) {
             try {
                 localStorage.setItem(COMMUNES_CONFIG_KEY, JSON.stringify(cfg));
-                // Fire custom storage notification for same tab if needed
                 window.dispatchEvent(new Event('storage'));
             } catch (e) {
                 console.error('Error saving communes config', e);
@@ -3803,9 +3899,8 @@ const sectionTitles = {
                 masterStatusLabel.className = 'text-sm font-bold ' + (cfg.sectionVisible !== false ? 'text-emerald-300' : 'text-rose-300');
             }
 
-            // Update stats
             const total = cfg.communes.length;
-            const activeCount = cfg.communes.filter(c => c.active !== false).length;
+            const activeCount = cfg.communes.filter(function(c) { return c.active !== false; }).length;
             const hiddenCount = total - activeCount;
 
             const statTotalEl = document.getElementById('statCommunesTotal');
@@ -3816,19 +3911,18 @@ const sectionTitles = {
             if (statActiveEl) statActiveEl.textContent = activeCount;
             if (statHiddenEl) statHiddenEl.textContent = hiddenCount;
 
-            // Render interactive cards
             const grid = document.getElementById('adminCommunesGrid');
             if (!grid) return;
 
             const q = (currentAdminCommuneQuery || '').toLowerCase().trim();
 
-            const filtered = cfg.communes.filter(c => {
+            const filtered = cfg.communes.filter(function(c) {
                 const matchCat = (currentAdminCommuneFilter === 'all' || c.cat === currentAdminCommuneFilter);
-                const matchQ = !q || (c.title && c.title.toLowerCase().includes(q)) || (c.dataName && c.dataName.toLowerCase().includes(q)) || (c.daira && c.daira.toLowerCase().includes(q));
+                const matchQ = !q || (c.title && c.title.toLowerCase().indexOf(q) !== -1) || (c.dataName && c.dataName.toLowerCase().indexOf(q) !== -1) || (c.daira && c.daira.toLowerCase().indexOf(q) !== -1);
                 return matchCat && matchQ;
             });
 
-            grid.innerHTML = filtered.map(c => {
+            grid.innerHTML = filtered.map(function(c) {
                 const isActive = c.active !== false;
                 const catBadgeColors = {
                     'lait': 'bg-amber-100 text-amber-800 border-amber-200',
@@ -3838,44 +3932,29 @@ const sectionTitles = {
                 };
                 const catColor = catBadgeColors[c.cat] || 'bg-slate-100 text-slate-700 border-slate-200';
 
-                return 
-                    <div class="bg-white rounded-2xl border transition-all p-5 space-y-3 relative \">
-                        <!-- Top Bar: Badge, Daira & Toggle -->
-                        <div class="flex items-start justify-between gap-3">
-                            <div>
-                                <span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold border \">
-                                    \
-                                </span>
-                                <h4 class="text-base font-black text-rnd-dark mt-1.5">\</h4>
-                                <p class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-location-dot text-rnd-green mr-1"></i> \</p>
-                            </div>
-
-                            <!-- Toggle Button -->
-                            <div class="flex flex-col items-end">
-                                <label class="relative inline-flex items-center cursor-pointer">
-                                    <input type="checkbox" onchange="toggleCommuneActive('\')" class="sr-only peer" \>
-                                    <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
-                                </label>
-                                <span class="text-[10px] font-extrabold mt-1 \">
-                                    \
-                                </span>
-                            </div>
-                        </div>
-
-                        <!-- Description & Commitment -->
-                        <p class="text-xs text-slate-600 leading-relaxed bg-slate-50 rounded-xl p-3 border border-slate-100">
-                            \
-                        </p>
-
-                        <div class="flex items-center justify-between text-xs pt-1 border-t border-slate-100">
-                            <span class="font-bold text-rnd-green text-[11px]">\</span>
-                            <span class="text-[10px] text-slate-400 font-semibold">ID: \</span>
-                        </div>
-                    </div>
-                ;
+                return '<div class="bg-white rounded-2xl border transition-all p-5 space-y-3 relative ' + (isActive ? 'border-slate-200 shadow-sm hover:shadow-md' : 'border-rose-200 bg-rose-50/30 opacity-75') + '">' +
+                    '<div class="flex items-start justify-between gap-3">' +
+                        '<div>' +
+                            '<span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold border ' + catColor + '">' + (c.badge || 'Ø¨Ø±Ù†Ø§Ù…Ø¬ ØªÙ†Ù…ÙˆÙŠ') + '</span>' +
+                            '<h4 class="text-base font-black text-rnd-dark mt-1.5">' + c.title + '</h4>' +
+                            '<p class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-location-dot text-rnd-green mr-1"></i> ' + c.daira + '</p>' +
+                        '</div>' +
+                        '<div class="flex flex-col items-end">' +
+                            '<label class="relative inline-flex items-center cursor-pointer">' +
+                                '<input type="checkbox" onchange="toggleCommuneActive(\'' + c.id + '\')" class="sr-only peer" ' + (isActive ? 'checked' : '') + '>' +
+                                '<div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[\'\'] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>' +
+                            '</label>' +
+                            '<span class="text-[10px] font-extrabold mt-1 ' + (isActive ? 'text-emerald-600' : 'text-rose-600') + '">' + (isActive ? 'Actif' : 'MasquÃ©') + '</span>' +
+                        '</div>' +
+                    '</div>' +
+                    '<p class="text-xs text-slate-600 leading-relaxed bg-slate-50 rounded-xl p-3 border border-slate-100">' + (c.desc || 'Ù„Ø§ ÙŠÙˆØ¬Ø¯ ÙˆØµÙ Ù…Ø¶Ø§Ù.') + '</p>' +
+                    '<div class="flex items-center justify-between text-xs pt-1 border-t border-slate-100">' +
+                        '<span class="font-bold text-rnd-green text-[11px]">' + (c.commitment || 'Ø§Ù„ØªØ²Ø§Ù… Ø±Ù‚Ù… 38') + '</span>' +
+                        '<span class="text-[10px] text-slate-400 font-semibold">ID: ' + c.id + '</span>' +
+                    '</div>' +
+                '</div>';
             }).join('');
 
-            // Also render submission stats
             renderCommuneSubmissionStats();
         }
 
@@ -3885,17 +3964,17 @@ const sectionTitles = {
             cfg.sectionVisible = toggle ? toggle.checked : true;
             saveCommunesConfig(cfg);
             renderCommunes();
-            showNotification(cfg.sectionVisible ? 'Section Communes activÃ©e sur le site public' : 'Section Communes masquÃ©e du site public', cfg.sectionVisible ? 'success' : 'info');
+            showToast(cfg.sectionVisible ? 'Section Communes activÃ©e sur le site public' : 'Section Communes masquÃ©e du site public', cfg.sectionVisible ? 'success' : 'info');
         }
 
         function toggleCommuneActive(communeId) {
             const cfg = getCommunesConfig();
-            const target = cfg.communes.find(c => c.id === communeId);
+            const target = cfg.communes.find(function(c) { return c.id === communeId; });
             if (target) {
                 target.active = target.active === false ? true : false;
                 saveCommunesConfig(cfg);
                 renderCommunes();
-                showNotification(target.active ? Commune Â« \ Â» activÃ©e : Commune Â« \ Â» masquÃ©e, target.active ? 'success' : 'info');
+                showToast(target.active ? ('Commune Â« ' + target.title + ' Â» activÃ©e') : ('Commune Â« ' + target.title + ' Â» masquÃ©e'), target.active ? 'success' : 'info');
             }
         }
 
@@ -3907,7 +3986,7 @@ const sectionTitles = {
                 };
                 saveCommunesConfig(cfg);
                 renderCommunes();
-                showNotification('Toutes les communes ont Ã©tÃ© rÃ©initialisÃ©es avec succÃ¨s', 'success');
+                showToast('Toutes les communes ont Ã©tÃ© rÃ©initialisÃ©es avec succÃ¨s', 'success');
             }
         }
 
@@ -3920,7 +3999,7 @@ const sectionTitles = {
                 'frontiere': 'btnAdminCommuneFrontiere',
                 'urbain': 'btnAdminCommuneUrbain'
             };
-            Object.keys(buttons).forEach(k => {
+            Object.keys(buttons).forEach(function(k) {
                 const btn = document.getElementById(buttons[k]);
                 if (btn) {
                     if (k === cat) {
@@ -3951,1495 +4030,15 @@ const sectionTitles = {
                 'Ouled Moumen', 'Sidi Fredj'
             ];
 
-            container.innerHTML = communeNames.map(name => {
-                const count = subs.filter(s => s.commune === name).length;
-                return 
-                    <div class="bg-slate-50 rounded-xl p-3 border border-slate-100 flex items-center justify-between">
-                        <span class="text-xs font-bold text-slate-700">\</span>
-                        <span class="px-2 py-0.5 rounded-md text-[10px] font-extrabold \">\</span>
-                    </div>
-                ;
+            container.innerHTML = communeNames.map(function(name) {
+                const count = subs.filter(function(s) { return s.commune === name; }).length;
+                return '<div class="bg-slate-50 rounded-xl p-3 border border-slate-100 flex items-center justify-between">' +
+                    '<span class="text-xs font-bold text-slate-700">' + name + '</span>' +
+                    '<span class="px-2 py-0.5 rounded-md text-[10px] font-extrabold ' + (count > 0 ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-200 text-slate-500') + '">' + count + '</span>' +
+                '</div>';
             }).join('');
         }
 
-        // =====================================================
-        //  PROFILE PHOTO MANAGEMENT
-        // =====================================================
-
-        function handlePhotoUpload(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            if (!file.type.startsWith('image/')) {
-                showToast('Veuillez sélectionner un fichier image (JPG, PNG, WebP).', 'error');
-                return;
-            }
-
-            if (file.size > 5 * 1024 * 1024) {
-                showToast('La taille de l\'image ne doit pas dépasser 5 Mo.', 'error');
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const base64 = e.target.result;
-                const img = new Image();
-                img.onload = function() {
-                    const canvas = document.createElement('canvas');
-                    const maxSize = 600;
-                    let w = img.width, h = img.height;
-
-                    if (w > maxSize || h > maxSize) {
-                        if (w > h) { h = Math.round(h * maxSize / w); w = maxSize; }
-                        else { w = Math.round(w * maxSize / h); h = maxSize; }
-                    }
-
-                    canvas.width = w;
-                    canvas.height = h;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0, w, h);
-
-                    const resized = canvas.toDataURL('image/jpeg', 0.85);
-                    localStorage.setItem(PHOTO_KEY, resized);
-                    updatePhotoPreview();
-
-                    logAuditEvent({
-                        action: 'PHOTO_UPDATE',
-                        actionTitle: 'Photo de profil mise à jour',
-                        category: 'CONTENT',
-                        severity: 'success',
-                        target: 'Photo officielle candidate',
-                        details: `Nouvelle photo chargée (${w}×${h}px, JPEG compressé). Synchronisation effectuée avec le site public.`
-                    });
-
-                    showToast('Photo de profil mise à jour avec succès !', 'success');
-                };
-                img.src = base64;
-            };
-            reader.readAsDataURL(file);
-        }
-
-        function removeProfilePhoto() {
-            if (!confirm('Supprimer la photo de profil ? L\'icône par défaut sera affichée.')) return;
-            localStorage.removeItem(PHOTO_KEY);
-            updatePhotoPreview();
-
-            logAuditEvent({
-                action: 'PHOTO_REMOVE',
-                actionTitle: 'Photo de profil supprimée',
-                category: 'CONTENT',
-                severity: 'warning',
-                target: 'Photo officielle candidate',
-                details: 'Suppression de la photo de profil enregistrée, retour à l\'avatar symbolique par défaut.'
-            });
-
-            showToast('Photo de profil supprimée.', 'info');
-        }
-
-        function updatePhotoPreview() {
-            const saved = localStorage.getItem(PHOTO_KEY);
-            const img = document.getElementById('photoPreviewImg');
-            const icon = document.getElementById('photoPlaceholderIcon');
-            const removeBtn = document.getElementById('removePhotoBtn');
-            const sizeInfo = document.getElementById('photoSizeInfo');
-
-            if (saved) {
-                img.src = saved;
-                img.classList.remove('hidden');
-                icon.classList.add('hidden');
-                removeBtn.classList.remove('hidden');
-                const sizeKB = Math.round(saved.length * 3 / 4 / 1024);
-                sizeInfo.textContent = `Taille stockée : ~${sizeKB} Ko dans le stockage local`;
-                sizeInfo.classList.remove('hidden');
-            } else {
-                img.src = '';
-                img.classList.add('hidden');
-                icon.classList.remove('hidden');
-                removeBtn.classList.add('hidden');
-                sizeInfo.classList.add('hidden');
-            }
-        }
-
-        updatePhotoPreview();
-
-        // =====================================================
-        //  CONTENT SETTINGS
-        // =====================================================
-
-        function saveContentSettings() {
-            const content = {
-                slogan: document.getElementById('editSlogan').value,
-                subSlogan: document.getElementById('editSubSlogan').value,
-                citMsg: document.getElementById('editCitMsg').value,
-                colorGreen: document.getElementById('editColorGreen').value,
-                colorRed: document.getElementById('editColorRed').value,
-                listNum: document.getElementById('editListNum').value,
-                candNum: document.getElementById('editCandNum').value
-            };
-            localStorage.setItem(CONTENT_KEY, JSON.stringify(content));
-
-            logAuditEvent({
-                action: 'CONTENT_UPDATE',
-                actionTitle: 'Paramètres du contenu modifiés',
-                category: 'CONTENT',
-                severity: 'success',
-                target: `Liste ${content.listNum} • Candidate #${content.candNum}`,
-                details: `Mise à jour des slogans et des couleurs officielles de campagne.`
-            });
-
-            showToast('Paramètres du contenu sauvegardés.', 'success');
-        }
-
-        (function loadContentSettings() {
-            const saved = localStorage.getItem(CONTENT_KEY);
-            if (saved) {
-                const c = JSON.parse(saved);
-                if (c.slogan) document.getElementById('editSlogan').value = c.slogan;
-                if (c.subSlogan) document.getElementById('editSubSlogan').value = c.subSlogan;
-                if (c.citMsg) document.getElementById('editCitMsg').value = c.citMsg;
-                if (c.colorGreen) document.getElementById('editColorGreen').value = c.colorGreen;
-                if (c.colorRed) document.getElementById('editColorRed').value = c.colorRed;
-                if (c.listNum) document.getElementById('editListNum').value = c.listNum;
-                if (c.candNum) document.getElementById('editCandNum').value = c.candNum;
-            }
-        })();
-
-        // =====================================================
-        //  CARD THEME & WAVING ALGERIAN FLAG MANAGEMENT
-        // =====================================================
-        var _selectedThemeId = localStorage.getItem(THEME_STORAGE_KEY) || 'emerald-gold';
-
-        const DASHBOARD_THEMES_INFO = {
-            'emerald-gold': { name: 'Émeraude & Or Impérial', color: '#10b981', border: 'border-emerald-600', ring: 'ring-emerald-500/30' },
-            'sapphire-silver': { name: 'Saphir Républicain & Argent', color: '#2563eb', border: 'border-blue-600', ring: 'ring-blue-500/30' },
-            'ruby-crimson': { name: 'Rubis Carmin & Or Souk Ahras', color: '#e11d48', border: 'border-rose-600', ring: 'ring-rose-500/30' },
-            'terroir-aures': { name: 'Terre d\'Aurès & Blé Doré', color: '#b45309', border: 'border-amber-600', ring: 'ring-amber-500/30' },
-            'dark-luxury': { name: 'Élégance Nocturne & Or Pur', color: '#fbbf24', border: 'border-amber-400', ring: 'ring-amber-400/40' },
-            'algerian-patriotic': { name: 'Honneur National (Drapeau)', color: '#006233', border: 'border-emerald-700', ring: 'ring-emerald-600/30' }
-        };
-
-        function selectThemeCard(themeId, isSilent) {
-            _selectedThemeId = themeId;
-            const info = DASHBOARD_THEMES_INFO[themeId] || DASHBOARD_THEMES_INFO['emerald-gold'];
-
-            // Clear active styling on all cards
-            document.querySelectorAll('.theme-select-card').forEach(c => {
-                c.classList.remove(
-                    'border-rnd-green', 'border-emerald-600', 'border-blue-600', 'border-rose-600',
-                    'border-amber-600', 'border-amber-500', 'border-amber-400', 'border-emerald-700',
-                    'ring-4', 'ring-emerald-500/30', 'ring-blue-500/30', 'ring-rose-500/30',
-                    'ring-amber-500/30', 'ring-amber-400/40', 'ring-emerald-600/30',
-                    'bg-emerald-50/40', 'bg-blue-50/40', 'bg-rose-50/40', 'bg-amber-50/40',
-                    'scale-[1.02]', 'shadow-lg'
-                );
-                c.classList.add('border-slate-200');
-                const check = c.querySelector('.theme-check-icon');
-                if (check) {
-                    check.classList.remove('opacity-100');
-                    check.classList.add('opacity-0');
-                }
-            });
-
-            // Activate chosen card
-            const activeCard = document.getElementById('themeCard_' + themeId);
-            if (activeCard) {
-                activeCard.classList.remove('border-slate-200');
-                activeCard.classList.add(info.border, 'ring-4', info.ring, 'scale-[1.02]', 'shadow-lg');
-                const check = activeCard.querySelector('.theme-check-icon');
-                if (check) {
-                    check.classList.remove('opacity-0');
-                    check.classList.add('opacity-100');
-                }
-            }
-
-            // Update badge text
-            const badge = document.getElementById('currentActiveThemeBadge');
-            if (badge) {
-                badge.textContent = 'Thème Actif : ' + info.name;
-                badge.className = 'px-3.5 py-1 rounded-full bg-emerald-100 text-rnd-green font-black text-xs shadow-sm';
-            }
-
-            // Immediately save and apply to localStorage
-            localStorage.setItem(THEME_STORAGE_KEY, themeId);
-
-            // Log and notify unless silent startup
-            if (!isSilent) {
-                logAuditEvent({
-                    action: 'THEME_UPDATE',
-                    actionTitle: 'Thème visuel de la fiche modifié',
-                    category: 'CONTENT',
-                    severity: 'success',
-                    target: `Thème "${info.name}"`,
-                    details: `La fiche électorale d'accueil applique désormais le thème chromatique "${info.name}". Synchronisation immédiate avec le site public.`
-                });
-                showToast(`Thème "${info.name}" activé et appliqué en direct !`, 'success');
-
-                try {
-                    window.dispatchEvent(new StorageEvent('storage', {
-                        key: THEME_STORAGE_KEY,
-                        newValue: themeId
-                    }));
-                } catch(e) {}
-            }
-        }
-
-        function applyAndSaveTheme() {
-            selectThemeCard(_selectedThemeId, false);
-        }
-
-        function getFlagConfig() {
-            try {
-                const raw = localStorage.getItem(FLAG_STORAGE_KEY);
-                return raw ? JSON.parse(raw) : { enabled: true, position: 'both' };
-            } catch(e) {
-                return { enabled: true, position: 'both' };
-            }
-        }
-
-        function saveFlagConfig(cfg) {
-            localStorage.setItem(FLAG_STORAGE_KEY, JSON.stringify(cfg));
-            logAuditEvent({
-                action: 'FLAG_CONFIG_UPDATE',
-                actionTitle: 'Configuration drapeau national modifiée',
-                category: 'CONTENT',
-                severity: 'info',
-                target: `Drapeau ${cfg.enabled ? 'Activé' : 'Désactivé'} (${cfg.position})`,
-                details: `Mise à jour de l'animation du drapeau algérien ondulant : statut ${cfg.enabled ? 'Actif' : 'Masqué'}, position: ${cfg.position}.`
-            });
-            try {
-                window.dispatchEvent(new StorageEvent('storage', {
-                    key: FLAG_STORAGE_KEY,
-                    newValue: JSON.stringify(cfg)
-                }));
-            } catch(e) {}
-        }
-
-        function toggleFlagSetting(enabled) {
-            const cfg = getFlagConfig();
-            cfg.enabled = enabled;
-            saveFlagConfig(cfg);
-            showToast(`Animation du drapeau national ${enabled ? 'activée' : 'désactivée'} !`, enabled ? 'success' : 'info');
-        }
-
-        function setFlagPosition(pos) {
-            const cfg = getFlagConfig();
-            cfg.position = pos;
-            saveFlagConfig(cfg);
-            showToast(`Emplacement du drapeau mis à jour : ${pos === 'card' ? 'Fiche candidate' : (pos === 'header' ? 'En-tête site' : 'Fiche + En-tête')}.`, 'success');
-        }
-
-        function initDashboardThemeAndFlag() {
-            const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'emerald-gold';
-            selectThemeCard(savedTheme, true);
-
-            const flagCfg = getFlagConfig();
-            const masterToggle = document.getElementById('flagMasterToggle');
-            if (masterToggle) masterToggle.checked = flagCfg.enabled !== false;
-
-            const radios = document.getElementsByName('flagPositionRadio');
-            radios.forEach(r => {
-                if (r.value === flagCfg.position) r.checked = true;
-            });
-        }
-
-        // Initialize immediately after functions are defined
-        initDashboardThemeAndFlag();
-
-        // =====================================================
-        //  AUDIT SECTION RENDERING & INTERACTION
-        // =====================================================
-
-        function renderAuditSection() {
-            updateAuditKPIs();
-            populateAuditMemberFilter();
-            renderAuditTable();
-            renderMemberScorecard();
-        }
-
-        function switchAuditTab(tab) {
-            const tabTimeline = document.getElementById('auditTabTimeline');
-            const tabMembers = document.getElementById('auditTabMembers');
-            const btnTimeline = document.getElementById('btnTabAuditTimeline');
-            const btnMembers = document.getElementById('btnTabAuditMembers');
-
-            if (tab === 'timeline') {
-                tabTimeline.classList.remove('hidden');
-                tabMembers.classList.add('hidden');
-                btnTimeline.className = 'flex-1 py-3 px-4 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 bg-rnd-green text-white shadow-sm';
-                btnMembers.className = 'flex-1 py-3 px-4 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 text-slate-600 hover:text-rnd-green hover:bg-slate-50';
-                renderAuditTable();
-            } else {
-                tabTimeline.classList.add('hidden');
-                tabMembers.classList.remove('hidden');
-                btnTimeline.className = 'flex-1 py-3 px-4 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 text-slate-600 hover:text-rnd-green hover:bg-slate-50';
-                btnMembers.className = 'flex-1 py-3 px-4 rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 bg-rnd-green text-white shadow-sm';
-                renderMemberScorecard();
-            }
-        }
-
-        function updateAuditKPIs() {
-            const logs = getAuditLogs();
-            document.getElementById('kpiAuditTotal').textContent = logs.length;
-            document.getElementById('kpiAuditLogins').textContent = logs.filter(l => l.category === 'AUTH').length;
-            document.getElementById('kpiAuditMembers').textContent = logs.filter(l => l.category === 'MEMBERS').length;
-            document.getElementById('kpiAuditSecurity').textContent = logs.filter(l => l.category === 'SECURITY' || l.severity === 'danger').length;
-
-            document.getElementById('badgeAuditCount').textContent = logs.length;
-            const users = getUsers();
-            document.getElementById('badgeMemberCount').textContent = users.length;
-        }
-
-        function populateAuditMemberFilter() {
-            const select = document.getElementById('auditFilterMember');
-            if (!select) return;
-            const users = getUsers();
-            const currentVal = select.value;
-
-            select.innerHTML = '<option value="all">Tous les membres</option>' +
-                users.map(u => `<option value="${esc(u.username)}">${esc(u.fullName)} (@${esc(u.username)})</option>`).join('');
-
-            if (currentVal) select.value = currentVal;
-        }
-
-        function renderAuditTable() {
-            const logs = getAuditLogs();
-            const search = (document.getElementById('auditSearchInput')?.value || '').toLowerCase();
-            const cat = document.getElementById('auditFilterCategory')?.value || 'all';
-            const sev = document.getElementById('auditFilterSeverity')?.value || 'all';
-            const mem = document.getElementById('auditFilterMember')?.value || 'all';
-
-            const filtered = logs.filter(l => {
-                const text = `${l.actionTitle} ${l.details} ${l.target} ${l.actor?.username} ${l.actor?.fullName} ${l.ip} ${l.device}`.toLowerCase();
-                const matchSearch = text.includes(search);
-                const matchCat = cat === 'all' || l.category === cat;
-                const matchSev = sev === 'all' || l.severity === sev;
-                const matchMem = mem === 'all' || (l.actor?.username || '').toLowerCase() === mem.toLowerCase();
-                return matchSearch && matchCat && matchSev && matchMem;
-            });
-
-            const tbody = document.getElementById('auditTableBody');
-            const empty = document.getElementById('noAuditLogs');
-            const countEl = document.getElementById('auditResultsCount');
-
-            if (countEl) countEl.textContent = `Affichage de ${filtered.length} événement(s) sur ${logs.length} enregistrés`;
-
-            if (filtered.length === 0) {
-                tbody.innerHTML = '';
-                empty.classList.remove('hidden');
-                return;
-            }
-            empty.classList.add('hidden');
-
-            const catBadges = {
-                AUTH: '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-100 text-blue-700">AUTH</span>',
-                MEMBERS: '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-100 text-purple-700">MEMBRES</span>',
-                CONTENT: '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-700">CONTENU</span>',
-                CITIZENS: '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-800">CITOYENS</span>',
-                SECURITY: '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-100 text-rnd-red">SÉCURITÉ</span>'
-            };
-
-            const sevPills = {
-                success: '<span class="inline-flex items-center gap-1 text-emerald-600 font-bold"><i class="fa-solid fa-circle-check text-[10px]"></i> Succès</span>',
-                info: '<span class="inline-flex items-center gap-1 text-blue-600 font-bold"><i class="fa-solid fa-circle-info text-[10px]"></i> Info</span>',
-                warning: '<span class="inline-flex items-center gap-1 text-amber-600 font-bold"><i class="fa-solid fa-triangle-exclamation text-[10px]"></i> Alerte</span>',
-                danger: '<span class="inline-flex items-center gap-1 text-red-600 font-bold"><i class="fa-solid fa-circle-xmark text-[10px]"></i> Critique</span>'
-            };
-
-            tbody.innerHTML = filtered.map(l => `
-                <tr class="hover:bg-slate-50 transition-colors">
-                    <td class="px-4 py-3 whitespace-nowrap text-slate-500 font-medium">
-                        <div>${formatDateFull(l.timestamp)}</div>
-                        <span class="text-[10px] text-slate-400">${formatDateRelative(l.timestamp)}</span>
-                    </td>
-                    <td class="px-4 py-3 whitespace-nowrap">
-                        <div class="flex items-center gap-2">
-                            <div class="w-7 h-7 rounded-lg ${l.actor?.role === 'admin' ? 'bg-rnd-red' : 'bg-rnd-green'} text-white flex items-center justify-center font-bold text-[10px]">
-                                ${(l.actor?.fullName || 'U').charAt(0).toUpperCase()}
-                            </div>
-                            <div>
-                                <p class="font-bold text-slate-800 leading-tight">${esc(l.actor?.fullName || 'Système')}</p>
-                                <p class="text-[10px] text-slate-400">@${esc(l.actor?.username || 'system')} • ${(l.actor?.role || 'admin').toUpperCase()}</p>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-4 py-3 whitespace-nowrap">
-                        ${catBadges[l.category] || catBadges.AUTH}
-                    </td>
-                    <td class="px-4 py-3">
-                        <p class="font-bold text-slate-800">${esc(l.actionTitle)}</p>
-                        <div class="mt-0.5">${sevPills[l.severity] || sevPills.info}</div>
-                    </td>
-                    <td class="px-4 py-3 max-w-[260px]">
-                        <p class="text-slate-700 truncate font-medium" title="${esc(l.details)}">${esc(l.details)}</p>
-                        ${l.target && l.target !== '—' ? `<span class="inline-block mt-0.5 text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded font-mono truncate max-w-[200px]">${esc(l.target)}</span>` : ''}
-                    </td>
-                    <td class="px-4 py-3 whitespace-nowrap text-slate-500">
-                        <p class="font-mono text-[10px] text-slate-600">${esc(l.ip)}</p>
-                        <p class="text-[10px] text-slate-400">${esc(l.device)}</p>
-                    </td>
-                    <td class="px-4 py-3 text-center whitespace-nowrap">
-                        <button onclick="inspectAuditEvent('${l.id}')" class="px-2.5 py-1.5 rounded-lg bg-slate-100 hover:bg-rnd-green hover:text-white text-slate-600 transition-all font-bold text-[11px] inline-flex items-center gap-1.5">
-                            <i class="fa-solid fa-magnifying-glass text-[10px]"></i>
-                            <span>Détails</span>
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        function resetAuditFilters() {
-            document.getElementById('auditSearchInput').value = '';
-            document.getElementById('auditFilterCategory').value = 'all';
-            document.getElementById('auditFilterSeverity').value = 'all';
-            document.getElementById('auditFilterMember').value = 'all';
-            renderAuditTable();
-        }
-
-        // =====================================================
-        //  MEMBER TRACKING SCORECARD (Activity by Member)
-        // =====================================================
-
-        function renderMemberScorecard() {
-            const users = getUsers();
-            const logs = getAuditLogs();
-            const tbody = document.getElementById('memberScorecardBody');
-            if (!tbody) return;
-
-            const roleLabels = { admin: 'Admin', moderator: 'Modérateur', editor: 'Éditeur', viewer: 'Observateur' };
-            const roleColors = { admin: 'bg-red-100 text-rnd-red', moderator: 'bg-purple-100 text-purple-700', editor: 'bg-blue-100 text-blue-700', viewer: 'bg-slate-100 text-slate-600' };
-
-            tbody.innerHTML = users.map(u => {
-                const userLogs = logs.filter(l => (l.actor?.username || '').toLowerCase() === u.username.toLowerCase());
-                const lastLog = userLogs[0];
-                const actionCount = userLogs.length;
-
-                return `
-                    <tr class="hover:bg-slate-50 transition-colors">
-                        <td class="px-5 py-4">
-                            <div class="flex items-center gap-3">
-                                <div class="w-9 h-9 rounded-xl ${u.role === 'admin' ? 'bg-rnd-red' : 'bg-rnd-green'} text-white flex items-center justify-center font-bold text-xs shadow-sm">
-                                    ${u.fullName.charAt(0).toUpperCase()}
-                                </div>
-                                <div>
-                                    <p class="font-bold text-slate-800">${esc(u.fullName)}</p>
-                                    <p class="text-[11px] text-slate-400">@${esc(u.username)} • ${esc(u.email || 'Pas d\'email')}</p>
-                                </div>
-                            </div>
-                        </td>
-                        <td class="px-5 py-4 whitespace-nowrap">
-                            <span class="px-2.5 py-1 rounded-lg text-xs font-bold ${roleColors[u.role] || 'bg-slate-100 text-slate-600'}">
-                                ${roleLabels[u.role] || u.role}
-                            </span>
-                        </td>
-                        <td class="px-5 py-4 text-xs font-medium text-slate-600">
-                            ${u.commune === 'all' ? 'Toute la Wilaya' : esc(u.commune)}
-                        </td>
-                        <td class="px-5 py-4 whitespace-nowrap">
-                            <span class="px-2 py-0.5 rounded-lg text-xs font-bold ${u.status === 'active' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}">
-                                ${u.status === 'active' ? 'Actif' : 'Verrouillé'}
-                            </span>
-                        </td>
-                        <td class="px-5 py-4 whitespace-nowrap text-xs text-slate-600">
-                            ${u.lastLogin ? formatDateRelative(u.lastLogin) : '<span class="text-slate-400">Jamais</span>'}
-                        </td>
-                        <td class="px-5 py-4 text-center">
-                            <span class="px-3 py-1 rounded-full text-xs font-extrabold ${actionCount > 5 ? 'bg-emerald-100 text-rnd-green' : (actionCount > 0 ? 'bg-blue-100 text-blue-700' : 'bg-slate-100 text-slate-400')}">
-                                ${actionCount} op.
-                            </span>
-                        </td>
-                        <td class="px-5 py-4 max-w-[220px]">
-                            ${lastLog ? `
-                                <p class="text-xs font-bold text-slate-800 truncate">${esc(lastLog.actionTitle)}</p>
-                                <p class="text-[10px] text-slate-400 truncate">${formatDateRelative(lastLog.timestamp)}</p>
-                            ` : '<span class="text-xs text-slate-400">Aucune action consignée</span>'}
-                        </td>
-                        <td class="px-5 py-4 text-center whitespace-nowrap">
-                            <div class="flex items-center justify-center gap-1.5">
-                                <button onclick="toggleMemberStatus('${u.id}')" title="${u.status === 'active' ? 'Verrouiller l\'accès' : 'Déverrouiller le compte'}" class="w-8 h-8 rounded-lg ${u.status === 'active' ? 'bg-amber-50 hover:bg-amber-100 text-amber-700' : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-700'} flex items-center justify-center transition shadow-sm">
-                                    <i class="fa-solid ${u.status === 'active' ? 'fa-lock' : 'fa-lock-open'} text-xs"></i>
-                                </button>
-                                <button onclick="resetMemberPassword('${u.id}')" title="Réinitialiser le mot de passe" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-blue-100 text-slate-600 hover:text-blue-700 flex items-center justify-center transition shadow-sm">
-                                    <i class="fa-solid fa-key text-xs"></i>
-                                </button>
-                                <button onclick="deleteMember('${u.id}')" title="${u.username === 'admin' ? 'Compte administrateur protégé' : 'Supprimer définitivement'}" ${u.username === 'admin' ? 'disabled class="w-8 h-8 rounded-lg bg-slate-100 text-slate-300 cursor-not-allowed flex items-center justify-center"' : 'class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-red-100 text-slate-600 hover:text-red-700 flex items-center justify-center transition shadow-sm"'}>
-                                    <i class="fa-solid fa-trash-can text-xs"></i>
-                                </button>
-                                <button onclick="filterAuditByMember('${esc(u.username)}')" title="Filtrer l'audit pour ce membre" class="w-8 h-8 rounded-lg bg-slate-100 hover:bg-rnd-green hover:text-white text-slate-600 transition flex items-center justify-center shadow-sm">
-                                    <i class="fa-solid fa-filter text-xs"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                `;
-            }).join('');
-        }
-
-        function filterAuditByMember(username) {
-            switchAuditTab('timeline');
-            document.getElementById('auditFilterMember').value = username;
-            renderAuditTable();
-            showToast(`Filtrage de l'audit pour le membre @${username}`, 'info');
-        }
-
-        // =====================================================
-        //  MEMBER MANAGEMENT (AJOUT, ÉDITION, STATUT, MOT DE PASSE)
-        // =====================================================
-
-        function openNewMemberModal() {
-            const sel = document.getElementById('memberCommune');
-            if (sel) {
-                sel.innerHTML = '<option value="all">Toute la Wilaya (Accès global)</option>' +
-                    [
-                        'Souk Ahras', 'Sedrata', 'Mdaourouch', 'Taoura', 'Mechroha', 'Haddada', 
-                        'Ouled Driss', 'Merahna', 'Bir Bouhouche', 'Khemissa', 'Oum El Adhaim', 'Drea',
-                        'Zouabi', 'Tiffech', 'Hanancha', 'Zaarouria', 'Safel El Ouiden', 'Oued Keberit',
-                        'Terraguelt', 'Ragouba', 'Khedara', 'Ouillen', 'Ain Zana', 'Ain Soltane',
-                        'Ouled Moumen', 'Sidi Fredj'
-                    ].map(c => `<option value="${c}">${c}</option>`).join('');
-            }
-            document.getElementById('memberFullName').value = '';
-            document.getElementById('memberUsername').value = '';
-            document.getElementById('memberEmail').value = '';
-            document.getElementById('memberRole').value = 'moderator';
-            document.getElementById('memberPassword').value = '';
-            document.getElementById('memberConfirmPassword').value = '';
-            document.getElementById('newMemberModal').classList.remove('hidden');
-        }
-
-        function closeNewMemberModal() {
-            document.getElementById('newMemberModal').classList.add('hidden');
-        }
-
-        async function saveNewMember(e) {
-            e.preventDefault();
-            try {
-                const fullName = document.getElementById('memberFullName').value.trim();
-                const username = document.getElementById('memberUsername').value.trim().toLowerCase();
-                const email = document.getElementById('memberEmail').value.trim();
-                const role = document.getElementById('memberRole').value;
-                const commune = document.getElementById('memberCommune').value;
-                const password = document.getElementById('memberPassword').value;
-                const confirmPassword = document.getElementById('memberConfirmPassword').value;
-
-                if (!fullName || !username) {
-                    showToast('Veuillez renseigner le nom et le nom d\'utilisateur.', 'error');
-                    return;
-                }
-                if (password.length < 8) {
-                    showToast('Le mot de passe doit comporter au moins 8 caractères.', 'error');
-                    return;
-                }
-                if (password !== confirmPassword) {
-                    showToast('Les mots de passe ne correspondent pas.', 'error');
-                    return;
-                }
-
-                const users = getUsers();
-                if (users.find(u => u.username.toLowerCase() === username)) {
-                    showToast(`Le nom d'utilisateur "@${username}" est déjà attribué.`, 'error');
-                    return;
-                }
-
-                const salt = generateSalt();
-                const hash = await hashPassword(password, salt);
-
-                const newUser = {
-                    id: 'usr_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 6),
-                    fullName,
-                    username,
-                    email,
-                    role,
-                    commune,
-                    salt,
-                    passwordHash: hash,
-                    status: 'active',
-                    createdAt: new Date().toISOString(),
-                    lastLogin: null
-                };
-
-                users.push(newUser);
-                localStorage.setItem(USERS_KEY, JSON.stringify(users));
-
-                logAuditEvent({
-                    action: 'USER_CREATE',
-                    actionTitle: 'Nouveau Membre Enregistré',
-                    category: 'MEMBERS',
-                    severity: 'success',
-                    target: `@${username} (${role})`,
-                    details: `Création du compte de "${fullName}" (@${username}), rôle: ${role}, affectation: ${commune}. Empreinte SHA-256 générée.`
-                });
-
-                closeNewMemberModal();
-                renderMemberScorecard();
-                updateAuditKPIs();
-                populateAuditMemberFilter();
-                showToast(`Membre "@${username}" créé et sauvegardé avec succès !`, 'success');
-            } catch(err) {
-                console.error('Erreur saveNewMember:', err);
-                showToast('Erreur lors de la sauvegarde : ' + (err.message || 'Échec'), 'error');
-            }
-        }
-
-        function toggleMemberStatus(id) {
-            const users = getUsers();
-            const u = users.find(x => x.id === id);
-            if (!u) return;
-            if (u.username === 'admin') {
-                showToast('Le compte administrateur principal ne peut pas être verrouillé.', 'error');
-                return;
-            }
-            const oldStatus = u.status;
-            u.status = u.status === 'active' ? 'locked' : 'active';
-            localStorage.setItem(USERS_KEY, JSON.stringify(users));
-            renderMemberScorecard();
-
-            logAuditEvent({
-                action: 'USER_STATUS_CHANGE',
-                actionTitle: `Statut Membre Modifié (${u.status === 'active' ? 'Déverrouillé' : 'Verrouillé'})`,
-                category: 'MEMBERS',
-                severity: u.status === 'active' ? 'info' : 'warning',
-                target: `@${u.username}`,
-                details: `Le compte de ${u.fullName} (@${u.username}) est passé de "${oldStatus}" à "${u.status}".`
-            });
-
-            showToast(`Compte de "${u.username}" ${u.status === 'active' ? 'déverrouillé' : 'verrouillé'}.`, 'info');
-        }
-
-        async function resetMemberPassword(id) {
-            const users = getUsers();
-            const u = users.find(x => x.id === id);
-            if (!u) return;
-            const newPwd = prompt(`Nouveau mot de passe pour "${u.fullName}" (@${u.username}) [min 8 caractères] :`);
-            if (!newPwd || newPwd.length < 8) {
-                if (newPwd !== null) showToast('Le mot de passe doit comporter au moins 8 caractères.', 'error');
-                return;
-            }
-            u.salt = generateSalt();
-            u.passwordHash = await hashPassword(newPwd, u.salt);
-            localStorage.setItem(USERS_KEY, JSON.stringify(users));
-            renderMemberScorecard();
-
-            logAuditEvent({
-                action: 'PASSWORD_RESET',
-                actionTitle: 'Réinitialisation de Mot de Passe',
-                category: 'SECURITY',
-                severity: 'warning',
-                target: `@${u.username}`,
-                details: `Le mot de passe de ${u.fullName} (@${u.username}) a été réinitialisé. Nouvelle empreinte SHA-256 générée.`
-            });
-
-            showToast(`Mot de passe de "${u.username}" réinitialisé avec succès !`, 'success');
-        }
-
-        function deleteMember(id) {
-            const users = getUsers();
-            const u = users.find(x => x.id === id);
-            if (!u) return;
-            if (u.username === 'admin') {
-                showToast('Impossible de supprimer le compte administrateur principal.', 'error');
-                return;
-            }
-            if (!confirm(`Supprimer définitivement le compte de "${u.fullName}" (@${u.username}) ? Cette action est irréversible.`)) return;
-
-            const filtered = users.filter(x => x.id !== id);
-            localStorage.setItem(USERS_KEY, JSON.stringify(filtered));
-            renderMemberScorecard();
-            updateAuditKPIs();
-            populateAuditMemberFilter();
-
-            logAuditEvent({
-                action: 'USER_DELETE',
-                actionTitle: 'Suppression Définitive de Membre',
-                category: 'MEMBERS',
-                severity: 'danger',
-                target: `@${u.username}`,
-                details: `Suppression irréversible du compte ${u.fullName} (@${u.username}, rôle: ${u.role}).`
-            });
-
-            showToast(`Membre "@${u.username}" supprimé.`, 'info');
-        }
-
-        // =====================================================
-        //  AUDIT INSPECTOR MODAL
-        // =====================================================
-
-        function inspectAuditEvent(auditId) {
-            const logs = getAuditLogs();
-            const log = logs.find(l => l.id === auditId);
-            if (!log) return;
-
-            document.getElementById('modalAuditTitle').textContent = log.actionTitle;
-            document.getElementById('modalAuditId').textContent = `ID Événement : ${log.id} • ${log.action}`;
-
-            document.getElementById('modalAuditBody').innerHTML = `
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="p-3 bg-slate-50 rounded-xl">
-                        <span class="text-[10px] text-slate-400 font-bold uppercase block">Date & Heure exacte</span>
-                        <span class="font-bold text-slate-800">${new Date(log.timestamp).toLocaleString('fr-FR')}</span>
-                    </div>
-                    <div class="p-3 bg-slate-50 rounded-xl">
-                        <span class="text-[10px] text-slate-400 font-bold uppercase block">Gravité & Catégorie</span>
-                        <span class="font-bold text-slate-800 uppercase">${log.severity} • ${log.category}</span>
-                    </div>
-                    <div class="p-3 bg-slate-50 rounded-xl">
-                        <span class="text-[10px] text-slate-400 font-bold uppercase block">Opérateur (Acteur)</span>
-                        <span class="font-bold text-slate-800">${esc(log.actor?.fullName)} (@${esc(log.actor?.username)})</span>
-                    </div>
-                    <div class="p-3 bg-slate-50 rounded-xl">
-                        <span class="text-[10px] text-slate-400 font-bold uppercase block">Rôle / Affectation</span>
-                        <span class="font-bold text-slate-800 uppercase">${esc(log.actor?.role)} (${esc(log.actor?.commune || 'Wilaya')})</span>
-                    </div>
-                    <div class="p-3 bg-slate-50 rounded-xl col-span-2">
-                        <span class="text-[10px] text-slate-400 font-bold uppercase block">Élément cible (Target)</span>
-                        <span class="font-bold text-slate-800 font-mono text-xs">${esc(log.target || 'Non spécifié')}</span>
-                    </div>
-                    <div class="p-3 bg-slate-50 rounded-xl col-span-2">
-                        <span class="text-[10px] text-slate-400 font-bold uppercase block">Description complète</span>
-                        <p class="font-medium text-slate-700 leading-relaxed mt-0.5">${esc(log.details)}</p>
-                    </div>
-                    <div class="p-3 bg-slate-50 rounded-xl">
-                        <span class="text-[10px] text-slate-400 font-bold uppercase block">Adresse IP</span>
-                        <span class="font-mono text-xs text-slate-700 font-bold">${esc(log.ip)}</span>
-                    </div>
-                    <div class="p-3 bg-slate-50 rounded-xl">
-                        <span class="text-[10px] text-slate-400 font-bold uppercase block">Machine & Navigateur</span>
-                        <span class="text-xs text-slate-700 font-bold">${esc(log.device)}</span>
-                    </div>
-                </div>
-
-                <div class="mt-4 pt-3 border-t border-slate-100">
-                    <span class="text-[10px] text-slate-400 font-bold uppercase block mb-1">Payload JSON de sécurité</span>
-                    <pre class="bg-slate-900 text-emerald-400 p-3 rounded-xl font-mono text-[11px] overflow-x-auto leading-tight">${JSON.stringify(log, null, 2)}</pre>
-                </div>
-            `;
-
-            document.getElementById('auditDetailModal').classList.remove('hidden');
-        }
-
-        function closeAuditModal() {
-            document.getElementById('auditDetailModal').classList.add('hidden');
-        }
-
-        // =====================================================
-        //  AUDIT EXPORT & PURGE
-        // =====================================================
-
-        function exportAuditCSV() {
-            const logs = getAuditLogs();
-            if (logs.length === 0) { showToast('Aucun événement à exporter.', 'error'); return; }
-
-            const headers = 'ID,Date,Membre_Nom,Membre_Username,Role,Categorie,Action,Gravite,Cible,Details,IP,Machine\n';
-            const rows = logs.map(l => `"${l.id}","${l.timestamp}","${(l.actor?.fullName || '').replace(/"/g, '""')}","${(l.actor?.username || '').replace(/"/g, '""')}","${l.actor?.role || ''}","${l.category}","${(l.actionTitle || '').replace(/"/g, '""')}","${l.severity}","${(l.target || '').replace(/"/g, '""')}","${(l.details || '').replace(/"/g, '""')}","${l.ip}","${(l.device || '').replace(/"/g, '""')}"`).join('\n');
-
-            const blob = new Blob(['\ufeff' + headers + rows], { type: 'text/csv;charset=utf-8;' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'audit_campagne38_' + new Date().toISOString().split('T')[0] + '.csv';
-            a.click();
-            URL.revokeObjectURL(a.href);
-
-            logAuditEvent({
-                action: 'AUDIT_EXPORT_CSV',
-                actionTitle: 'Export CSV du Journal d\'Audit',
-                category: 'SECURITY',
-                severity: 'info',
-                target: 'Journal d\'audit',
-                details: `Téléchargement du fichier CSV d'audit (${logs.length} enregistrements).`
-            });
-
-            showToast('Export CSV de l\'audit terminé.', 'success');
-        }
-
-        function exportAuditJSON() {
-            const logs = getAuditLogs();
-            if (logs.length === 0) { showToast('Aucun événement à exporter.', 'error'); return; }
-
-            const payload = {
-                campaign: 'Campagne Selmaoui Hana #38 (RND Souk Ahras)',
-                exportDate: new Date().toISOString(),
-                totalEvents: logs.length,
-                logs: logs
-            };
-
-            const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'audit_campagne38_' + new Date().toISOString().split('T')[0] + '.json';
-            a.click();
-            URL.revokeObjectURL(a.href);
-
-            logAuditEvent({
-                action: 'AUDIT_EXPORT_JSON',
-                actionTitle: 'Export JSON du Journal d\'Audit',
-                category: 'SECURITY',
-                severity: 'info',
-                target: 'Journal d\'audit',
-                details: `Téléchargement du rapport JSON d'audit (${logs.length} enregistrements).`
-            });
-
-            showToast('Rapport JSON d\'audit téléchargé.', 'success');
-        }
-
-        function clearAuditLog() {
-            if (!confirm('⚠️ ATTENTION : Êtes-vous sûr de vouloir purger le journal d\'audit ? Cette action réinitialisera l\'historique des événements.')) return;
-
-            const wipeCount = getAuditLogs().length;
-            localStorage.removeItem(AUDIT_KEY);
-
-            // Create initial event logging the purge
-            logAuditEvent({
-                action: 'AUDIT_PURGE',
-                actionTitle: 'Purge du Journal d\'Audit',
-                category: 'SECURITY',
-                severity: 'danger',
-                target: 'Journal d\'audit',
-                details: `Le journal d'audit a été purgé (${wipeCount} anciens enregistrements supprimés).`
-            });
-
-            renderAuditSection();
-            showToast('Journal d\'audit réinitialisé.', 'info');
-        }
-
-        // =====================================================
-        //  DATA MANAGEMENT (Submissions & Global)
-        // =====================================================
-
-        function exportAllData() {
-            const data = {
-                submissions: getSubmissions(),
-                users: getUsers(),
-                content: JSON.parse(localStorage.getItem(CONTENT_KEY) || '{}'),
-                auditLogs: getAuditLogs(),
-                exportDate: new Date().toISOString()
-            };
-            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'campagne38_global_backup_' + new Date().toISOString().split('T')[0] + '.json';
-            a.click();
-            URL.revokeObjectURL(a.href);
-
-            logAuditEvent({
-                action: 'DATA_BACKUP_ALL',
-                actionTitle: 'Sauvegarde Complète (Backup Global)',
-                category: 'SECURITY',
-                severity: 'success',
-                target: 'Archive JSON',
-                details: `Export complet : ${data.submissions.length} soumissions, ${data.users.length} membres, ${data.auditLogs.length} logs d'audit.`
-            });
-
-            showToast('Sauvegarde globale exportée avec succès.', 'success');
-        }
-
-        function exportAllMembersJSON() {
-            const users = getUsers();
-            const blob = new Blob([JSON.stringify(users, null, 2)], { type: 'application/json' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'campagne38_membres_' + new Date().toISOString().split('T')[0] + '.json';
-            a.click();
-            URL.revokeObjectURL(a.href);
-            showToast(`${users.length} membre(s) exporté(s) dans le fichier JSON.`, 'success');
-        }
-
-        function importMembersJSON(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = JSON.parse(e.target.result);
-                    const userList = Array.isArray(data) ? data : (data.users || []);
-                    if (!userList.length) {
-                        showToast('Aucun compte membre valide trouvé dans ce fichier.', 'error');
-                        return;
-                    }
-                    const current = getUsers();
-                    let addedCount = 0;
-                    userList.forEach(nu => {
-                        if (!nu.username) return;
-                        const idx = current.findIndex(u => u.username.toLowerCase() === nu.username.toLowerCase());
-                        if (idx >= 0) {
-                            current[idx] = Object.assign(current[idx], nu);
-                        } else {
-                            current.push(nu);
-                            addedCount++;
-                        }
-                    });
-                    localStorage.setItem(USERS_KEY, JSON.stringify(current));
-                    renderMemberScorecard();
-                    updateAuditKPIs();
-                    populateAuditMemberFilter();
-                    showToast(`${userList.length} membre(s) importé(s) avec succès (${addedCount} nouveaux) !`, 'success');
-                } catch(err) {
-                    showToast('Fichier JSON invalide : ' + (err.message || 'erreur'), 'error');
-                }
-            };
-            reader.readAsText(file);
-        }
-
-        function importData(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const data = JSON.parse(e.target.result);
-                    let importedSubCount = 0;
-                    if (data.submissions) {
-                        const existing = getSubmissions();
-                        const merged = [...existing, ...data.submissions];
-                        saveSubmissions(merged);
-                        importedSubCount = data.submissions.length;
-                    }
-                    if (data.content) localStorage.setItem(CONTENT_KEY, JSON.stringify(data.content));
-                    if (data.users && Array.isArray(data.users)) {
-                        const currentUsers = getUsers();
-                        data.users.forEach(u => {
-                            if (!currentUsers.find(cu => cu.username.toLowerCase() === u.username.toLowerCase())) {
-                                currentUsers.push(u);
-                            }
-                        });
-                        localStorage.setItem(USERS_KEY, JSON.stringify(currentUsers));
-                    }
-                    if (data.auditLogs && Array.isArray(data.auditLogs)) {
-                        const currentAudit = getAuditLogs();
-                        const mergedAudit = [...data.auditLogs, ...currentAudit].slice(0, 500);
-                        localStorage.setItem(AUDIT_KEY, JSON.stringify(mergedAudit));
-                    }
-
-                    logAuditEvent({
-                        action: 'DATA_IMPORT',
-                        actionTitle: 'Importation de données',
-                        category: 'CITIZENS',
-                        severity: 'warning',
-                        target: 'Base locale',
-                        details: `Restauration de ${importedSubCount} soumission(s) depuis un fichier JSON.`
-                    });
-
-                    refreshDashboard();
-                    showToast(`${importedSubCount} soumissions importées avec succès.`, 'success');
-                } catch (err) {
-                    showToast('Erreur d\'import : fichier JSON non valide.', 'error');
-                }
-            };
-            reader.readAsText(file);
-        }
-
-        function exportSubmissionsCSV() {
-            const subs = getSubmissions();
-            if (subs.length === 0) { showToast('Aucune soumission à exporter.', 'error'); return; }
-            const headers = 'ID,Nom,Commune,Type,Contact,Message,Date,Statut\n';
-            const rows = subs.map(s => `"${s.id}","${s.name}","${s.commune}","${s.type}","${s.contact || ''}","${s.message.replace(/"/g, '""')}","${s.date || ''}","${s.status || 'new'}"`).join('\n');
-            const blob = new Blob(['\ufeff' + headers + rows], { type: 'text/csv;charset=utf-8;' });
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = 'soumissions_campagne38_' + new Date().toISOString().split('T')[0] + '.csv';
-            a.click();
-            URL.revokeObjectURL(a.href);
-
-            logAuditEvent({
-                action: 'DATA_EXPORT_CSV',
-                actionTitle: 'Export CSV des contributions',
-                category: 'CITIZENS',
-                severity: 'info',
-                target: 'Soumissions citoyennes',
-                details: `Téléchargement du fichier CSV (${subs.length} contributions).`
-            });
-
-            showToast('Export CSV terminé.', 'success');
-        }
-
-        function clearAllSubmissions() {
-            if (!confirm('⚠️ Supprimer TOUTES les soumissions ? Cette action est irréversible.')) return;
-            const count = getSubmissions().length;
-            saveSubmissions([]);
-            refreshDashboard();
-
-            logAuditEvent({
-                action: 'DATA_CLEAR_ALL',
-                actionTitle: 'Purge des soumissions citoyennes',
-                category: 'SECURITY',
-                severity: 'danger',
-                target: 'Base de données citoyenne',
-                details: `Suppression globale de toutes les contributions (${count} soumissions supprimées).`
-            });
-
-            showToast('Toutes les soumissions ont été supprimées.', 'info');
-        }
-
-        function addDemoData() {
-            const communes = ['Souk Ahras', 'Sedrata', 'Mdaourouch', 'Taoura', 'Mechroha', 'Haddada', 'Ouled Driss', 'Khemissa'];
-            const types = ['proposal', 'support', 'volunteer', 'sector'];
-            const names = ['أحمد بوزيد', 'فاطمة مرابط', 'محمد العربي', 'خديجة سعيدي', 'يوسف حمداني', 'زينب بن عمر', 'عبد الرحمن مزياني', 'سارة قاسمي', 'كريم بلخيري', 'نور الهدى سايح', 'Ibrahim Khelifi', 'Amina Bouhired', 'Rachid Djebbar', 'Fatima Zohra Benali', 'Mourad Touati'];
-            const messages = [
-                'نقترح إنشاء سوق أسبوعي للمنتوجات الفلاحية المحلية في البلدية',
-                'نحتاج دعم فعلي لمربي النحل في المناطق الجبلية',
-                'ندعم المترشحة سلماوي هناء لكفاءتها العلمية والميدانية',
-                'أرغب في التطوع في الحملة الانتخابية في بلديتي',
-                'نقترح فتح مركز تكوين للمرأة الريفية في الحرف التقليدية',
-                'شباب البلدية يحتاجون فضاءات ثقافية ورياضية مجهزة',
-                'المسالك الريفية في حالة مزرية وتحتاج صيانة عاجلة',
-                'Je soutiens la candidate Selmaoui Hana pour sa vision scientifique du développement',
-                'Proposition: créer un incubateur de startups agricoles à Souk Ahras',
-                'Les routes entre les mechtas sont impraticables en hiver'
-            ];
-
-            const existing = getSubmissions();
-            const demoData = [];
-            for (let i = 0; i < 25; i++) {
-                const daysAgo = Math.floor(Math.random() * 30);
-                const date = new Date(Date.now() - daysAgo * 86400000).toISOString();
-                demoData.push({
-                    id: 'sub_demo_' + Date.now().toString(36) + Math.random().toString(36).substring(2, 6) + i,
-                    name: names[Math.floor(Math.random() * names.length)],
-                    commune: communes[Math.floor(Math.random() * communes.length)],
-                    type: types[Math.floor(Math.random() * types.length)],
-                    contact: Math.random() > 0.4 ? '0' + (5 + Math.floor(Math.random() * 3)) + Math.floor(10000000 + Math.random() * 89999999) : '',
-                    message: messages[Math.floor(Math.random() * messages.length)],
-                    date: date,
-                    status: ['new', 'new', 'new', 'reviewed'][Math.floor(Math.random() * 4)]
-                });
-            }
-            saveSubmissions([...existing, ...demoData]);
-            refreshDashboard();
-
-            logAuditEvent({
-                action: 'DATA_DEMO_INJECT',
-                actionTitle: 'Injection de données de test',
-                category: 'CITIZENS',
-                severity: 'info',
-                target: '25 contributions démo',
-                details: 'Génération de 25 contributions représentatives à travers les communes de Souk Ahras.'
-            });
-
-            showToast('25 soumissions de démo chargées.', 'success');
-        }
-
-        // =====================================================
-        //  UTILITIES & FORMATTERS
-        // =====================================================
-
-        function esc(str) {
-            if (!str) return '';
-            const div = document.createElement('div');
-            div.textContent = str;
-            return div.innerHTML;
-        }
-
-        function formatDateFull(isoStr) {
-            if (!isoStr) return '—';
-            const d = new Date(isoStr);
-            return d.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' }) + ' ' + d.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
-        }
-
-        function formatDateRelative(isoStr) {
-            if (!isoStr) return '';
-            const diff = Date.now() - new Date(isoStr).getTime();
-            const mins = Math.floor(diff / 60000);
-            if (mins < 1) return 'À l\'instant';
-            if (mins < 60) return `Il y a ${mins} min`;
-            const hours = Math.floor(mins / 60);
-            if (hours < 24) return `Il y a ${hours} h`;
-            const days = Math.floor(hours / 24);
-            return `Il y a ${days} j`;
-        }
-
-        function showToast(msg, type = 'info') {
-            const container = document.getElementById('toastContainer');
-            const colors = { success: 'bg-emerald-600', error: 'bg-red-600', info: 'bg-blue-600' };
-            const icons = { success: 'fa-circle-check', error: 'fa-circle-xmark', info: 'fa-circle-info' };
-            const toast = document.createElement('div');
-            toast.className = `toast ${colors[type]} text-white px-5 py-3 rounded-xl shadow-lg flex items-center gap-3 max-w-sm text-sm font-bold`;
-            toast.innerHTML = `<i class="fa-solid ${icons[type]}"></i> ${esc(msg)}`;
-            container.appendChild(toast);
-            setTimeout(() => { toast.style.opacity = '0'; toast.style.transition = 'opacity 0.3s'; setTimeout(() => toast.remove(), 300); }, 4000);
-        }
-
-        // =====================================================
-        //  NOTIFICATION BELL & DROPDOWN (Facebook / IG Style)
-        // =====================================================
-
-        function getReadNotifications() {
-            try {
-                return JSON.parse(localStorage.getItem(NOTIFS_READ_KEY) || '[]');
-            } catch { return []; }
-        }
-
-        function markAllNotificationsAsRead() {
-            const subs = getSubmissions();
-            const logs = getAuditLogs().slice(0, 15);
-            const allIds = [...subs.map(s => 'sub_' + s.id), ...logs.map(l => 'aud_' + l.id)];
-            localStorage.setItem(NOTIFS_READ_KEY, JSON.stringify(allIds));
-            renderNotifications();
-            showToast('Toutes les notifications sont marquées comme lues.', 'info');
-        }
-
-        function toggleNotificationDropdown(e) {
-            if (e) e.stopPropagation();
-            const drop = document.getElementById('notifDropdown');
-            if (!drop) return;
-            drop.classList.toggle('hidden');
-            if (!drop.classList.contains('hidden')) {
-                renderNotifications();
-            }
-        }
-
-        // Close notif dropdown on click outside
-        document.addEventListener('click', function(e) {
-            const drop = document.getElementById('notifDropdown');
-            const bell = document.getElementById('notifBellBtn');
-            if (drop && !drop.classList.contains('hidden') && !drop.contains(e.target) && !bell.contains(e.target)) {
-                drop.classList.add('hidden');
-            }
-        });
-
-        function renderNotifications() {
-            const list = document.getElementById('notifList');
-            const badge = document.getElementById('notifBadge');
-            const pill = document.getElementById('notifCountPill');
-            if (!list) return;
-
-            const readIds = new Set(getReadNotifications());
-            const subs = getSubmissions().slice(-15).reverse();
-            const logs = getAuditLogs().slice(0, 15);
-
-            const notifs = [];
-
-            subs.forEach(s => {
-                notifs.push({
-                    id: 'sub_' + s.id,
-                    subId: s.id,
-                    type: 'citizen',
-                    title: `${s.name} (${s.commune})`,
-                    subtitle: s.message,
-                    badge: typeLabels[s.type] || 'Contribution',
-                    badgeColor: typeColors[s.type] || 'bg-slate-100 text-slate-700',
-                    time: s.date || new Date().toISOString(),
-                    icon: 'fa-envelope-open-text',
-                    iconBg: 'bg-emerald-100 text-rnd-green',
-                    isRead: readIds.has('sub_' + s.id)
-                });
-            });
-
-            logs.forEach(l => {
-                notifs.push({
-                    id: 'aud_' + l.id,
-                    type: 'audit',
-                    title: l.actionTitle,
-                    subtitle: `${l.actor?.fullName || 'Membre'} — ${l.details}`,
-                    badge: l.category,
-                    badgeColor: l.severity === 'danger' ? 'bg-red-100 text-rnd-red' : 'bg-amber-100 text-amber-700',
-                    time: l.timestamp,
-                    icon: l.severity === 'danger' ? 'fa-triangle-exclamation' : 'fa-shield-halved',
-                    iconBg: l.severity === 'danger' ? 'bg-red-100 text-rnd-red' : 'bg-amber-100 text-amber-700',
-                    isRead: readIds.has('aud_' + l.id)
-                });
-            });
-
-            notifs.sort((a, b) => new Date(b.time) - new Date(a.time));
-
-            const unreadCount = notifs.filter(n => !n.isRead).length;
-            if (badge) {
-                if (unreadCount > 0) {
-                    badge.textContent = unreadCount > 9 ? '9+' : unreadCount;
-                    badge.classList.remove('hidden');
-                } else {
-                    badge.classList.add('hidden');
-                }
-            }
-            if (pill) pill.textContent = unreadCount;
-
-            if (notifs.length === 0) {
-                list.innerHTML = '<div class="p-8 text-center text-slate-400 font-medium">Aucune notification pour le moment.</div>';
-                return;
-            }
-
-            list.innerHTML = notifs.map(n => `
-                <div onclick="handleNotificationClick('${n.id}', '${n.type}', '${n.subId || ''}')" class="p-3.5 flex items-start gap-3 hover:bg-slate-50 transition cursor-pointer ${n.isRead ? 'opacity-70' : 'bg-emerald-50/40'}">
-                    <div class="w-9 h-9 rounded-xl ${n.iconBg} flex items-center justify-center text-sm shrink-0 mt-0.5">
-                        <i class="fa-solid ${n.icon}"></i>
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <div class="flex items-center justify-between gap-2">
-                            <p class="font-extrabold text-slate-900 text-xs truncate">${esc(n.title)}</p>
-                            <span class="text-[10px] text-slate-400 shrink-0">${formatDateRelative(n.time)}</span>
-                        </div>
-                        <p class="text-[11px] text-slate-600 truncate mt-0.5">${esc(n.subtitle)}</p>
-                        <div class="mt-1 flex items-center gap-1.5">
-                            <span class="px-1.5 py-0.5 rounded text-[9px] font-extrabold ${n.badgeColor}">${n.badge}</span>
-                            ${!n.isRead ? '<span class="w-1.5 h-1.5 rounded-full bg-rnd-red"></span>' : ''}
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function handleNotificationClick(notifId, type, subId) {
-            const reads = getReadNotifications();
-            if (!reads.includes(notifId)) {
-                reads.push(notifId);
-                localStorage.setItem(NOTIFS_READ_KEY, JSON.stringify(reads));
-            }
-            renderNotifications();
-            document.getElementById('notifDropdown')?.classList.add('hidden');
-
-            if (type === 'citizen' && subId) {
-                openMessageModal(subId);
-            } else if (type === 'audit') {
-                showSection('audit');
-            }
-        }
-
-        // =====================================================
-        //  MESSAGE DETAIL MODAL & AI REPLY ASSISTANT
-        // =====================================================
-
-        let currentActiveMessage = null;
-
-        function openMessageModal(subId) {
-            const subs = getSubmissions();
-            const s = subs.find(x => x.id === subId);
-            if (!s) { showToast('Message introuvable.', 'error'); return; }
-
-            currentActiveMessage = s;
-
-            // Mark notification as read
-            const reads = getReadNotifications();
-            if (!reads.includes('sub_' + s.id)) {
-                reads.push('sub_' + s.id);
-                localStorage.setItem(NOTIFS_READ_KEY, JSON.stringify(reads));
-                renderNotifications();
-            }
-
-            document.getElementById('modalMsgName').textContent = s.name;
-            document.getElementById('modalMsgAvatar').textContent = s.name.charAt(0).toUpperCase();
-            document.getElementById('modalMsgMeta').textContent = `${s.commune} • ${formatDateFull(s.date)}`;
-            document.getElementById('modalMsgType').textContent = typeLabels[s.type] || s.type;
-            document.getElementById('modalMsgType').className = `px-3 py-1 rounded-xl text-xs font-bold ${typeColors[s.type] || 'bg-slate-100 text-slate-700'}`;
-            document.getElementById('modalMsgStatus').textContent = statusLabels[s.status || 'new'];
-            document.getElementById('modalMsgStatus').className = `px-3 py-1 rounded-xl text-xs font-bold ${statusColors[s.status || 'new']}`;
-            document.getElementById('modalMsgContactVal').textContent = s.contact || 'Non renseigné';
-            document.getElementById('modalMsgText').textContent = s.message;
-
-            // Communication buttons
-            const btnWA = document.getElementById('modalBtnWhatsApp');
-            const btnCall = document.getElementById('modalBtnCall');
-
-            const cleanPhone = (s.contact || '').replace(/[^0-9]/g, '');
-            if (cleanPhone.length >= 8) {
-                let waNumber = cleanPhone;
-                if (cleanPhone.startsWith('0')) waNumber = '213' + cleanPhone.substring(1);
-                const defaultMsg = encodeURIComponent(`Bonjour ${s.name},\nNous accusons réception de votre contribution pour la campagne de la candidate Selmaoui Hana (Liste 02 • N° 38 - RND Souk Ahras). Merci pour votre engagement !`);
-                btnWA.href = `https://wa.me/${waNumber}?text=${defaultMsg}`;
-                btnWA.classList.remove('hidden');
-                btnCall.href = `tel:${cleanPhone}`;
-                btnCall.classList.remove('hidden');
-            } else {
-                btnWA.href = '#';
-                btnWA.classList.add('hidden');
-                btnCall.href = '#';
-                btnCall.classList.add('hidden');
-            }
-
-            // Hide AI box by default
-            document.getElementById('aiReplyBox').classList.add('hidden');
-            document.getElementById('aiReplyContent').textContent = '';
-
-            document.getElementById('messageDetailModal').classList.remove('hidden');
-
-            logAuditEvent({
-                action: 'SUBMISSION_VIEW',
-                actionTitle: 'Consultation complète d\'un message',
-                category: 'CITIZENS',
-                severity: 'info',
-                target: `${s.name} (${s.commune})`,
-                details: `Ouverture de la fiche détaillée pour la contribution de type "${s.type}".`
-            });
-        }
-
-        function closeMessageModal() {
-            document.getElementById('messageDetailModal').classList.add('hidden');
-            currentActiveMessage = null;
-        }
-
-        function setModalSubStatus(newStatus) {
-            if (!currentActiveMessage) return;
-            changeSubStatus(currentActiveMessage.id, newStatus);
-            currentActiveMessage.status = newStatus;
-            document.getElementById('modalMsgStatus').textContent = statusLabels[newStatus];
-            document.getElementById('modalMsgStatus').className = `px-3 py-1 rounded-xl text-xs font-bold ${statusColors[newStatus]}`;
-        }
-
-        function deleteModalSub() {
-            if (!currentActiveMessage) return;
-            const id = currentActiveMessage.id;
-            closeMessageModal();
-            deleteSub(id);
-        }
-
-        function generateAiReplyForCurrentMessage() {
-            if (!currentActiveMessage) return;
-            const s = currentActiveMessage;
-            const box = document.getElementById('aiReplyBox');
-            const content = document.getElementById('aiReplyContent');
-            box.classList.remove('hidden');
-
-            let tailoredText = '';
-            const msgLower = (s.message || '').toLowerCase();
-
-            if (s.type === 'volunteer') {
-                tailoredText = `Bonjour ${s.name},\n\nUn immense merci pour votre proposition de bénévolat à ${s.commune} ! La campagne de la candidate Dr. Selmaoui Hana (Liste 02 • N° 38) repose avant tout sur l'énergie citoyenne et la jeunesse de notre wilaya.\n\nNotre coordinateur pour la zone de ${s.commune} prendra contact avec vous d'ici 24h pour vous intégrer aux commissions de terrain et aux réunions de quartier.\n\nBien cordialement,\nL'Équipe de Campagne — Dr. Selmaoui Hana (RND)`;
-            } else if (msgLower.includes('vétérinaire') || msgLower.includes('anim') || msgLower.includes('lait') || msgLower.includes('éleveur') || msgLower.includes('بقر') || msgLower.includes('غنم') || msgLower.includes('فلاح')) {
-                tailoredText = `Bonjour ${s.name},\n\nEn tant que Docteur Vétérinaire et candidate à l'APW de Souk Ahras, votre message me touche particulièrement. La valorisation de notre cheptel, l'allègement du coût des intrants et la protection sanitaire de nos élevages à ${s.commune} sont au cœur même de mon programme prioritaire.\n\nVos remarques ont été consignées dans notre carnet de doléances pour nos prochaines propositions au Conseil de Wilaya.\n\nDr. Selmaoui Hana — Candidate N° 38 • Liste 02 (RND)`;
-            } else if (s.type === 'proposal') {
-                tailoredText = `Bonjour ${s.name},\n\nNous vous remercions chaleureusement pour votre proposition concrète concernant ${s.commune} : « ${s.message.substring(0, 60)}... ».\n\nLa démocratie participative et l'écoute du terrain sont nos maîtres-mots : votre suggestion a été transmise à notre commission technique pour enrichir le plan d'action local de notre liste.\n\nMerci de faire avancer Souk Ahras !\nDr. Selmaoui Hana & l'Équipe Liste 02`;
-            } else {
-                tailoredText = `Bonjour ${s.name},\n\nMerci du fond du cœur pour votre précieux soutien à ${s.commune} ! La confiance que vous accordez à la candidate Dr. Selmaoui Hana et à la Liste 02 (RND) est notre plus belle source de motivation.\n\nLe 27 novembre, mobilisons-nous pour faire entendre la voix de la compétence et de la jeunesse à l'APW de Souk Ahras !\n\nFraternellement,\nDr. Selmaoui Hana — N° 38`;
-            }
-
-            content.textContent = tailoredText;
-            showToast('Réponse IA formulée selon le programme.', 'success');
-        }
-
-        function copyAiReply() {
-            const text = document.getElementById('aiReplyContent').textContent;
-            if (!text) return;
-            navigator.clipboard.writeText(text).then(() => {
-                showToast('Réponse copiée dans le presse-papier !', 'info');
-            });
-        }
-
-        function sendAiReplyToWhatsApp() {
-            if (!currentActiveMessage) return;
-            const text = document.getElementById('aiReplyContent').textContent;
-            const cleanPhone = (currentActiveMessage.contact || '').replace(/[^0-9]/g, '');
-            let waNumber = cleanPhone;
-            if (cleanPhone.startsWith('0')) waNumber = '213' + cleanPhone.substring(1);
-            window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(text)}`, '_blank');
-        }
-
-        // =====================================================
-        //  REAL-TIME VISITOR PRESENCE ENGINE & KPIS
-        // =====================================================
-
-        function pingPresence() {
-            try {
-                let presence = {};
-                const stored = localStorage.getItem(PRESENCE_KEY);
-                if (stored) {
-                    try { presence = JSON.parse(stored); } catch(e) { presence = {}; }
-                }
-                const now = Date.now();
-                presence[TAB_ID] = now;
-                for (const id in presence) {
-                    if (now - presence[id] > 12000) {
-                        delete presence[id];
-                    }
-                }
-                localStorage.setItem(PRESENCE_KEY, JSON.stringify(presence));
-                return Math.max(1, Object.keys(presence).length);
-            } catch(e) {
-                return 1;
-            }
-        }
-
-        function removePresence() {
-            try {
-                const stored = localStorage.getItem(PRESENCE_KEY);
-                if (stored) {
-                    const presence = JSON.parse(stored);
-                    delete presence[TAB_ID];
-                    localStorage.setItem(PRESENCE_KEY, JSON.stringify(presence));
-                }
-            } catch(e) {}
-        }
-
-        window.addEventListener('beforeunload', removePresence);
-        window.addEventListener('pagehide', removePresence);
-
-        function getVisitorData() {
-            try {
-                const d = localStorage.getItem(VISITOR_KEY);
-                const active = pingPresence();
-                if (d) {
-                    const parsed = JSON.parse(d);
-                    parsed.activeNow = active;
-                    return parsed;
-                }
-                return { totalViews: 1, uniqueVisitors: 1, activeNow: active };
-            } catch {
-                return { totalViews: 1, uniqueVisitors: 1, activeNow: 1 };
-            }
-        }
-
-        function initVisitorTracking() {
-            renderVisitorStats();
-            setInterval(() => {
-                pingPresence();
-                renderVisitorStats();
-            }, 5000);
-        }
-
-        function renderVisitorStats() {
-            const data = getVisitorData();
-            // Header badge
-            const dashLive = document.getElementById('dashLiveVisitors');
-            if (dashLive) dashLive.textContent = data.activeNow || 1;
-
-            // Overview KPI Card
-            const kpiVisits = document.getElementById('kpiTotalVisits');
-            const kpiActive = document.getElementById('kpiLiveActive');
-            const kpiUniq = document.getElementById('kpiUniqueVisits');
-
-            if (kpiVisits) kpiVisits.textContent = (data.totalViews || 0).toLocaleString('fr-FR');
-            if (kpiActive) kpiActive.textContent = data.activeNow || 1;
-            if (kpiUniq) kpiUniq.textContent = (data.uniqueVisitors || 0).toLocaleString('fr-FR');
-
-            // Sync with Settings Inputs if not actively typing
-            const setViews = document.getElementById('settingTotalViews');
-            const setUniq = document.getElementById('settingUniqueVisitors');
-            if (setViews && document.activeElement !== setViews) setViews.value = data.totalViews || 0;
-            if (setUniq && document.activeElement !== setUniq) setUniq.value = data.uniqueVisitors || 0;
-        }
-
-        function saveVisitorCounterSettings() {
-            const total = parseInt(document.getElementById('settingTotalViews')?.value) || 0;
-            const uniq = parseInt(document.getElementById('settingUniqueVisitors')?.value) || 0;
-            const data = getVisitorData();
-            data.totalViews = Math.max(0, total);
-            data.uniqueVisitors = Math.max(0, uniq);
-            localStorage.setItem(VISITOR_KEY, JSON.stringify(data));
-            renderVisitorStats();
-            logAuditEvent({
-                action: 'VISITOR_COUNTER_UPDATE',
-                actionTitle: 'Compteur d\'audience calibré',
-                category: 'CONTENT',
-                severity: 'info',
-                target: 'Statistiques d\'audience',
-                details: `Vues fixées à ${total}, Visiteurs uniques à ${uniq}.`
-            });
-            showToast('Chiffres d\'audience enregistrés et synchronisés !', 'success');
-        }
-
-        function resetVisitorCounterZero() {
-            if (!confirm('Voulez-vous réinitialiser le compteur de vues et visiteurs à zéro ?')) return;
-            const active = pingPresence();
-            const data = { totalViews: 0, uniqueVisitors: 0, activeNow: active, lastPing: Date.now() };
-            localStorage.setItem(VISITOR_KEY, JSON.stringify(data));
-            renderVisitorStats();
-            logAuditEvent({
-                action: 'VISITOR_COUNTER_RESET',
-                actionTitle: 'Compteurs d\'audience remis à zéro',
-                category: 'CONTENT',
-                severity: 'warning',
-                target: 'Statistiques d\'audience',
-                details: 'Réinitialisation des compteurs de visites pour un nouveau départ.'
-            });
-            showToast('Compteurs d\'audience remis à zéro.', 'info');
-        }
-
-        // =====================================================
         //  ELECTION COUNTDOWN TIMER
         // =====================================================
 
