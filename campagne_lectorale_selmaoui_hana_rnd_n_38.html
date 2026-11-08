@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -831,19 +831,19 @@
             
             <!-- Section Header -->
             <div class="text-center max-w-3xl mx-auto mb-14">
-                <span class="inline-block px-4 py-1.5 rounded-full bg-red-50 text-rnd-red font-extrabold text-xs uppercase tracking-wider mb-3" data-i18n="prog_badge">
+                <span id="progBadge" class="inline-block px-4 py-1.5 rounded-full bg-red-50 text-rnd-red font-extrabold text-xs uppercase tracking-wider mb-3" data-i18n="prog_badge">
                     البرنامج الانتخابي • القائمة 2 • رقم 38
                 </span>
-                <h2 class="text-3xl sm:text-4xl font-black text-rnd-dark" data-i18n="prog_title">
+                <h2 id="progTitle" class="text-3xl sm:text-4xl font-black text-rnd-dark" data-i18n="prog_title">
                     البرنامج الانتخابي للمجلس الشعبي الولائي لولاية سوق أهراس
                 </h2>
-                <p class="text-slate-600 font-bold mt-3 text-lg sm:text-xl" data-i18n="prog_subtitle">
+                <p id="progSubtitle" class="text-slate-600 font-bold mt-3 text-lg sm:text-xl" data-i18n="prog_subtitle">
                     من أجل تنمية محلية شاملة ومستدامة
                 </p>
             </div>
 
             <!-- 8 Pillars Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="electoralProgramGrid">
                 
                 <!-- Pillar 1: 1. الفلاحة وتربية المواشي -->
                 <div class="pillar-card bg-rnd-cream rounded-3xl p-6 sm:p-8 border-2 border-emerald-900/10 hover:border-rnd-green shadow-card flex flex-col justify-between">
@@ -5420,9 +5420,10 @@
         });
     
         // ==========================================
-        // 26 COMMUNES PROGRAM & VISIBILITY SYNC
+        // 26 COMMUNES PROGRAM & VISIBILITY SYNC (UPGRADED)
         // ==========================================
         const COMMUNES_CONFIG_KEY = 'selma_communes_config';
+        const PROGRAM_STORAGE_KEY = 'selma_electoral_program';
 
         function applyPublicCommunesConfig() {
             try {
@@ -5442,7 +5443,7 @@
                     navCommunes.forEach(el => el.style.display = '');
                 }
 
-                // Individual Communes Toggle
+                // Individual Communes Toggle & Dynamic Text Update
                 if (cfg.communes && Array.isArray(cfg.communes)) {
                     const cards = document.querySelectorAll('.commune-card');
                     const communeMap = {};
@@ -5459,6 +5460,28 @@
                                 card.classList.remove('commune-disabled-hidden');
                                 card.style.display = '';
                             }
+
+                            // Sync modified title, badge, description, and commitment
+                            if (cData.title) {
+                                const h4 = card.querySelector('h4');
+                                if (h4) h4.textContent = cData.title;
+                            }
+                            if (cData.daira) {
+                                const dairaP = card.querySelector('p.text-slate-500');
+                                if (dairaP) dairaP.textContent = cData.daira;
+                            }
+                            if (cData.badge) {
+                                const badgeSpan = card.querySelector('span.rounded-full');
+                                if (badgeSpan) badgeSpan.textContent = cData.badge;
+                            }
+                            if (cData.desc) {
+                                const descP = card.querySelector('p.leading-relaxed');
+                                if (descP) descP.textContent = cData.desc;
+                            }
+                            if (cData.commitment) {
+                                const commitSpan = card.querySelector('div.pt-2 span');
+                                if (commitSpan) commitSpan.textContent = cData.commitment;
+                            }
                         }
                     });
                 }
@@ -5467,14 +5490,113 @@
             }
         }
 
+        // ==========================================
+        // ELECTORAL PROGRAM PUBLIC SYNC (PHOTO 1)
+        // ==========================================
+        function escHtml(str) {
+            if (str === null || str === undefined) return '';
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function applyPublicElectoralProgram() {
+            try {
+                const raw = localStorage.getItem(PROGRAM_STORAGE_KEY);
+                if (!raw) return;
+                const cfg = JSON.parse(raw);
+                if (!cfg) return;
+
+                const bEl = document.getElementById('progBadge');
+                if (bEl && cfg.badge) bEl.textContent = cfg.badge;
+                const tEl = document.getElementById('progTitle');
+                if (tEl && cfg.title) tEl.textContent = cfg.title;
+                const sEl = document.getElementById('progSubtitle');
+                if (sEl && cfg.subtitle) sEl.textContent = cfg.subtitle;
+
+                const grid = document.getElementById('electoralProgramGrid');
+                if (!grid || !Array.isArray(cfg.pillars) || cfg.pillars.length === 0) return;
+
+                const activePillars = cfg.pillars.filter(p => p.active !== false);
+                if (activePillars.length === 0) return;
+
+                grid.innerHTML = activePillars.map(function(p, idx) {
+                    const isRed = p.color === 'rnd-red';
+                    const isBlue = p.color === 'blue';
+                    const isAmber = p.color === 'amber';
+                    const isPurple = p.color === 'purple';
+
+                    let iconBg = 'bg-rnd-green text-white shadow-glow-green';
+                    let tagBg = 'bg-emerald-100 text-rnd-green';
+                    let actIconColor = 'text-rnd-green';
+                    let actLabelColor = 'text-rnd-green';
+
+                    if (isRed) {
+                        iconBg = 'bg-rnd-red text-white shadow-glow-red';
+                        tagBg = 'bg-red-100 text-rnd-red';
+                        actIconColor = 'text-rnd-red';
+                        actLabelColor = 'text-rnd-red';
+                    } else if (isBlue) {
+                        iconBg = 'bg-blue-600 text-white shadow-md';
+                        tagBg = 'bg-blue-100 text-blue-800';
+                        actIconColor = 'text-blue-600';
+                        actLabelColor = 'text-blue-800';
+                    } else if (isAmber) {
+                        iconBg = 'bg-amber-500 text-slate-950 shadow-md';
+                        tagBg = 'bg-amber-100 text-amber-900';
+                        actIconColor = 'text-amber-600';
+                        actLabelColor = 'text-amber-800';
+                    } else if (isPurple) {
+                        iconBg = 'bg-purple-600 text-white shadow-md';
+                        tagBg = 'bg-purple-100 text-purple-800';
+                        actIconColor = 'text-purple-600';
+                        actLabelColor = 'text-purple-800';
+                    }
+
+                    const actionsHtml = (p.actions || []).map(function(act) {
+                        return '<div class="flex items-start gap-2.5 text-sm text-slate-700 font-medium">' +
+                            '<i class="fa-solid fa-circle-check ' + actIconColor + ' mt-1 shrink-0"></i>' +
+                            '<span>' + escHtml(act) + '</span>' +
+                        '</div>';
+                    }).join('');
+
+                    return '<div class="pillar-card bg-rnd-cream rounded-3xl p-6 sm:p-8 border-2 border-emerald-900/10 hover:border-rnd-green shadow-card flex flex-col justify-between transition-all">' +
+                        '<div>' +
+                            '<div class="flex justify-between items-start gap-4 mb-6">' +
+                                '<div class="w-16 h-16 rounded-2xl ' + iconBg + ' flex items-center justify-center text-2xl">' +
+                                    '<i class="fa-solid ' + (p.icon || 'fa-award') + '"></i>' +
+                                '</div>' +
+                                '<span class="px-3.5 py-1 rounded-full ' + tagBg + ' font-black text-xs">' +
+                                    escHtml(p.tag || ('المحور ' + (idx + 1))) +
+                                '</span>' +
+                            '</div>' +
+                            '<h3 class="text-2xl font-black text-rnd-dark mb-3">' +
+                                escHtml(p.title) +
+                            '</h3>' +
+                            '<p class="text-slate-600 text-sm sm:text-base font-bold leading-relaxed mb-6">' +
+                                escHtml(p.desc || '') +
+                            '</p>' +
+                            '<div class="space-y-3 bg-white p-5 rounded-2xl border border-slate-100 shadow-sm">' +
+                                '<h4 class="text-xs font-extrabold uppercase ' + actLabelColor + ' tracking-wider mb-2">أهم الإجراءات والمقترحات الميدانية:</h4>' +
+                                actionsHtml +
+                            '</div>' +
+                        '</div>' +
+                    '</div>';
+                }).join('');
+            } catch (err) {
+                console.warn('Error applying public electoral program:', err);
+            }
+        }
+
+        // Apply on initial page load
+        applyPublicCommunesConfig();
+        applyPublicElectoralProgram();
+
         window.addEventListener('storage', function(e) {
             if (e.key === COMMUNES_CONFIG_KEY) {
                 applyPublicCommunesConfig();
             }
-        });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            applyPublicCommunesConfig();
+            if (e.key === PROGRAM_STORAGE_KEY) {
+                applyPublicElectoralProgram();
+            }
         });
     </script>
 </body>

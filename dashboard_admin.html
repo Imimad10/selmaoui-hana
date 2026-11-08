@@ -335,6 +335,9 @@
                     <a href="#" onclick="showSection('volunteers')" data-nav="volunteers" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition-all hover:bg-white/10 text-emerald-100/80" title="Bénévoles">
                         <i class="fa-solid fa-people-group w-5 text-center shrink-0"></i> <span class="sidebar-label">Bénévoles</span>
                     </a>
+                    <a href="#" onclick="showSection('program')" data-nav="program" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition-all hover:bg-white/10 text-emerald-100/80" title="Programme Électoral">
+                        <i class="fa-solid fa-list-check w-5 text-center shrink-0 text-amber-300"></i> <span class="sidebar-label">Programme Électoral</span>
+                    </a>
                     <a href="#" onclick="showSection('communes')" data-nav="communes" class="nav-link flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition-all hover:bg-white/10 text-emerald-100/80" title="Communes">
                         <i class="fa-solid fa-map-location-dot w-5 text-center shrink-0"></i> <span class="sidebar-label">Communes</span>
                     </a>
@@ -817,6 +820,60 @@
         </div>
     </div>
 </section>
+
+                                        <!-- ===================== SECTION: ELECTORAL PROGRAM ===================== -->
+                    <section id="sec-program" class="hidden space-y-6">
+                        <!-- Header Banner -->
+                        <div class="bg-gradient-to-r from-emerald-800 via-teal-900 to-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+                            <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
+                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+                                <div>
+                                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-emerald-200 text-xs font-bold mb-3 border border-white/10">
+                                        <i class="fa-solid fa-award text-amber-300"></i>
+                                        <span id="progHeaderBadge">Ø§Ù„Ø¨Ø±Ù†Ø§Ù…Ø¬ Ø§Ù„Ø§Ù†ØªØ®Ø§Ø¨ÙŠ Ø§Ù„Ø±Ø³Ù…ÙŠ â€¢ Ø§Ù„Ù‚Ø§Ø¦Ù…Ø© 2 â€¢ Ø±Ù‚Ù… 38</span>
+                                    </div>
+                                    <h3 class="text-2xl font-black text-white flex items-center gap-3">
+                                        Gestion du Programme Ã‰lectoral (Ø§Ù„Ù…Ø­Ø§ÙˆØ± Ø§Ù„Ø§Ù†ØªØ®Ø§Ø¨ÙŠØ©)
+                                    </h3>
+                                    <p class="text-sm text-emerald-100 max-w-2xl mt-1">
+                                        Modifiez les 4 axes officiels de l'affiche de campagne ou ajoutez de nouveaux axes thÃ©matiques avec choix d'icÃ´nes et mesures concrÃ¨tes.
+                                    </p>
+                                </div>
+
+                                <!-- Action Buttons -->
+                                <div class="flex flex-wrap items-center gap-2.5 shrink-0">
+                                    <button type="button" onclick="openAddPillarModal()" class="px-4 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs flex items-center gap-2 shadow-lg hover:shadow-xl transition cursor-pointer">
+                                        <i class="fa-solid fa-plus"></i> Ajouter un Axe
+                                    </button>
+                                    <button type="button" onclick="resetPillarsToDefault()" class="px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-white font-bold text-xs flex items-center gap-2 border border-white/20 transition cursor-pointer" title="RÃ©tablir les 4 axes de l'affiche officielle">
+                                        <i class="fa-solid fa-rotate-left"></i> RÃ©tablir l'Affiche
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Global Titles Form -->
+                            <div class="mt-6 pt-6 border-t border-white/10 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-bold text-emerald-200 mb-1">Ø§Ù„Ø¹Ù†ÙˆØ§Ù† Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠ Ù„Ù„Ø¨Ø±Ù†Ø§Ù…Ø¬</label>
+                                    <input type="text" id="progGlobalTitleInput" class="w-full px-3.5 py-2 rounded-xl bg-white/10 border border-white/20 text-white text-xs font-bold placeholder-white/50 focus:bg-white/20 outline-none" placeholder="Ø§Ù„Ø¨Ø±Ù†Ø§Ù…Ø¬ Ø§Ù„Ø§Ù†ØªØ®Ø§Ø¨ÙŠ Ù„Ù„Ù…Ø¬Ù„Ø³ Ø§Ù„Ø´Ø¹Ø¨ÙŠ Ø§Ù„ÙˆÙ„Ø§Ø¦ÙŠ Ù„ÙˆÙ„Ø§ÙŠØ© Ø³ÙˆÙ‚ Ø£Ù‡Ø±Ø§Ø³">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-emerald-200 mb-1">Ø§Ù„Ø´Ø¹Ø§Ø± Ø§Ù„ÙØ±Ø¹ÙŠ (Slogan)</label>
+                                    <div class="flex gap-2">
+                                        <input type="text" id="progGlobalSubtitleInput" class="w-full px-3.5 py-2 rounded-xl bg-white/10 border border-white/20 text-white text-xs font-semibold placeholder-white/50 focus:bg-white/20 outline-none" placeholder="Ù…Ù† Ø£Ø¬Ù„ ØªÙ†Ù…ÙŠØ© Ù…Ø­Ù„ÙŠØ© Ø´Ø§Ù…Ù„Ø© ÙˆÙ…Ø³ØªØ¯Ø§Ù…Ø©">
+                                        <button type="button" onclick="saveProgramGlobalTitles()" class="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black text-xs shrink-0 transition cursor-pointer">
+                                            Enregistrer
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pillars Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="adminPillarsGrid">
+                            <!-- Populated dynamically by JS -->
+                        </div>
+                    </section>
 
                     <!-- ===================== SECTION: CONTENT ===================== -->
                     <section id="sec-content" class="hidden space-y-6">
@@ -2572,6 +2629,209 @@
         </div>
     </div>
 
+        <!-- ===================== MODAL: EDIT COMMUNE ===================== -->
+    <div id="modalEditCommune" class="fixed inset-0 z-[170] hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-xl w-full shadow-2xl overflow-hidden animate-fadeIn flex flex-col max-h-[90vh]">
+            <div class="bg-gradient-to-r from-[#063322] to-[#0b4f36] p-5 text-white flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-lg text-emerald-300">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-black text-base" id="editCommuneModalTitle">ØªØ¹Ø¯ÙŠÙ„ Ø¨Ø±Ù†Ø§Ù…Ø¬ Ø§Ù„Ø¨Ù„Ø¯ÙŠØ©</h3>
+                        <p class="text-emerald-200 text-xs">ØªØ¹Ø¯ÙŠÙ„ Ø§Ù„Ù†Øµ ÙˆØ§Ù„ØªØ­Ø¯ÙŠØ§Øª ÙˆØ§Ù„Ø§Ù„ØªØ²Ø§Ù… Ø§Ù„Ø®Ø§Øµ Ø¨Ø§Ù„Ø¨Ù„Ø¯ÙŠØ©</p>
+                    </div>
+                </div>
+                <button type="button" onclick="closeEditCommuneModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="editCommuneForm" onsubmit="saveCommuneModal(event); return false;" class="p-6 space-y-4 overflow-y-auto">
+                <input type="hidden" id="editCommuneId">
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Ø§Ø³Ù… Ø§Ù„Ø¨Ù„Ø¯ÙŠØ©</label>
+                        <input type="text" id="editCommuneTitle" required class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-[#0b4f36] outline-none text-sm font-bold text-slate-800">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Ø§Ù„Ø¯Ø§Ø¦Ø±Ø© Ø§Ù„ØªØ§Ø¨Ø¹Ø© Ù„Ù‡Ø§</label>
+                        <input type="text" id="editCommuneDaira" required class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-[#0b4f36] outline-none text-sm font-semibold text-slate-800">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Ø§Ù„Ø´Ø§Ø±Ø© Ø§Ù„ØªÙ†Ù…ÙˆÙŠØ© (Badge)</label>
+                        <input type="text" id="editCommuneBadge" required placeholder="Ù…Ø«Ø§Ù„: Ù‚Ø·Ø¨ Ø­ÙˆØ¶ Ø§Ù„Ø­Ù„ÙŠØ¨" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-[#0b4f36] outline-none text-sm text-slate-800">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Ø§Ù„ØªØµÙ†ÙŠÙ</label>
+                        <select id="editCommuneCat" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-[#0b4f36] outline-none text-sm font-medium bg-white">
+                            <option value="urbain">Ù…Ø±Ø§ÙƒØ² Ø­Ø¶Ø±ÙŠØ© ÙˆØªØ§Ø±ÙŠØ®ÙŠØ©</option>
+                            <option value="lait">Ø­ÙˆØ¶ Ø§Ù„Ø­Ù„ÙŠØ¨ ÙˆØªØ±Ø¨ÙŠØ© Ø§Ù„Ù…ÙˆØ§Ø´ÙŠ</option>
+                            <option value="foret">Ø§Ù„Ø«Ø±ÙˆØ© Ø§Ù„ØºØ§Ø¨ÙŠØ© ÙˆØ§Ù„Ù†Ø­Ù„</option>
+                            <option value="frontiere">Ø§Ù„Ø´Ø±ÙŠØ· Ø§Ù„Ø­Ø¯ÙˆØ¯ÙŠ ÙˆØ§Ù„Ù…Ø´Ø§ØªÙŠ</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1 flex items-center justify-between">
+                        <span>Ù†Øµ Ø§Ù„Ø¨Ø±Ù†Ø§Ù…Ø¬ ÙˆØ§Ù„ØªØ­Ø¯ÙŠØ§Øª (Ø¬Ø³Ù… Ø§Ù„Ø¨Ø·Ø§Ù‚Ø©)</span>
+                        <span class="text-[10px] text-slate-400 font-normal">Ø§Ù„Ù†Øµ Ø§Ù„ÙƒØ§Ù…Ù„ Ø§Ù„Ø°ÙŠ ÙŠØ¸Ù‡Ø± Ø¹Ù„Ù‰ Ø¨Ø·Ø§Ù‚Ø© Ø§Ù„Ø¨Ù„Ø¯ÙŠØ©</span>
+                    </label>
+                    <textarea id="editCommuneDesc" rows="4" required class="w-full p-3 rounded-xl border border-slate-300 focus:border-[#0b4f36] outline-none text-sm text-slate-800 leading-relaxed font-sans" placeholder="Ø§ÙƒØªØ¨ Ù†Øµ Ø¨Ø±Ù†Ø§Ù…Ø¬ Ø§Ù„Ø¨Ù„Ø¯ÙŠØ© ÙˆØ§Ù„ØªØ²Ø§Ù…Ø§ØªÙ‡Ø§ Ù‡Ù†Ø§..."></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Ù†Øµ Ø§Ù„Ø§Ù„ØªØ²Ø§Ù… Ø§Ù„Ø®Ø§Øµ (Ø§Ù„ØªØ²Ø§Ù… Ø±Ù‚Ù… 38)</label>
+                    <input type="text" id="editCommuneCommitment" required placeholder="Ù…Ø«Ø§Ù„: Ø£ÙˆÙ„ÙˆÙŠØ© Ø¨ÙŠØ·Ø±ÙŠØ© Ø£Ùˆ Ø§Ù„ØªØ²Ø§Ù… Ø±Ù‚Ù… 38" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-[#0b4f36] outline-none text-sm font-bold text-emerald-700">
+                </div>
+
+                <div class="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                    <div>
+                        <p class="text-xs font-bold text-slate-800">ØªÙØ¹ÙŠÙ„ Ø¸Ù‡ÙˆØ± Ø§Ù„Ø¨Ù„Ø¯ÙŠØ© Ø¹Ù„Ù‰ Ø§Ù„Ù…ÙˆÙ‚Ø¹</p>
+                        <p class="text-[11px] text-slate-500">Ø¥Ù„ØºØ§Ø¡ Ø§Ù„ØªÙØ¹ÙŠÙ„ ÙŠØ®ÙÙŠ Ø§Ù„Ø¨Ù„Ø¯ÙŠØ© Ù…Ù† Ø§Ù„Ù…ÙˆÙ‚Ø¹ Ø§Ù„Ø¹Ø§Ù…</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="editCommuneActive" class="sr-only peer" checked>
+                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
+                    </label>
+                </div>
+
+                <div class="pt-3 border-t border-slate-200 flex items-center justify-end gap-3">
+                    <button type="button" onclick="closeEditCommuneModal()" class="px-4 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-bold transition">
+                        Ø¥Ù„ØºØ§Ø¡
+                    </button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-[#0b4f36] hover:bg-[#063322] text-white text-xs font-extrabold flex items-center gap-2 shadow-md transition cursor-pointer">
+                        <i class="fa-solid fa-floppy-disk"></i> Ø­ÙØ¸ Ø§Ù„ØªØ¹Ø¯ÙŠÙ„Ø§Øª
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===================== MODAL: ADD / EDIT ELECTORAL PILLAR ===================== -->
+    <div id="modalEditPillar" class="fixed inset-0 z-[180] hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl overflow-hidden animate-fadeIn flex flex-col max-h-[92vh]">
+            <div class="bg-gradient-to-r from-emerald-800 to-teal-900 p-5 text-white flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-3">
+                    <div id="pillarModalPreviewBox" class="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-2xl text-white shadow-inner">
+                        <i id="pillarModalPreviewIcon" class="fa-solid fa-cow"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-black text-base" id="pillarModalTitle">ØªØ¹Ø¯ÙŠÙ„ Ø§Ù„Ù…Ø­ÙˆØ± Ø§Ù„Ø§Ù†ØªØ®Ø§Ø¨ÙŠ</h3>
+                        <p class="text-emerald-200 text-xs">ØªØ®ØµÙŠØµ Ø§Ù„Ø¹Ù†ÙˆØ§Ù†ØŒ Ø§Ù„Ù‡Ø¯ÙØŒ Ø§Ù„Ø£ÙŠÙ‚ÙˆÙ†Ø© ÙˆÙ…Ù‚ØªØ±Ø­Ø§Øª Ø§Ù„Ù…ÙŠØ¯Ø§Ù†</p>
+                    </div>
+                </div>
+                <button type="button" onclick="closeEditPillarModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <form id="editPillarForm" onsubmit="savePillarModal(event); return false;" class="p-6 space-y-4 overflow-y-auto">
+                <input type="hidden" id="editPillarId">
+                <input type="hidden" id="editPillarIcon" value="fa-cow">
+                <input type="hidden" id="editPillarColor" value="rnd-green">
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">ÙˆØ³Ù… ÙˆØ±Ù‚Ù… Ø§Ù„Ù…Ø­ÙˆØ± (Tag)</label>
+                        <input type="text" id="editPillarTag" required placeholder="Ù…Ø«Ø§Ù„: Ø§Ù„Ù…Ø­ÙˆØ± Ø§Ù„Ø£ÙˆÙ„ â€¢ 01" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-[#0b4f36] outline-none text-sm font-bold text-slate-800">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Ø¹Ù†ÙˆØ§Ù† Ø§Ù„Ù…Ø­ÙˆØ±</label>
+                        <input type="text" id="editPillarTitle" required placeholder="Ù…Ø«Ø§Ù„: 1. Ø§Ù„ÙÙ„Ø§Ø­Ø© ÙˆØªØ±Ø¨ÙŠØ© Ø§Ù„Ù…ÙˆØ§Ø´ÙŠ" class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-[#0b4f36] outline-none text-sm font-black text-slate-900">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Ø§Ù„Ù‡Ø¯Ù Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠ / Ø§Ù„ÙˆØµÙ Ø§Ù„Ù…ÙˆØ¬Ø²</label>
+                    <input type="text" id="editPillarDesc" required placeholder="Ù…Ø«Ø§Ù„: Ø¯Ø¹Ù… Ø§Ù„ÙÙ„Ø§Ø­ÙŠÙ† ÙˆØ§Ù„Ù…Ø±Ø¨ÙŠÙ† ÙˆÙ…Ø±Ø§ÙÙ‚ØªÙ‡Ù… Ù…ÙŠØ¯Ø§Ù†ÙŠØ§Ù‹." class="w-full px-3 py-2.5 rounded-xl border border-slate-300 focus:border-[#0b4f36] outline-none text-sm font-medium text-slate-800">
+                </div>
+
+                <!-- Icon Picker -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5 flex items-center justify-between">
+                        <span>Ø§Ø®ØªÙŠØ§Ø± Ø£ÙŠÙ‚ÙˆÙ†Ø© Ø§Ù„Ù…Ø­ÙˆØ± (Icon Picker)</span>
+                        <span class="text-[11px] text-emerald-700 font-bold" id="selectedIconLabel">fa-cow (Ù…ÙˆØ§Ø´ÙŠ ÙˆØ£Ø¨Ù‚Ø§Ø±)</span>
+                    </label>
+                    
+                    <div class="p-3 bg-slate-50 border border-slate-200 rounded-2xl space-y-3">
+                        <div class="flex items-center gap-2">
+                            <input type="text" id="customIconInput" oninput="updateCustomIcon(this.value)" placeholder="Ø£Ùˆ Ø£Ø¯Ø®Ù„ ÙƒÙˆØ¯ Ø£ÙŠÙ‚ÙˆÙ†Ø© FontAwesome (Ù…Ø«Ø§Ù„: fa-cow, fa-wheat-awn...)" class="w-full px-3 py-2 text-xs border border-slate-300 rounded-xl bg-white focus:border-[#0b4f36] outline-none">
+                        </div>
+
+                        <!-- 24 Thematic Icon Buttons -->
+                        <div class="grid grid-cols-6 sm:grid-cols-8 gap-2" id="iconPickerGrid">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Color Choice -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1.5">Ù„ÙˆÙ† Ø®Ù„ÙÙŠØ© Ø§Ù„Ø£ÙŠÙ‚ÙˆÙ†Ø© ÙˆØ§Ù„ÙˆØ³Ù…</label>
+                    <div class="flex items-center gap-3">
+                        <label class="cursor-pointer flex items-center gap-1.5 text-xs font-bold">
+                            <input type="radio" name="pillarColorChoice" value="rnd-green" onchange="setPillarColor('rnd-green')" checked class="text-[#0b4f36] focus:ring-0">
+                            <span class="inline-block w-5 h-5 rounded-full bg-[#0b4f36]"></span> Ø£Ø®Ø¶Ø± RND
+                        </label>
+                        <label class="cursor-pointer flex items-center gap-1.5 text-xs font-bold">
+                            <input type="radio" name="pillarColorChoice" value="rnd-red" onchange="setPillarColor('rnd-red')" class="text-[#d9232e] focus:ring-0">
+                            <span class="inline-block w-5 h-5 rounded-full bg-[#d9232e]"></span> Ø£Ø­Ù…Ø± RND
+                        </label>
+                        <label class="cursor-pointer flex items-center gap-1.5 text-xs font-bold">
+                            <input type="radio" name="pillarColorChoice" value="blue" onchange="setPillarColor('blue')" class="text-blue-600 focus:ring-0">
+                            <span class="inline-block w-5 h-5 rounded-full bg-blue-600"></span> Ø£Ø²Ø±Ù‚
+                        </label>
+                        <label class="cursor-pointer flex items-center gap-1.5 text-xs font-bold">
+                            <input type="radio" name="pillarColorChoice" value="amber" onchange="setPillarColor('amber')" class="text-amber-500 focus:ring-0">
+                            <span class="inline-block w-5 h-5 rounded-full bg-amber-500"></span> Ø°Ù‡Ø¨ÙŠ
+                        </label>
+                        <label class="cursor-pointer flex items-center gap-1.5 text-xs font-bold">
+                            <input type="radio" name="pillarColorChoice" value="purple" onchange="setPillarColor('purple')" class="text-purple-600 focus:ring-0">
+                            <span class="inline-block w-5 h-5 rounded-full bg-purple-600"></span> Ø¨Ù†ÙØ³Ø¬ÙŠ
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Actions Multiline Textarea -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1 flex items-center justify-between">
+                        <span>Ø£Ù‡Ù… Ø§Ù„Ø¥Ø¬Ø±Ø§Ø¡Ø§Øª ÙˆØ§Ù„Ù…Ù‚ØªØ±Ø­Ø§Øª Ø§Ù„Ù…ÙŠØ¯Ø§Ù†ÙŠØ©</span>
+                        <span class="text-[10px] text-slate-400 font-normal">Ø§ÙƒØªØ¨ ÙƒÙ„ Ø¥Ø¬Ø±Ø§Ø¡ ÙÙŠ Ø³Ø·Ø± Ø¬Ø¯ÙŠØ¯</span>
+                    </label>
+                    <textarea id="editPillarActionsText" rows="5" required class="w-full p-3 rounded-xl border border-slate-300 focus:border-[#0b4f36] outline-none text-xs text-slate-800 leading-relaxed font-sans" placeholder="ØªØ­Ø³ÙŠÙ† Ø§Ù„ÙˆÙ‚Ø§ÙŠØ© Ù…Ù† Ø§Ù„Ø£Ù…Ø±Ø§Ø¶ Ø§Ù„Ø­ÙŠÙˆØ§Ù†ÙŠØ©.&#10;ØªÙˆÙÙŠØ± Ø§Ù„Ø£Ø¯ÙˆÙŠØ© ÙˆØ§Ù„Ù„Ù‚Ø§Ø­Ø§Øª Ø§Ù„Ø¨ÙŠØ·Ø±ÙŠØ©.&#10;ØªØ´Ø¬ÙŠØ¹ ØªØ±Ø¨ÙŠØ© Ø§Ù„Ø£Ø¨Ù‚Ø§Ø± ÙˆØ§Ù„Ø£ØºÙ†Ø§Ù….&#10;Ø§Ù„Ù…Ø·Ø§Ù„Ø¨Ø© Ø¨ØµÙŠØ§Ù†Ø© Ø§Ù„Ù…Ø³Ø§Ù„Ùƒ Ø§Ù„ÙÙ„Ø§Ø­ÙŠØ©."></textarea>
+                    <p class="text-[10px] text-slate-400 mt-1">ÙƒÙ„ Ø³Ø·Ø± Ø³ÙŠØ¸Ù‡Ø± ÙƒØ¹Ù†ØµØ± Ù…Ø³ØªÙ‚Ù„ Ø¨Ø¹Ù„Ø§Ù…Ø© ØµØ­ Ø®Ø¶Ø±Ø§Ø¡ Ø¹Ù„Ù‰ Ø§Ù„Ù…ÙˆÙ‚Ø¹ Ø§Ù„Ø±Ø³Ù…ÙŠ.</p>
+                </div>
+
+                <!-- Active switch -->
+                <div class="flex items-center justify-between p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+                    <div>
+                        <p class="text-xs font-bold text-slate-800">ØªÙØ¹ÙŠÙ„ Ø¸Ù‡ÙˆØ± Ø§Ù„Ù…Ø­ÙˆØ± Ø¹Ù„Ù‰ Ø§Ù„Ù…ÙˆÙ‚Ø¹</p>
+                        <p class="text-[11px] text-slate-500">Ø¥Ù„ØºØ§Ø¡ Ø§Ù„ØªÙØ¹ÙŠÙ„ ÙŠØ®ÙÙŠ Ù‡Ø°Ø§ Ø§Ù„Ù…Ø­ÙˆØ± Ù…Ù† Ø§Ù„Ù…ÙˆÙ‚Ø¹ Ø§Ù„Ø¹Ø§Ù…</p>
+                    </div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="editPillarActive" class="sr-only peer" checked>
+                        <div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
+                    </label>
+                </div>
+
+                <div class="pt-3 border-t border-slate-200 flex items-center justify-end gap-3">
+                    <button type="button" onclick="closeEditPillarModal()" class="px-4 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 text-xs font-bold transition">
+                        Ø¥Ù„ØºØ§Ø¡
+                    </button>
+                    <button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-extrabold flex items-center gap-2 shadow-md transition cursor-pointer">
+                        <i class="fa-solid fa-floppy-disk"></i> Ø­ÙØ¸ Ø§Ù„Ù…Ø­ÙˆØ± Ø§Ù„Ø§Ù†ØªØ®Ø§Ø¨ÙŠ
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Audit Detail Modal -->
     <div id="auditDetailModal" class="fixed inset-0 z-[150] hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
         <div class="bg-white rounded-3xl max-w-xl w-full shadow-2xl overflow-hidden animate-fadeIn">
@@ -3528,7 +3788,8 @@ const sectionTitles = {
             overview: 'Vue d\'ensemble',
             submissions: 'Soumissions citoyens',
             volunteers: 'Bénévoles de campagne',
-            communes: 'Statistiques par commune',
+            program: 'Programme Électoral & Axes',
+            communes: 'Programme des 26 Communes',
             content: 'Gestion du contenu',
             depliant: 'Dépliant de Campagne A4',
             stickers: 'Stickers & Slogans de Soutien',
@@ -3557,6 +3818,7 @@ const sectionTitles = {
 
             if (name === 'submissions') renderAllSubmissions();
             if (name === 'volunteers') renderVolunteers();
+            if (name === 'program') renderElectoralProgramSection();
             if (name === 'communes') renderCommunes();
             if (name === 'audit') renderAuditSection();
             if (name === 'depliant') initDepliantSection();
@@ -3853,15 +4115,41 @@ const sectionTitles = {
         // ==========================================
         // 26 COMMUNES PROGRAM ADMIN ENGINE
         // ==========================================
+                // ==========================================
+        // 26 COMMUNES PROGRAM ADMIN ENGINE (UPGRADED)
+        // ==========================================
         const COMMUNES_CONFIG_KEY = 'selma_communes_config';
-        const DEFAULT_COMMUNES_DATA = [{"id":"souk-ahras","dataName":"سوق أهراس souk ahras","cat":"urbain","title":"سوق أهراس (Souk Ahras)","badge":"عاصمة الولاية","daira":"دائرة سوق أهراس","desc":"","commitment":"","icon":"fa-graduation-cap","active":true},{"id":"sedrata","dataName":"سدراتة sedrata","cat":"lait","title":"سدراتة (Sedrata)","badge":"قطب حوض الحليب","daira":"دائرة سدراتة","desc":"","commitment":"","icon":"fa-cow","active":true},{"id":"mechroha","dataName":"مشروحة mechroha","cat":"foret","title":"مشروحة (Mechroha)","badge":"الثروة الغابية والنحل","daira":"دائرة مشروحة","desc":"","commitment":"","icon":"fa-tree","active":true},{"id":"mdaourouch","dataName":"مداوروش mdaourouch madaure","cat":"urbain","title":"مداوروش (Mdaourouch)","badge":"حضارة وتاريخ مادور","daira":"دائرة مداوروش","desc":"","commitment":"","icon":"fa-landmark","active":true},{"id":"taoura","dataName":"تاورة taoura","cat":"urbain","title":"تاورة (Taoura)","badge":"سهول زراعية خصبة","daira":"دائرة تاورة","desc":"","commitment":"","icon":"fa-wheat-awn","active":true},{"id":"haddada","dataName":"الحدادة haddada","cat":"frontiere","title":"الحدادة (Haddada)","badge":"الشريط الحدودي","daira":"دائرة الحدادة","desc":"","commitment":"","icon":"fa-mountain-sun","active":true},{"id":"ouled-driss","dataName":"أولاد إدريس ouled driss","cat":"foret","title":"أولاد إدريس (Ouled Driss)","badge":"بيئة وتربية الماشية","daira":"دائرة أولاد إدريس","desc":"","commitment":"","icon":"fa-seedling","active":true},{"id":"merahna","dataName":"المراهنة merahna","cat":"urbain","title":"المراهنة (Merahna)","badge":"طاقة رعوية وفلاحية","daira":"دائرة المراهنة","desc":"","commitment":"","icon":"fa-tractor","active":true},{"id":"bir-bouhouche","dataName":"بئر بوحوش bir bouhouche","cat":"lait","title":"بئر بوحوش (Bir Bouhouche)","badge":"حوض تربية الأبقار","daira":"دائرة بئر بوحوش","desc":"","commitment":"","icon":"fa-fill-drip","active":true},{"id":"khemissa","dataName":"خميسة khemissa ثاموقادي","cat":"urbain","title":"خميسة (Khemissa)","badge":"تاريخ ثاموقادي وفلاحة","daira":"دائرة سدراتة","desc":"","commitment":"","icon":"fa-monument","active":true},{"id":"oum-el-adhaim","dataName":"أم العظائم oum el adhaim","cat":"urbain","title":"أم العظائم (Oum El Adhaim)","badge":"أراضي زراعية واعدة","daira":"دائرة أم العظائم","desc":"","commitment":"","icon":"fa-hand-holding-droplet","active":true},{"id":"drea","dataName":"الدريعة drea","cat":"urbain","title":"الدريعة (Drea)","badge":"زراعة وتنمية محلية","daira":"دائرة تاورة","desc":"","commitment":"","icon":"fa-truck-pickup","active":true},{"id":"zouabi","dataName":"الزوابي zouabi","cat":"lait","title":"الزوابي (Zouabi)","badge":"تربية المواشي","daira":"دائرة بئر بوحوش","desc":"","commitment":"","icon":"fa-horse","active":true},{"id":"tiffech","dataName":"تيفاش tiffech تيبيليس","cat":"foret","title":"تيفاش (Tiffech)","badge":"آثار تيبيليس والطبيعة","daira":"دائرة مداوروش","desc":"","commitment":"","icon":"fa-campground","active":true},{"id":"hanancha","dataName":"الحنانشة hanancha","cat":"urbain","title":"الحنانشة (Hanancha)","badge":"موقع استراتيجي","daira":"دائرة سوق أهراس","desc":"","commitment":"","icon":"fa-car-side","active":true},{"id":"zaarouria","dataName":"الزعرورية zaarouria","cat":"urbain","title":"الزعرورية (Zaarouria)","badge":"ضاحية سوق أهراس","daira":"دائرة تاورة","desc":"","commitment":"","icon":"fa-city","active":true},{"id":"safel-el-ouiden","dataName":"سافل الويدان safel el ouiden","cat":"lait","title":"سافل الويدان (Safel El Ouiden)","badge":"أودية وأراضي رعوية","daira":"دائرة بئر بوحوش","desc":"","commitment":"","icon":"fa-water","active":true},{"id":"oued-keberit","dataName":"واد الكبريت oued keberit","cat":"lait","title":"واد الكبريت (Oued Keberit)","badge":"قطب فوسفاتي وفلاحي","daira":"دائرة أم العظائم","desc":"","commitment":"","icon":"fa-train","active":true},{"id":"terraguelt","dataName":"ترقالت terraguelt","cat":"lait","title":"ترقالت (Terraguelt)","badge":"إنتاج الحليب والحبوب","daira":"دائرة أم العظائم","desc":"","commitment":"","icon":"fa-wheat-awn-circle-exclamation","active":true},{"id":"ragouba","dataName":"الراقوبة ragouba","cat":"lait","title":"الراقوبة (Ragouba)","badge":"أراضي خصبة وإنتاج حيواني","daira":"دائرة سدراتة","desc":"","commitment":"","icon":"fa-cow","active":true},{"id":"khedara","dataName":"الخضارة khedara","cat":"frontiere","title":"الخضارة (Khedara)","badge":"شريط حدودي وتضاريس جبلية","daira":"دائرة الحدادة","desc":"","commitment":"","icon":"fa-shield","active":true},{"id":"ouillen","dataName":"ويلان ouillen","cat":"frontiere","title":"ويلان (Ouillen)","badge":"طبيعة وموقع حدودي","daira":"دائرة المراهنة","desc":"","commitment":"","icon":"fa-tree-city","active":true},{"id":"ain-zana","dataName":"عين الزانة ain zana","cat":"foret","title":"عين الزانة (Ain Zana)","badge":"مرتفعات غابية وسياحة بيئية","daira":"دائرة أولاد إدريس","desc":"","commitment":"","icon":"fa-mountain","active":true},{"id":"ain-soltane","dataName":"عين سلطان ain soltane","cat":"urbain","title":"عين سلطان (Ain Soltane)","badge":"ينابيع وأراضي زراعية","daira":"دائرة سدراتة","desc":"","commitment":"","icon":"fa-faucet-drip","active":true},{"id":"ouled-moumen","dataName":"أولاد مومن ouled moumen","cat":"frontiere","title":"أولاد مومن (Ouled Moumen)","badge":"حدودية ورعوية","daira":"دائرة الحدادة","desc":"","commitment":"","icon":"fa-map-pin","active":true},{"id":"sidi-fredj","dataName":"سيدي فرج sidi fredj","cat":"frontiere","title":"سيدي فرج (Sidi Fredj)","badge":"بوابة حدودية شرقية","daira":"دائرة المراهنة","desc":"","commitment":"","icon":"fa-road-barrier","active":true}];
+        const DEFAULT_COMMUNES_DATA = [{"id":"souk-ahras","dataName":"سوق أهراس souk ahras","cat":"urbain","title":"سوق أهراس (Souk Ahras)","badge":"عاصمة الولاية","daira":"دائرة سوق أهراس","desc":"دعم خريجي جامعة محمد الشريف مساعدية، تسهيل رخص الاستثمار للمؤسسات الناشئة، وتحسين النقل والصحة الاستعجالية.","commitment":"التزام رقم 38","icon":"fa-graduation-cap","active":true},{"id":"sedrata","dataName":"سدراتة sedrata","cat":"lait","title":"سدراتة (Sedrata)","badge":"قطب حوض الحليب","daira":"دائرة سدراتة","desc":"مرافقة بيطرية مستمرة لمنتجي الحليب، دعم الأعلاف، إنشاء مركز تبريد وتخزين، وتسهيل قروض العتاد الفلاحي لمربي الأبقار.","commitment":"أولوية بيطرية","icon":"fa-cow","active":true},{"id":"mechroha","dataName":"مشروحة mechroha","cat":"foret","title":"مشروحة (Mechroha)","badge":"الثروة الغابية والنحل","daira":"دائرة مشروحة","desc":"تثمين غابات الفلين والصنوبر، دعم مربي النحل واستخلاص الزيوت، فك العزلة عن المشاتي وتعبيد المسالك الغابية.","commitment":"سياحة بيئية ونحل","icon":"fa-tree","active":true},{"id":"mdaourouch","dataName":"مداوروش mdaourouch madaure","cat":"urbain","title":"مداوروش (Mdaourouch)","badge":"حضارة وتاريخ مادور","daira":"دائرة مداوروش","desc":"تثمين الموقع الأثري مادور عالمياً، دعم شعبة الحبوب وتربية الأغنام، وتحسين خدمات المياه الصالحة للشرب للقرى التابعة.","commitment":"التزام رقم 38","icon":"fa-landmark","active":true},{"id":"taoura","dataName":"تاورة taoura","cat":"urbain","title":"تاورة (Taoura)","badge":"سهول زراعية خصبة","daira":"دائرة تاورة","desc":"دعم إنتاج الحبوب والبقول الجافة، توفير الأسمدة في الآجال، وتوسيع شبكات الكهرباء الفلاحية لحفر الآبار الارتوازية.","commitment":"التزام رقم 38","icon":"fa-wheat-awn","active":true},{"id":"haddada","dataName":"الحدادة haddada","cat":"frontiere","title":"الحدادة (Haddada)","badge":"الشريط الحدودي","daira":"دائرة الحدادة","desc":"برنامج خاص لتنمية المناطق الحدودية، توفير الغاز والكهرباء للمشاتي المعزولة، وتشجيع المرأة الحرفية الريفية بالتمويل المصغر.","commitment":"تنمية حدودية","icon":"fa-mountain-sun","active":true},{"id":"ouled-driss","dataName":"أولاد إدريس ouled driss","cat":"foret","title":"أولاد إدريس (Ouled Driss)","badge":"بيئة وتربية الماشية","daira":"دائرة أولاد إدريس","desc":"تطوير تربية الأغنام والأبقار الجبلية، مكافحة الأمراض الحيوانية مجاناً، وفتح المسالك الريفية لربط المداشر بالمراكز الصحية.","commitment":"التزام رقم 38","icon":"fa-seedling","active":true},{"id":"merahna","dataName":"المراهنة merahna","cat":"urbain","title":"المراهنة (Merahna)","badge":"طاقة رعوية وفلاحية","daira":"دائرة المراهنة","desc":"دعم الفلاحين في حفر الآبار، تسهيل عقود الامتياز الفلاحي، وتحسين شبكة الصرف الصحي والإنارة بالمشاتي.","commitment":"التزام رقم 38","icon":"fa-tractor","active":true},{"id":"bir-bouhouche","dataName":"بئر بوحوش bir bouhouche","cat":"lait","title":"بئر بوحوش (Bir Bouhouche)","badge":"حوض تربية الأبقار","daira":"دائرة بئر بوحوش","desc":"حل أزمة مياه السقي، توفير أطباء بياطرة بمداومة دائمة، ودعم أسعار الأعلاف المركزة لحماية ثروة الأبقار الحلوب.","commitment":"دعم مربي الأبقار","icon":"fa-fill-drip","active":true},{"id":"khemissa","dataName":"خميسة khemissa ثاموقادي","cat":"urbain","title":"خميسة (Khemissa)","badge":"تاريخ ثاموقادي وفلاحة","daira":"دائرة سدراتة","desc":"النهوض بالمسرح الروماني والموروث الأثري، ترقية السياحة الجبلية، وتأهيل المدارس الابتدائية والنقل المدرسي بالمشاتي.","commitment":"التزام رقم 38","icon":"fa-monument","active":true},{"id":"oum-el-adhaim","dataName":"أم العظائم oum el adhaim","cat":"urbain","title":"أم العظائم (Oum El Adhaim)","badge":"أراضي زراعية واعدة","daira":"دائرة أم العظائم","desc":"بناء حواجز مائية لتخزين مياه الأمطار، تجديد قنوات الشرب، وإدماج الشباب في استصلاح الأراضي الفلاحية البور.","commitment":"التزام رقم 38","icon":"fa-hand-holding-droplet","active":true},{"id":"drea","dataName":"الدريعة drea","cat":"urbain","title":"الدريعة (Drea)","badge":"زراعة وتنمية محلية","daira":"دائرة تاورة","desc":"تعبيد الطريق الرابط بين تاورة والدريعة، دعم شباب المنطقة في قروض التنمية الريفية، وإنشاء فضاءات للشباب والرياضة.","commitment":"التزام رقم 38","icon":"fa-truck-pickup","active":true},{"id":"zouabi","dataName":"الزوابي zouabi","cat":"lait","title":"الزوابي (Zouabi)","badge":"تربية المواشي","daira":"دائرة بئر بوحوش","desc":"حماية قطعان الماشية والأغنام، مرافقة بيطرية دورية ضد الحمى القلاعية، وتوسيع شبكة الكهرباء الفلاحية للمزارع.","commitment":"صحة حيوانية","icon":"fa-horse","active":true},{"id":"tiffech","dataName":"تيفاش tiffech تيبيليس","cat":"foret","title":"تيفاش (Tiffech)","badge":"آثار تيبيليس والطبيعة","daira":"دائرة مداوروش","desc":"تثمين الموقع التاريخي تيفاش، دعم تربية النحل في المرتفعات، وتحسين الرعاية الصحية في قاعات العلاج بالقرى.","commitment":"التزام رقم 38","icon":"fa-campground","active":true},{"id":"hanancha","dataName":"الحنانشة hanancha","cat":"urbain","title":"الحنانشة (Hanancha)","badge":"موقع استراتيجي","daira":"دائرة سوق أهراس","desc":"تحسين الربط المروري وشبكات النقل مع عاصمة الولاية، توفير المرافق الشبانية، ودعم الحرفيين والتعاونيات الفلاحية.","commitment":"التزام رقم 38","icon":"fa-car-side","active":true},{"id":"zaarouria","dataName":"الزعرورية zaarouria","cat":"urbain","title":"الزعرورية (Zaarouria)","badge":"ضاحية سوق أهراس","daira":"دائرة تاورة","desc":"تطوير النسيج العمراني والخدماتي، دعم النشاطات الرياضية للشباب، وتهيئة مناطق الأنشطة المصغرة للحرفيين.","commitment":"التزام رقم 38","icon":"fa-city","active":true},{"id":"safel-el-ouiden","dataName":"سافل الويدان safel el ouiden","cat":"lait","title":"سافل الويدان (Safel El Ouiden)","badge":"أودية وأراضي رعوية","daira":"دائرة بئر بوحوش","desc":"استصلاح الأراضي الفلاحية المحاذية للأودية، حماية الأراضي من الانجراف، وتدعيم مربي المواشي بالأعلاف المدعمة.","commitment":"دعم الفلاحين","icon":"fa-water","active":true},{"id":"oued-keberit","dataName":"واد الكبريت oued keberit","cat":"lait","title":"واد الكبريت (Oued Keberit)","badge":"قطب فوسفاتي وفلاحي","daira":"دائرة أم العظائم","desc":"استفادة أبناء المنطقة من مشاريع السكك الحديدية والفوسفات، مع حماية البيئة وتطوير قطاع تربية الأبقار والأغنام.","commitment":"تشغيل وبيئة","icon":"fa-train","active":true},{"id":"terraguelt","dataName":"ترقالت terraguelt","cat":"lait","title":"ترقالت (Terraguelt)","badge":"إنتاج الحليب والحبوب","daira":"دائرة أم العظائم","desc":"توفير مسالك ريفية معبدة لنقل الحليب اليومي، تعميم الربط بالغاز الطبيعي لكافة القرى، والمرافقة البيطرية الاستعجالية.","commitment":"التزام رقم 38","icon":"fa-wheat-awn-circle-exclamation","active":true},{"id":"ragouba","dataName":"الراقوبة ragouba","cat":"lait","title":"الراقوبة (Ragouba)","badge":"أراضي خصبة وإنتاج حيواني","daira":"دائرة سدراتة","desc":"دعم فلاحي الراقوبة في توسيع مساحات الذرة العلفية، حفر آبار جماعية للري، وتأهيل المرافق العمومية والمدارس.","commitment":"التزام رقم 38","icon":"fa-cow","active":true},{"id":"khedara","dataName":"الخضارة khedara","cat":"frontiere","title":"الخضارة (Khedara)","badge":"شريط حدودي وتضاريس جبلية","daira":"دائرة الحدادة","desc":"دعم صمود سكان المناطق الحدودية بتوفير الماء والكهرباء بالمشاتي، تحفيز الشباب بمشاريع مصغرة وتشجيع التراث والحرف.","commitment":"تنمية حدودية","icon":"fa-shield","active":true},{"id":"ouillen","dataName":"ويلان ouillen","cat":"frontiere","title":"ويلان (Ouillen)","badge":"طبيعة وموقع حدودي","daira":"دائرة المراهنة","desc":"فك العزلة عن المداشر، ترقية التبادلات الاقتصادية المحلية، ودعم قطاع تربية الأبقار وصغار المزارعين في الحصول على الأسمدة.","commitment":"التزام رقم 38","icon":"fa-tree-city","active":true},{"id":"ain-zana","dataName":"عين الزانة ain zana","cat":"foret","title":"عين الزانة (Ain Zana)","badge":"مرتفعات غابية وسياحة بيئية","daira":"دائرة أولاد إدريس","desc":"تطوير المسالك السياحية الجبلية، إنشاء محميات طبيعية، وتوفير العتاد لمربي النحل وصناع المنتجات الغابية التقليدية.","commitment":"بيئة ونحل","icon":"fa-mountain","active":true},{"id":"ain-soltane","dataName":"عين سلطان ain soltane","cat":"urbain","title":"عين سلطان (Ain Soltane)","badge":"ينابيع وأراضي زراعية","daira":"دائرة سدراتة","desc":"حماية مصادر المياه والينابيع الطبيعية، تشجيع زراعة الأشجار المثمرة وتربية الدواجن، وتوفير التجهيزات الطبية بالمستوصفات.","commitment":"التزام رقم 38","icon":"fa-faucet-drip","active":true},{"id":"ouled-moumen","dataName":"أولاد مومن ouled moumen","cat":"frontiere","title":"أولاد مومن (Ouled Moumen)","badge":"حدودية ورعوية","daira":"دائرة الحدادة","desc":"تعبيد المسالك الريفية التي تربط المشاتي، ضمان التزود بالغاز في فصل الشتاء، ودعم مربي الماشية باللقاحات والأدوية البيطرية.","commitment":"فك العزلة","icon":"fa-map-pin","active":true},{"id":"sidi-fredj","dataName":"سيدي فرج sidi fredj","cat":"frontiere","title":"سيدي فرج (Sidi Fredj)","badge":"بوابة حدودية شرقية","daira":"دائرة المراهنة","desc":"دعم الاستقرار في القرى الحدودية بتوفير فرص عمل شبابية، تشجيع التعاونيات الفلاحية، وتحسين التغطية الصحية والتنقل المدرسي.","commitment":"تنمية حدودية","icon":"fa-road-barrier","active":true}];
 
         function getCommunesConfig() {
             try {
                 const raw = localStorage.getItem(COMMUNES_CONFIG_KEY);
                 if (raw) {
                     const parsed = JSON.parse(raw);
-                    if (parsed && Array.isArray(parsed.communes)) {
+                    if (parsed && Array.isArray(parsed.communes) && parsed.communes.length > 0) {
+                        // Auto-heal empty or broken desc / commitment from DEFAULT_COMMUNES_DATA
+                        const defaultMap = {};
+                        DEFAULT_COMMUNES_DATA.forEach(d => { defaultMap[d.id] = d; });
+                        parsed.communes.forEach(c => {
+                            const def = defaultMap[c.id];
+                            if (def) {
+                                if (!c.desc || c.desc.includes('Ø') || c.desc.includes('Ù') || c.desc.includes('Ã')) {
+                                    c.desc = def.desc;
+                                }
+                                if (!c.commitment || c.commitment.includes('Ø') || c.commitment.includes('Ù') || c.commitment.includes('Ã')) {
+                                    c.commitment = def.commitment;
+                                }
+                                if (!c.badge || c.badge.includes('Ø') || c.badge.includes('Ù') || c.badge.includes('Ã')) {
+                                    c.badge = def.badge;
+                                }
+                                if (!c.title || c.title.includes('Ø') || c.title.includes('Ù') || c.title.includes('Ã')) {
+                                    c.title = def.title;
+                                }
+                                if (!c.daira || c.daira.includes('Ø') || c.daira.includes('Ù') || c.daira.includes('Ã')) {
+                                    c.daira = def.daira;
+                                }
+                            }
+                        });
                         return parsed;
                     }
                 }
@@ -3935,22 +4223,24 @@ const sectionTitles = {
                 return '<div class="bg-white rounded-2xl border transition-all p-5 space-y-3 relative ' + (isActive ? 'border-slate-200 shadow-sm hover:shadow-md' : 'border-rose-200 bg-rose-50/30 opacity-75') + '">' +
                     '<div class="flex items-start justify-between gap-3">' +
                         '<div>' +
-                            '<span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold border ' + catColor + '">' + (c.badge || 'برنامج تنموي') + '</span>' +
-                            '<h4 class="text-base font-black text-rnd-dark mt-1.5">' + c.title + '</h4>' +
-                            '<p class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-location-dot text-rnd-green mr-1"></i> ' + c.daira + '</p>' +
+                            '<span class="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold border ' + catColor + '">' + esc(c.badge || 'برنامج تنموي') + '</span>' +
+                            '<h4 class="text-base font-black text-rnd-dark mt-1.5">' + esc(c.title) + '</h4>' +
+                            '<p class="text-xs text-slate-500 font-medium"><i class="fa-solid fa-location-dot text-rnd-green mr-1"></i> ' + esc(c.daira) + '</p>' +
                         '</div>' +
-                        '<div class="flex flex-col items-end">' +
+                        '<div class="flex flex-col items-end gap-1.5">' +
                             '<label class="relative inline-flex items-center cursor-pointer">' +
-                                '<input type="checkbox" onchange="toggleCommuneActive(\'' + c.id + '\')" class="sr-only peer" ' + (isActive ? 'checked' : '') + '>' +
+                                '<input type="checkbox" onchange="toggleCommuneActive(\'' + esc(c.id) + '\')" class="sr-only peer" ' + (isActive ? 'checked' : '') + '>' +
                                 '<div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[\'\'] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>' +
                             '</label>' +
-                            '<span class="text-[10px] font-extrabold mt-1 ' + (isActive ? 'text-emerald-600' : 'text-rose-600') + '">' + (isActive ? 'Actif' : 'Masqué') + '</span>' +
+                            '<span class="text-[10px] font-extrabold ' + (isActive ? 'text-emerald-600' : 'text-rose-600') + '">' + (isActive ? 'Actif' : 'Masqué') + '</span>' +
                         '</div>' +
                     '</div>' +
-                    '<p class="text-xs text-slate-600 leading-relaxed bg-slate-50 rounded-xl p-3 border border-slate-100">' + (c.desc || 'Ù„Ø§ ÙŠÙˆØ¬Ø¯ ÙˆØµÙ Ù…Ø¶Ø§Ù.') + '</p>' +
+                    '<p class="text-xs text-slate-700 leading-relaxed bg-slate-50 rounded-xl p-3 border border-slate-100 font-medium">' + esc(c.desc || 'برنامج بلدي تنموي لدعم المواطنين وتطوير الخدمات.') + '</p>' +
                     '<div class="flex items-center justify-between text-xs pt-1 border-t border-slate-100">' +
-                        '<span class="font-bold text-rnd-green text-[11px]">' + (c.commitment || 'Ø§Ù„ØªØ²Ø§Ù… Ø±Ù‚Ù… 38') + '</span>' +
-                        '<span class="text-[10px] text-slate-400 font-semibold">ID: ' + c.id + '</span>' +
+                        '<span class="font-bold text-rnd-green text-[11px]"><i class="fa-solid fa-check-double mr-1 text-emerald-600"></i>' + esc(c.commitment || 'التزام رقم 38') + '</span>' +
+                        '<button type="button" onclick="openEditCommuneModal(\'' + esc(c.id) + '\')" class="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-rnd-green border border-emerald-300 font-extrabold text-[11px] flex items-center gap-1 transition shadow-sm cursor-pointer">' +
+                            '<i class="fa-solid fa-pen-to-square"></i> Modifier' +
+                        '</button>' +
                     '</div>' +
                 '</div>';
             }).join('');
@@ -3979,7 +4269,7 @@ const sectionTitles = {
         }
 
         function resetCommunesDefaults() {
-            if (confirm('Voulez-vous réinitialiser toutes les communes aux valeurs par défaut (toutes activées) ?')) {
+            if (confirm('Voulez-vous réinitialiser toutes les communes aux valeurs par défaut (toutes activées avec les textes authentiques) ?')) {
                 const cfg = {
                     sectionVisible: true,
                     communes: JSON.parse(JSON.stringify(DEFAULT_COMMUNES_DATA))
@@ -4012,10 +4302,453 @@ const sectionTitles = {
             renderCommunes();
         }
 
-        function searchAdminCommunes(val) {
-            currentAdminCommuneQuery = val || '';
+        function searchAdminCommunes(q) {
+            currentAdminCommuneQuery = q;
             renderCommunes();
         }
+
+        // ==========================================
+        // EDIT COMMUNE MODAL HANDLERS
+        // ==========================================
+        function openEditCommuneModal(communeId) {
+            const cfg = getCommunesConfig();
+            const c = cfg.communes.find(item => item.id === communeId);
+            if (!c) return;
+
+            document.getElementById('editCommuneId').value = c.id;
+            document.getElementById('editCommuneTitle').value = c.title || '';
+            document.getElementById('editCommuneDaira').value = c.daira || '';
+            document.getElementById('editCommuneBadge').value = c.badge || '';
+            document.getElementById('editCommuneCat').value = c.cat || 'urbain';
+            document.getElementById('editCommuneDesc').value = c.desc || '';
+            document.getElementById('editCommuneCommitment').value = c.commitment || 'التزام رقم 38';
+            document.getElementById('editCommuneActive').checked = c.active !== false;
+            document.getElementById('editCommuneModalTitle').textContent = 'تعديل بلدية ' + (c.title || '');
+
+            const modal = document.getElementById('modalEditCommune');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closeEditCommuneModal() {
+            const modal = document.getElementById('modalEditCommune');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function saveCommuneModal(e) {
+            if (e) e.preventDefault();
+            const id = document.getElementById('editCommuneId').value;
+            const cfg = getCommunesConfig();
+            const idx = cfg.communes.findIndex(item => item.id === id);
+            if (idx === -1) return;
+
+            cfg.communes[idx].title = document.getElementById('editCommuneTitle').value.trim();
+            cfg.communes[idx].daira = document.getElementById('editCommuneDaira').value.trim();
+            cfg.communes[idx].badge = document.getElementById('editCommuneBadge').value.trim();
+            cfg.communes[idx].cat = document.getElementById('editCommuneCat').value;
+            cfg.communes[idx].desc = document.getElementById('editCommuneDesc').value.trim();
+            cfg.communes[idx].commitment = document.getElementById('editCommuneCommitment').value.trim();
+            cfg.communes[idx].active = document.getElementById('editCommuneActive').checked;
+
+            saveCommunesConfig(cfg);
+            closeEditCommuneModal();
+            renderCommunes();
+            showToast('تم تحديث نص وبرنامج بلدية « ' + cfg.communes[idx].title + ' » بنجاح !', 'success');
+        }
+
+
+        // ==========================================
+        // ELECTORAL PROGRAM & AXES ENGINE (PHOTO 1)
+        // ==========================================
+        const PROGRAM_STORAGE_KEY = 'selma_electoral_program';
+
+        const DEFAULT_PROGRAM_CONFIG = {
+            badge: "البرنامج الانتخابي الرسمي • القائمة 2 • رقم 38",
+            title: "البرنامج الانتخابي للمجلس الشعبي الولائي لولاية سوق أهراس",
+            subtitle: "من أجل تنمية محلية شاملة ومستدامة",
+            pillars: [
+                {
+                    id: "pillar-1",
+                    tag: "المحور الأول • 01",
+                    title: "1. الفلاحة وتربية المواشي",
+                    desc: "دعم الفلاحين والمربين ومرافقتهم ميدانياً.",
+                    icon: "fa-cow",
+                    color: "rnd-green",
+                    active: true,
+                    actions: [
+                        "تحسين الوقاية من الأمراض الحيوانية.",
+                        "توفير الأدوية واللقاحات البيطرية.",
+                        "تشجيع تربية الأبقار والأغنام.",
+                        "المطالبة بصيانة المسالك الفلاحية."
+                    ]
+                },
+                {
+                    id: "pillar-2",
+                    tag: "المحور الثاني • 02",
+                    title: "2. المرأة الريفية",
+                    desc: "تمكين المرأة الريفية ودعم مشاريعها المنتجة.",
+                    icon: "fa-person-dress",
+                    color: "rnd-red",
+                    active: true,
+                    actions: [
+                        "دعم مشاريع المرأة الريفية في الصناعات الغذائية.",
+                        "تشجيع التعاونيات النسوية.",
+                        "مرافقة النساء في إنشاء مشاريع مصغرة.",
+                        "تنظيم معارض لتسويق المنتجات المحلية."
+                    ]
+                },
+                {
+                    id: "pillar-3",
+                    tag: "المحور الثالث • 03",
+                    title: "3. الشباب والتشغيل",
+                    desc: "دعم ومرافقة الشباب في التشغيل والمقاولاتية.",
+                    icon: "fa-users-gear",
+                    color: "rnd-green",
+                    active: true,
+                    actions: [
+                        "مرافقة الشباب حاملي المشاريع.",
+                        "ربط التكوين المهني باحتياجات سوق العمل.",
+                        "تشجيع المقاولاتية في مختلف المجالات.",
+                        "إنشاء فضاءات لدعم المبادرات الشبابية."
+                    ]
+                },
+                {
+                    id: "pillar-4",
+                    tag: "المحور الرابع • 04",
+                    title: "4. الصحة والبيئة",
+                    desc: "ترقية الخدمات الصحية وحماية المحيط البيئي.",
+                    icon: "fa-heart-pulse",
+                    color: "rnd-red",
+                    active: true,
+                    actions: [
+                        "تحسين التغطية الصحية في المناطق النائية.",
+                        "تدعيم المؤسسات الصحية بالتجهيزات الضرورية.",
+                        "حماية البيئة ومصادر المياه.",
+                        "إطلاق حملات للتوعية الصحية والوقاية."
+                    ]
+                }
+            ]
+        };
+
+        function getProgramConfig() {
+            try {
+                const raw = localStorage.getItem(PROGRAM_STORAGE_KEY);
+                if (raw) {
+                    const parsed = JSON.parse(raw);
+                    if (parsed && Array.isArray(parsed.pillars) && parsed.pillars.length > 0) {
+                        return parsed;
+                    }
+                }
+            } catch (e) {
+                console.warn('Error reading program config', e);
+            }
+            return JSON.parse(JSON.stringify(DEFAULT_PROGRAM_CONFIG));
+        }
+
+        function saveProgramConfig(cfg) {
+            try {
+                localStorage.setItem(PROGRAM_STORAGE_KEY, JSON.stringify(cfg));
+                window.dispatchEvent(new Event('storage'));
+            } catch (e) {
+                console.error('Error saving program config', e);
+            }
+        }
+
+        function renderElectoralProgramSection() {
+            const cfg = getProgramConfig();
+            
+            // Set header fields
+            const tInput = document.getElementById('progGlobalTitleInput');
+            if (tInput) tInput.value = cfg.title || DEFAULT_PROGRAM_CONFIG.title;
+            const sInput = document.getElementById('progGlobalSubtitleInput');
+            if (sInput) sInput.value = cfg.subtitle || DEFAULT_PROGRAM_CONFIG.subtitle;
+            const bEl = document.getElementById('progHeaderBadge');
+            if (bEl) bEl.textContent = cfg.badge || DEFAULT_PROGRAM_CONFIG.badge;
+
+            const grid = document.getElementById('adminPillarsGrid');
+            if (!grid) return;
+
+            grid.innerHTML = cfg.pillars.map(function(p, idx) {
+                const isActive = p.active !== false;
+                const isRed = p.color === 'rnd-red';
+                const isBlue = p.color === 'blue';
+                const isAmber = p.color === 'amber';
+                const isPurple = p.color === 'purple';
+
+                let iconBg = 'bg-[#0b4f36] text-white';
+                let tagBg = 'bg-emerald-100 text-emerald-800';
+                if (isRed) {
+                    iconBg = 'bg-[#d9232e] text-white';
+                    tagBg = 'bg-red-100 text-red-800';
+                } else if (isBlue) {
+                    iconBg = 'bg-blue-600 text-white';
+                    tagBg = 'bg-blue-100 text-blue-800';
+                } else if (isAmber) {
+                    iconBg = 'bg-amber-500 text-slate-950';
+                    tagBg = 'bg-amber-100 text-amber-900';
+                } else if (isPurple) {
+                    iconBg = 'bg-purple-600 text-white';
+                    tagBg = 'bg-purple-100 text-purple-800';
+                }
+
+                const actionsList = (p.actions || []).map(function(act) {
+                    return '<div class="flex items-start gap-2 text-xs text-slate-700 font-medium">' +
+                        '<i class="fa-solid fa-circle-check ' + (isRed ? 'text-rose-600' : 'text-emerald-600') + ' mt-0.5 shrink-0"></i>' +
+                        '<span>' + esc(act) + '</span>' +
+                    '</div>';
+                }).join('');
+
+                return '<div class="bg-white rounded-3xl p-6 border-2 transition-all space-y-4 shadow-sm hover:shadow-md relative ' + (isActive ? 'border-slate-200' : 'border-rose-200 bg-rose-50/20 opacity-75') + '">' +
+                    '<div class="flex items-start justify-between gap-4">' +
+                        '<div class="flex items-center gap-3.5">' +
+                            '<div class="w-14 h-14 rounded-2xl flex items-center justify-center text-2xl shadow-md ' + iconBg + '">' +
+                                '<i class="fa-solid ' + (p.icon || 'fa-award') + '"></i>' +
+                            '</div>' +
+                            '<div>' +
+                                '<span class="inline-block px-3 py-0.5 rounded-full text-[10px] font-black ' + tagBg + '">' + esc(p.tag || ('المحور ' + (idx + 1))) + '</span>' +
+                                '<h4 class="text-lg font-black text-slate-900 mt-1">' + esc(p.title) + '</h4>' +
+                            '</div>' +
+                        '</div>' +
+                        '<div class="flex flex-col items-end gap-1.5">' +
+                            '<label class="relative inline-flex items-center cursor-pointer">' +
+                                '<input type="checkbox" onchange="togglePillarActive(\'' + esc(p.id) + '\')" class="sr-only peer" ' + (isActive ? 'checked' : '') + '>' +
+                                '<div class="w-11 h-6 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[\'\'] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>' +
+                            '</label>' +
+                            '<span class="text-[10px] font-extrabold ' + (isActive ? 'text-emerald-600' : 'text-rose-600') + '">' + (isActive ? 'Actif' : 'Masqué') + '</span>' +
+                        '</div>' +
+                    '</div>' +
+
+                    '<p class="text-xs text-slate-600 font-bold bg-slate-50 p-3 rounded-xl border border-slate-100">' + esc(p.desc || '') + '</p>' +
+
+                    '<div class="space-y-2 bg-slate-50/70 p-4 rounded-2xl border border-slate-100">' +
+                        '<h5 class="text-[11px] font-black text-slate-500 uppercase tracking-wider mb-2">أهم الإجراءات والمقترحات الميدانية :</h5>' +
+                        actionsList +
+                    '</div>' +
+
+                    '<div class="pt-3 border-t border-slate-100 flex items-center justify-between">' +
+                        '<button type="button" onclick="deletePillar(\'' + esc(p.id) + '\')" class="text-xs font-bold text-rose-600 hover:text-rose-800 flex items-center gap-1 transition">' +
+                            '<i class="fa-regular fa-trash-can"></i> Supprimer' +
+                        '</button>' +
+                        '<button type="button" onclick="openEditPillarModal(\'' + esc(p.id) + '\')" class="px-3.5 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-[#0b4f36] border border-emerald-300 font-extrabold text-xs flex items-center gap-1.5 shadow-sm transition cursor-pointer">' +
+                            '<i class="fa-solid fa-pen-to-square"></i> Modifier l\'axe' +
+                        '</button>' +
+                    '</div>' +
+                '</div>';
+            }).join('');
+        }
+
+        function saveProgramGlobalTitles() {
+            const cfg = getProgramConfig();
+            const tInput = document.getElementById('progGlobalTitleInput');
+            const sInput = document.getElementById('progGlobalSubtitleInput');
+            if (tInput) cfg.title = tInput.value.trim();
+            if (sInput) cfg.subtitle = sInput.value.trim();
+            saveProgramConfig(cfg);
+            renderElectoralProgramSection();
+            showToast('تم تحديث العناوين الرئيسية للبرنامج بنجاح !', 'success');
+        }
+
+        function togglePillarActive(pillarId) {
+            const cfg = getProgramConfig();
+            const target = cfg.pillars.find(p => p.id === pillarId);
+            if (target) {
+                target.active = target.active === false ? true : false;
+                saveProgramConfig(cfg);
+                renderElectoralProgramSection();
+                showToast(target.active ? ('تم تفعيل « ' + target.title + ' »') : ('تم إخفاء « ' + target.title + ' »'), target.active ? 'success' : 'info');
+            }
+        }
+
+        function deletePillar(pillarId) {
+            if (confirm('هل أنت متأكد من رغبتك في حذف هذا المحور من البرنامج الانتخابي؟')) {
+                const cfg = getProgramConfig();
+                cfg.pillars = cfg.pillars.filter(p => p.id !== pillarId);
+                saveProgramConfig(cfg);
+                renderElectoralProgramSection();
+                showToast('تم حذف المحور بنجاح', 'info');
+            }
+        }
+
+        function resetPillarsToDefault() {
+            if (confirm('هل تريد استعادة المحاور الأربعة الأصلية حسب الملصق الرسمي للحملة؟')) {
+                const def = JSON.parse(JSON.stringify(DEFAULT_PROGRAM_CONFIG));
+                saveProgramConfig(def);
+                renderElectoralProgramSection();
+                showToast('تمت استعادة المحاور الأربعة الأصلية للملصق الرسمي بنجاح', 'success');
+            }
+        }
+
+        // ==========================================
+        // ICON PICKER & PILLAR MODAL LOGIC
+        // ==========================================
+        const THEMATIC_ICONS = [
+            { icon: 'fa-cow', label: 'مواشي وأبقار' },
+            { icon: 'fa-wheat-awn', label: 'فلاحة وحبوب' },
+            { icon: 'fa-tractor', label: 'عتاد فلاحي' },
+            { icon: 'fa-tree', label: 'غابات وبيئة' },
+            { icon: 'fa-person-dress', label: 'مرأة وأسرة' },
+            { icon: 'fa-hands-holding-child', label: 'تضامن ورعاية' },
+            { icon: 'fa-hand-holding-heart', label: 'عمل خيري' },
+            { icon: 'fa-users-gear', label: 'شباب ومقاولاتية' },
+            { icon: 'fa-briefcase', label: 'تشغيل واستثمار' },
+            { icon: 'fa-user-graduate', label: 'تعليم وجامعة' },
+            { icon: 'fa-graduation-cap', label: 'بحث علمي' },
+            { icon: 'fa-heart-pulse', label: 'صحة ورعاية' },
+            { icon: 'fa-hospital', label: 'مستشفيات وعيادات' },
+            { icon: 'fa-stethoscope', label: 'أطباء وتطبيب' },
+            { icon: 'fa-droplet', label: 'مياه وسدود' },
+            { icon: 'fa-road', label: 'مسالك وطرق' },
+            { icon: 'fa-bus', label: 'نقل ومواصلات' },
+            { icon: 'fa-house', label: 'سكن وعمران' },
+            { icon: 'fa-bolt', label: 'طاقة وكهرباء' },
+            { icon: 'fa-landmark', label: 'تاريخ وآثار' },
+            { icon: 'fa-shield-halved', label: 'أمن وحماية' },
+            { icon: 'fa-scale-balanced', label: 'عدالة ومساواة' },
+            { icon: 'fa-laptop-code', label: 'رقمنة وتكنولوجيا' },
+            { icon: 'fa-bullhorn', label: 'صوت المواطن' }
+        ];
+
+        function initIconPickerGrid(selectedIcon) {
+            const grid = document.getElementById('iconPickerGrid');
+            if (!grid) return;
+
+            grid.innerHTML = THEMATIC_ICONS.map(function(item) {
+                const isSelected = item.icon === selectedIcon;
+                return '<button type="button" onclick="selectPillarIcon(\'' + item.icon + '\', \'' + item.label + '\')" class="p-2.5 rounded-xl border flex flex-col items-center justify-center gap-1 transition ' +
+                    (isSelected ? 'border-[#0b4f36] bg-emerald-100 text-[#0b4f36] font-bold shadow-sm' : 'border-slate-200 bg-white hover:bg-slate-100 text-slate-700') + '" title="' + item.label + '">' +
+                    '<i class="fa-solid ' + item.icon + ' text-base"></i>' +
+                    '<span class="text-[9px] truncate max-w-full">' + item.label + '</span>' +
+                '</button>';
+            }).join('');
+        }
+
+        function selectPillarIcon(iconClass, label) {
+            document.getElementById('editPillarIcon').value = iconClass;
+            document.getElementById('customIconInput').value = iconClass;
+            
+            const prevIcon = document.getElementById('pillarModalPreviewIcon');
+            if (prevIcon) prevIcon.className = 'fa-solid ' + iconClass;
+
+            const lbl = document.getElementById('selectedIconLabel');
+            if (lbl) lbl.textContent = iconClass + (label ? (' (' + label + ')') : '');
+
+            initIconPickerGrid(iconClass);
+        }
+
+        function updateCustomIcon(val) {
+            const clean = val.trim();
+            if (!clean) return;
+            document.getElementById('editPillarIcon').value = clean;
+            const prevIcon = document.getElementById('pillarModalPreviewIcon');
+            if (prevIcon) prevIcon.className = 'fa-solid ' + clean;
+            const lbl = document.getElementById('selectedIconLabel');
+            if (lbl) lbl.textContent = clean;
+            initIconPickerGrid(clean);
+        }
+
+        function setPillarColor(colorName) {
+            document.getElementById('editPillarColor').value = colorName;
+            const box = document.getElementById('pillarModalPreviewBox');
+            if (!box) return;
+
+            box.className = 'w-12 h-12 rounded-2xl flex items-center justify-center text-2xl text-white shadow-inner ';
+            if (colorName === 'rnd-red') box.className += 'bg-[#d9232e]';
+            else if (colorName === 'blue') box.className += 'bg-blue-600';
+            else if (colorName === 'amber') box.className += 'bg-amber-500';
+            else if (colorName === 'purple') box.className += 'bg-purple-600';
+            else box.className += 'bg-[#0b4f36]';
+        }
+
+        function openAddPillarModal() {
+            const cfg = getProgramConfig();
+            const nextNum = (cfg.pillars ? cfg.pillars.length : 0) + 1;
+            const tagNumber = nextNum < 10 ? ('0' + nextNum) : nextNum;
+
+            document.getElementById('editPillarId').value = 'pillar-' + Date.now();
+            document.getElementById('editPillarTag').value = 'المحور الجديد • ' + tagNumber;
+            document.getElementById('editPillarTitle').value = nextNum + '. عنوان المحور الجديد';
+            document.getElementById('editPillarDesc').value = '';
+            document.getElementById('editPillarActionsText').value = '';
+            document.getElementById('editPillarActive').checked = true;
+            document.getElementById('pillarModalTitle').textContent = 'إضافة محور انتخابي جديد';
+
+            selectPillarIcon('fa-award', 'وسام وشارة');
+            setPillarColor('rnd-green');
+
+            const modal = document.getElementById('modalEditPillar');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function openEditPillarModal(pillarId) {
+            const cfg = getProgramConfig();
+            const p = cfg.pillars.find(item => item.id === pillarId);
+            if (!p) return;
+
+            document.getElementById('editPillarId').value = p.id;
+            document.getElementById('editPillarTag').value = p.tag || '';
+            document.getElementById('editPillarTitle').value = p.title || '';
+            document.getElementById('editPillarDesc').value = p.desc || '';
+            document.getElementById('editPillarActionsText').value = (p.actions || []).join('\n');
+            document.getElementById('editPillarActive').checked = p.active !== false;
+            document.getElementById('pillarModalTitle').textContent = 'تعديل ' + (p.title || '');
+
+            const color = p.color || 'rnd-green';
+            setPillarColor(color);
+            const radio = document.querySelector('input[name="pillarColorChoice"][value="' + color + '"]');
+            if (radio) radio.checked = true;
+
+            const icon = p.icon || 'fa-cow';
+            selectPillarIcon(icon);
+
+            const modal = document.getElementById('modalEditPillar');
+            if (modal) modal.classList.remove('hidden');
+        }
+
+        function closeEditPillarModal() {
+            const modal = document.getElementById('modalEditPillar');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function savePillarModal(e) {
+            if (e) e.preventDefault();
+            const id = document.getElementById('editPillarId').value;
+            const tag = document.getElementById('editPillarTag').value.trim();
+            const title = document.getElementById('editPillarTitle').value.trim();
+            const desc = document.getElementById('editPillarDesc').value.trim();
+            const icon = document.getElementById('editPillarIcon').value.trim() || 'fa-award';
+            const color = document.getElementById('editPillarColor').value.trim() || 'rnd-green';
+            const active = document.getElementById('editPillarActive').checked;
+            
+            const rawActions = document.getElementById('editPillarActionsText').value;
+            const actions = rawActions.split('\n')
+                .map(a => a.trim())
+                .filter(a => a.length > 0);
+
+            const cfg = getProgramConfig();
+            const idx = cfg.pillars.findIndex(p => p.id === id);
+
+            const pillarData = {
+                id: id,
+                tag: tag,
+                title: title,
+                desc: desc,
+                icon: icon,
+                color: color,
+                active: active,
+                actions: actions
+            };
+
+            if (idx >= 0) {
+                cfg.pillars[idx] = pillarData;
+            } else {
+                cfg.pillars.push(pillarData);
+            }
+
+            saveProgramConfig(cfg);
+            closeEditPillarModal();
+            renderElectoralProgramSection();
+            showToast('تم حفظ المحور الانتخابي « ' + title + ' » بنجاح !', 'success');
+        }
+
 
         function renderCommuneSubmissionStats() {
             const container = document.getElementById('communeSubmissionStatsGrid');
